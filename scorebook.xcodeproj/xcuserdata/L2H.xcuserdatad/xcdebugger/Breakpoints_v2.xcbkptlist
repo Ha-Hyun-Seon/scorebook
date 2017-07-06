@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/GameRecordViewController.swift"
-            timestampString = "521016881.721637"
+            timestampString = "521023736.762855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1337"
-            endingLineNumber = "1337"
+            startingLineNumber = "1379"
+            endingLineNumber = "1379"
             landmarkName = "displayLabelColorChange()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/GameRecordViewController.swift"
-            timestampString = "521016881.721637"
+            timestampString = "521023736.762855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1369"
-            endingLineNumber = "1369"
+            startingLineNumber = "1411"
+            endingLineNumber = "1411"
             landmarkName = "displayLabelColorChange()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/GameRecordViewController.swift"
-            timestampString = "521016881.721637"
+            timestampString = "521023736.762855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1448"
-            endingLineNumber = "1448"
+            startingLineNumber = "1490"
+            endingLineNumber = "1490"
             landmarkName = "setBatBaseInformation()"
             landmarkType = "7">
             <Locations>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/GameRecordViewController.swift"
-            timestampString = "521016881.721637"
+            timestampString = "521023736.762855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1462"
-            endingLineNumber = "1462"
+            startingLineNumber = "1504"
+            endingLineNumber = "1504"
             landmarkName = "setBatBaseInformation()"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/GameRecordViewController.swift"
-            timestampString = "521016881.721637"
+            timestampString = "521023736.762855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1212"
-            endingLineNumber = "1212"
+            startingLineNumber = "1254"
+            endingLineNumber = "1254"
             landmarkName = "BatterCompletedPopover()"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/GameRecordViewController.swift"
-            timestampString = "521016881.721637"
+            timestampString = "521023736.762855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1213"
-            endingLineNumber = "1213"
+            startingLineNumber = "1255"
+            endingLineNumber = "1255"
             landmarkName = "BatterCompletedPopover()"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/GameRecordViewController.swift"
-            timestampString = "521016881.721637"
+            timestampString = "521023736.762855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1174"
-            endingLineNumber = "1174"
+            startingLineNumber = "1216"
+            endingLineNumber = "1216"
             landmarkName = "setPitcherScoreBoard()"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/GameRecordViewController.swift"
-            timestampString = "521017200.149053"
+            timestampString = "521023736.762855"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1189"
-            endingLineNumber = "1189"
+            startingLineNumber = "1231"
+            endingLineNumber = "1231"
             landmarkName = "setPitcherScoreBoard()"
             landmarkType = "7">
          </BreakpointContent>

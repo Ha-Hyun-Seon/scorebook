@@ -63,6 +63,7 @@ class BattingMenuViewController: UIViewController{
         self.hRecord.homeRecord = RecordState.OneHit
         self.hRecord.homeRecordImage = RecordState.OneHit.rawValue
         self.complete()
+        
 
     }
    

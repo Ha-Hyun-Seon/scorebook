@@ -160,6 +160,7 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecordImage.append(RecordState.NotOut.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
         self.completeStrike()
+        
     }
     
     //타격
@@ -168,7 +169,7 @@ class PitchingMenuViewController: UIViewController {
         BattingMenuViewController.completeDelegate = self.batterCompleteDelegate
         BattingMenuViewController.preferredContentSize = CGSize(width: 320, height: 420)
         BattingMenuViewController.hRecord = self.hRecord
-        BattingMenuViewController.pitcherScoreBoardInfo = self.pitcherScoreBoardInfo//값전달 
+        BattingMenuViewController.pitcherScoreBoardInfo = self.pitcherScoreBoardInfo//값전달
         BattingMenuViewController.modalPresentationStyle = .popover
         
         if let popoverController = BattingMenuViewController.popoverPresentationController {
@@ -197,6 +198,18 @@ class PitchingMenuViewController: UIViewController {
         
     }
     
+    func reload(){
+        //낫 아웃 버튼
+        if isRunner1 == false && self.pitcherScoreBoardInfo.strikeCount == 2 {
+            self.notOutMenuView.isEnabled = true
+        }
+        
+        //고의 사구 버튼
+        if self.pitcherScoreBoardInfo.ballCount == 3 {
+            self.intentional4Balls.isEnabled = true
+        }
+    }
+    
     func complete() {
         if((self.pitcherCompleteDelegate) != nil)
         {
@@ -216,6 +229,8 @@ class PitchingMenuViewController: UIViewController {
             
             if self.pitcherScoreBoardInfo.ballCount==0 {
                 self.dismiss(animated: true, completion: nil)
+            }else{
+                reload()
             }
         }
     }
@@ -228,6 +243,8 @@ class PitchingMenuViewController: UIViewController {
             
             if self.pitcherScoreBoardInfo.strikeCount==0 {
                 self.dismiss(animated: true, completion: nil)
+            }else{
+                reload()
             }
         }
     }

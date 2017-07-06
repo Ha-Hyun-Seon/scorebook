@@ -880,6 +880,27 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         }
         else {
             //주자 교체
+            let runnerMenuViewController = storyboard?.instantiateViewController(withIdentifier: "mainrunnermenu") as! RunnerMenuViewController
+            runnerMenuViewController.changeRunnerCompleteDelegate = self
+            runnerMenuViewController.mainRunnerMenuCompleteDelegate = self
+            runnerMenuViewController.currentInningInfo = self.currentInningInfo
+            runnerMenuViewController.currentLineup = self.currentLineup
+            if self.currentInningInfo.kind == "ST" {
+                runnerMenuViewController.teamKind = self.visitedTeam.kind
+            }
+            else {
+                runnerMenuViewController.teamKind = self.homeTeam.kind
+            }
+            runnerMenuViewController.preferredContentSize = CGSize(width: 200, height: 208)
+            runnerMenuViewController.modalPresentationStyle = .popover
+            
+            if let popoverController = runnerMenuViewController.popoverPresentationController {
+                popoverController.sourceView = sender as! UIView
+                popoverController.sourceRect = sender.bounds
+                popoverController.permittedArrowDirections = .any
+                popoverController.delegate = self
+            }
+            present(runnerMenuViewController, animated: true, completion: nil)
         }
     }
     
@@ -905,6 +926,27 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         }
         else {
             //주자 교체
+            let runnerMenuViewController = storyboard?.instantiateViewController(withIdentifier: "mainrunnermenu") as! RunnerMenuViewController
+            runnerMenuViewController.changeRunnerCompleteDelegate = self
+            runnerMenuViewController.mainRunnerMenuCompleteDelegate = self
+            runnerMenuViewController.currentInningInfo = self.currentInningInfo
+            runnerMenuViewController.currentLineup = self.currentLineup
+            if self.currentInningInfo.kind == "ST" {
+                runnerMenuViewController.teamKind = self.visitedTeam.kind
+            }
+            else {
+                runnerMenuViewController.teamKind = self.homeTeam.kind
+            }
+            runnerMenuViewController.preferredContentSize = CGSize(width: 200, height: 208)
+            runnerMenuViewController.modalPresentationStyle = .popover
+            
+            if let popoverController = runnerMenuViewController.popoverPresentationController {
+                popoverController.sourceView = sender as! UIView
+                popoverController.sourceRect = sender.bounds
+                popoverController.permittedArrowDirections = .any
+                popoverController.delegate = self
+            }
+            present(runnerMenuViewController, animated: true, completion: nil)
         }
         
     }
@@ -1170,7 +1212,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             //완료
 //            self.completeCycle()
         }
-        //타격아웃
+        //타격방해
         if self.pitcherScoreBoardInfo.orderCount == 1{
             print("타격방해 \(self.pitcherScoreBoardInfo.orderCount)")
             self.actionPopState = .HoldRunner
