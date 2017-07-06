@@ -10,6 +10,7 @@ import Foundation
 
 class PitcherScoreBoardInfo : NSObject, NSCoding {
     
+    var orderCount:Int = 0
     //스트라이크 수
     var strikeCount:Int = 0
     
@@ -26,6 +27,7 @@ class PitcherScoreBoardInfo : NSObject, NSCoding {
     }
     
     func encode(with encoder: NSCoder){
+        encoder.encode(self.orderCount, forKey: "orderCount")
         encoder.encode(self.strikeCount, forKey: "strikeCount")
         encoder.encode(self.ballCount, forKey: "ballCount")
         encoder.encode(self.outCount, forKey: "outCount")
@@ -33,6 +35,11 @@ class PitcherScoreBoardInfo : NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
+        
+        if let orderCount = decoder.decodeObject(forKey: "orderCount") as? Int{
+            self.orderCount = orderCount
+        }
+        
         
         if let strikeCount = decoder.decodeObject(forKey: "strikeCount") as? Int{
             self.strikeCount = strikeCount

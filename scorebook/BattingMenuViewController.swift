@@ -102,7 +102,7 @@ class BattingMenuViewController: UIViewController{
     }
     
     //플라이
-    @IBAction func clickFlyOut(_ sender: Any) {
+    @IBAction func clickFlyOut(_ sender: Any) { 
         //타격 기록
         self.hRecord.hittingRecord = RecordState.FlyOut
         //홈 - 1루간 정보만 필요

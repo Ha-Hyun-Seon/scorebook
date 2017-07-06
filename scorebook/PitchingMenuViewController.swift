@@ -9,7 +9,7 @@
 import UIKit
 
 class PitchingMenuViewController: UIViewController {
-    
+    var test : Bool = false
     var hRecord : HRecordInfo = HRecordInfo()
     var pRecord : PRecordInfo = PRecordInfo()
     var recordImageInfo : RecordImageInfo = RecordImageInfo()
@@ -143,12 +143,13 @@ class PitchingMenuViewController: UIViewController {
    
     //타격방해
     @IBAction func clickBatterInterfere(_ sender: AnyObject) {
-        self.hRecord.pitcherRecord.append(RecordState.BatterInterfere)
-        self.hRecord.pitcherRecordImage.append(RecordState.BatterInterfere.rawValue)
+        self.hRecord.pitcherRecord.append(RecordState.PitchingEnd)
+        self.hRecord.pitcherRecordImage.append(RecordState.PitchingEnd.rawValue)
         
         self.hRecord.homeRecord = RecordState.BatterInterfere
+        print(self.hRecord.homeRecord.rawValue)
         self.hRecord.homeRecordImage = RecordState.BatterInterfere.rawValue
-        
+        self.pitcherScoreBoardInfo.orderCount = 1
         self.pitcherScoreBoardInfo.isPitcherChanged = true
         self.complete()
     }
@@ -167,7 +168,7 @@ class PitchingMenuViewController: UIViewController {
         BattingMenuViewController.completeDelegate = self.batterCompleteDelegate
         BattingMenuViewController.preferredContentSize = CGSize(width: 320, height: 420)
         BattingMenuViewController.hRecord = self.hRecord
-        BattingMenuViewController.pitcherScoreBoardInfo = self.pitcherScoreBoardInfo//값전달
+        BattingMenuViewController.pitcherScoreBoardInfo = self.pitcherScoreBoardInfo//값전달 
         BattingMenuViewController.modalPresentationStyle = .popover
         
         if let popoverController = BattingMenuViewController.popoverPresentationController {

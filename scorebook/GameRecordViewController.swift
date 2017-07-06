@@ -1128,9 +1128,16 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     
     func setPitcherScoreBoard() {
         
-        //총 투구수는 무조건 올라 간다.
-        self.currentPLineup.pitcherTotalCount += 1
-        self.lblPitcherTotalCount.text = String(self.currentPLineup.pitcherTotalCount)
+        
+        if self.pitcherScoreBoardInfo.orderCount != 1{
+            //총 투구수는 무조건 올라 간다.
+            self.currentPLineup.pitcherTotalCount += 1
+            self.lblPitcherTotalCount.text = String(self.currentPLineup.pitcherTotalCount)
+        }
+        
+//        //총 투구수는 무조건 올라 간다.
+//        self.currentPLineup.pitcherTotalCount += 1
+//        self.lblPitcherTotalCount.text = String(self.currentPLineup.pitcherTotalCount)
         
         //스트라이크 3개면 삼진 아웃
         if self.pitcherScoreBoardInfo.strikeCount == 3 {
@@ -1163,24 +1170,30 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             //완료
 //            self.completeCycle()
         }
-        //사구 (5개로 테스트중)
-        //여기에 사구조건 넣어야됨-l2h
+        //타격아웃
+        if self.pitcherScoreBoardInfo.orderCount == 1{
+            print("타격방해 \(self.pitcherScoreBoardInfo.orderCount)")
+            self.actionPopState = .HoldRunner
+            self.setBatterRecordByPitcher(recordState: RecordState.BatterInterfere)
+            
+            
+            self.oneRunnerHRecord = self.currentHrecord
+        }
+        
+        
+        
+        
+        
+        
+        //사구
         if self.pitcherScoreBoardInfo.ballCount == 5 {
-           // self.pitcherScoreBoardInfo.ballCount -= 4
             self.currentPLineup.pitcherBaseOnBallsCount += 1//현재투수 볼카운트
             self.actionPopState = .HoldRunner
             self.setBatterRecordByPitcher(recordState: RecordState.HitByPitch)//완료후 이미지
             
             self.oneRunnerHRecord = self.currentHrecord
         }
-//        if self.pitcherScoreBoardInfo.ballCount == 5 {
-////            self.currentPLineup.pitcherBaseOnBallsCount += 1
-////            self.actionPopState = .HoldRunner
-//            
-////            self.oneRunnerHRecord = self.currentHrecord
-//        }
-//        
-//        
+   
         //투구시에는 전광판 변경
         self.pitcherDisplayChange(isReset: false)
         
@@ -1190,6 +1203,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //투구 정보 스트라이크 초기화, 아웃 카운트 증가
         self.pitcherScoreBoardInfo.strikeCount = 0
         self.pitcherScoreBoardInfo.ballCount = 0
+        self.pitcherScoreBoardInfo.orderCount = 0
     }
     
     func BatterCompletedPopover() {
@@ -1197,7 +1211,6 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //타격 완료
         //타격 종료 일 경우 주자들의 추가 입력 가능하게 변경한다.
         self.actionPopState = .HoldRunner
-       // self.setPitcherImageview()//
         self.setBatterRecord()
     }
     
