@@ -52,7 +52,10 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingStrike)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingStrike.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
-        self.complete()
+        self.completeStrike()
+        
+            
+        
     }
     
     //볼
@@ -60,7 +63,8 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingBall)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingBall.rawValue)
         self.pitcherScoreBoardInfo.ballCount += 1
-        self.complete()
+        
+        self.completeBall()
     }
     
     //헛스윙,파울팁
@@ -68,7 +72,8 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingSwing)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingSwing.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
-        self.complete()
+        self.completeStrike()
+        
     }
     
     //번트 헛스윙
@@ -76,7 +81,8 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingBuntSwing)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingBuntSwing.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
-        self.complete()
+        self.completeStrike()
+        
     }
     
     
@@ -88,7 +94,8 @@ class PitchingMenuViewController: UIViewController {
         if self.pitcherScoreBoardInfo.strikeCount < 2 {
             self.pitcherScoreBoardInfo.strikeCount += 1
         }
-        self.complete()
+        self.completeStrike()
+        
     }
     
     //번트 파울
@@ -96,14 +103,18 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingBuntFoul)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingBuntFoul.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
-        self.complete()
+        self.completeStrike()
+        
     }
     
     
     //고의 4구
     @IBAction func clickIntentionalBall(_ sender: AnyObject) {
-        self.hRecord.pitcherRecord.append(RecordState.IntentionalBall)
-        self.hRecord.pitcherRecordImage.append(RecordState.IntentionalBall.rawValue)
+        self.hRecord.pitcherRecord.append(RecordState.PitchingBall)
+        self.hRecord.pitcherRecordImage.append(RecordState.PitchingBall.rawValue)
+        self.hRecord.homeRecord = RecordState.IntentionalBall
+        self.hRecord.homeRecordImage = RecordState.IntentionalBall.rawValue
+        self.pitcherScoreBoardInfo.ballCount += 1
         self.pitcherScoreBoardInfo.isPitcherChanged = true
         self.complete()
     }
@@ -134,6 +145,10 @@ class PitchingMenuViewController: UIViewController {
     @IBAction func clickBatterInterfere(_ sender: AnyObject) {
         self.hRecord.pitcherRecord.append(RecordState.BatterInterfere)
         self.hRecord.pitcherRecordImage.append(RecordState.BatterInterfere.rawValue)
+        
+        self.hRecord.homeRecord = RecordState.BatterInterfere
+        self.hRecord.homeRecordImage = RecordState.BatterInterfere.rawValue
+        
         self.pitcherScoreBoardInfo.isPitcherChanged = true
         self.complete()
     }
@@ -143,7 +158,7 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.NotOut)
         self.hRecord.pitcherRecordImage.append(RecordState.NotOut.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
-        self.complete()
+        self.completeStrike()
     }
     
     //타격
@@ -152,7 +167,7 @@ class PitchingMenuViewController: UIViewController {
         BattingMenuViewController.completeDelegate = self.batterCompleteDelegate
         BattingMenuViewController.preferredContentSize = CGSize(width: 320, height: 420)
         BattingMenuViewController.hRecord = self.hRecord
-        
+        BattingMenuViewController.pitcherScoreBoardInfo = self.pitcherScoreBoardInfo//값전달
         BattingMenuViewController.modalPresentationStyle = .popover
         
         if let popoverController = BattingMenuViewController.popoverPresentationController {
@@ -172,11 +187,13 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingStrike)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingStrike.rawValue)
         self.complete()
+        
     }
     
     //나가기
     @IBAction func clickExit(_ sender: AnyObject) {
         self.complete()
+        
     }
     
     func complete() {
@@ -187,6 +204,30 @@ class PitchingMenuViewController: UIViewController {
         
             
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    func completeBall() {
+        if((self.pitcherCompleteDelegate) != nil)
+        {
+            pitcherCompleteDelegate?.PitcherCompletedPopover()
+            
+            
+            
+            if self.pitcherScoreBoardInfo.ballCount==0 {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    func completeStrike() {
+        if((self.pitcherCompleteDelegate) != nil)
+        {
+            pitcherCompleteDelegate?.PitcherCompletedPopover()
+            
+            
+            
+            if self.pitcherScoreBoardInfo.strikeCount==0 {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     

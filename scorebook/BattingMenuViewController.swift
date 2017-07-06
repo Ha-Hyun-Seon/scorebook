@@ -103,34 +103,19 @@ class BattingMenuViewController: UIViewController{
     
     //플라이
     @IBAction func clickFlyOut(_ sender: Any) {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         //타격 기록
         self.hRecord.hittingRecord = RecordState.FlyOut
         //홈 - 1루간 정보만 필요
         self.hRecord.homeRecord = RecordState.FlyOut
         self.hRecord.homeRecordImage = RecordState.FlyOut.rawValue
-        
-        
-        self.hRecord.pitcherRecord.append(RecordState.FlyOut)
-        self.hRecord.pitcherRecordImage.append(RecordState.FlyOut.rawValue)
         self.pitcherScoreBoardInfo.outCount += 1
-        self.pitcherScoreBoardInfo.isPitcherChanged = true//필요한가?
         self.complete()
     }
     
     //파울 플라이
     @IBAction func clickFoulFlyOut(_ sender: Any) {
+        //타격 기록
+        self.hRecord.hittingRecord = RecordState.FoulFlyOut
         self.hRecord.homeRecord = RecordState.FoulFlyOut
         self.hRecord.homeRecordImage = RecordState.FoulFlyOut.rawValue
         
@@ -140,12 +125,13 @@ class BattingMenuViewController: UIViewController{
     
     //라인 드라이브
     @IBAction func clickLineDrive(_ sender: Any) {
+        self.hRecord.hittingRecord = RecordState.LineDrive
         self.hRecord.homeRecord = RecordState.LineDrive
         self.hRecord.homeRecordImage = RecordState.LineDrive.rawValue
         self.complete()
     }
     
-    //베이스 터치
+    //베이스 터치(X)
     @IBAction func clickBaseTouch(_ sender: Any) {
         self.hRecord.homeRecord = RecordState.LineDrive
         self.hRecord.homeRecordImage = RecordState.LineDrive.rawValue

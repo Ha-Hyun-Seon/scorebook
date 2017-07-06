@@ -282,7 +282,10 @@ class TeamAddSelectionViewController: UIViewController, UITableViewDataSource, U
     func getGameInfo(){
         let userDefaults = UserDefaults.standard
         let game = userDefaults.data(forKey: "Game")
-        self.currentGameInfo = (NSKeyedUnarchiver.unarchiveObject(with: game!) as? GameInfo)!
+        if game != nil {
+            self.currentGameInfo = (NSKeyedUnarchiver.unarchiveObject(with: game!) as? GameInfo)!
+        }
+        
         
         self.txtfldGameName.text = self.currentGameInfo.name
         

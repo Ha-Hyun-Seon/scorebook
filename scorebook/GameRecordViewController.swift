@@ -1197,7 +1197,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //타격 완료
         //타격 종료 일 경우 주자들의 추가 입력 가능하게 변경한다.
         self.actionPopState = .HoldRunner
-        self.setPitcherImageview()//
+       // self.setPitcherImageview()//
         self.setBatterRecord()
     }
     

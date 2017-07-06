@@ -57,8 +57,8 @@
                   symbolName = "scorebook.GameRecordViewController.setBatBaseInformation () -&gt; ()"
                   moduleName = "scorebook"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/L2H/Desktop/Company%20Test/scorebook/scorebook/GameRecordViewController.swift"
-                  timestampString = "520844290.880115"
+                  urlString = "file:///Users/L2H/Desktop/company%20file/scorebook/scorebook/GameRecordViewController.swift"
+                  timestampString = "520851676.37585"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1438"
@@ -72,8 +72,8 @@
                   symbolName = "scorebook.GameRecordViewController.(setBatBaseInformation () -&gt; ()).(closure #4)"
                   moduleName = "scorebook"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/L2H/Desktop/Company%20Test/scorebook/scorebook/GameRecordViewController.swift"
-                  timestampString = "520844290.882719"
+                  urlString = "file:///Users/L2H/Desktop/company%20file/scorebook/scorebook/GameRecordViewController.swift"
+                  timestampString = "520851676.378691"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1438"
@@ -96,22 +96,6 @@
             startingLineNumber = "1449"
             endingLineNumber = "1449"
             landmarkName = "setBatBaseInformation()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "scorebook/BattingMenuViewController.swift"
-            timestampString = "520843771.139885"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "clickFlyOut(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
