@@ -109,6 +109,9 @@ class BattingMenuViewController: UIViewController{
         //홈 - 1루간 정보만 필요
         self.hRecord.homeRecord = RecordState.FlyOut
         self.hRecord.homeRecordImage = RecordState.FlyOut.rawValue
+        self.outCount()
+        
+        
         self.pitcherScoreBoardInfo.outCount += 1
         self.complete()
     }
@@ -119,7 +122,7 @@ class BattingMenuViewController: UIViewController{
         self.hRecord.hittingRecord = RecordState.FoulFlyOut
         self.hRecord.homeRecord = RecordState.FoulFlyOut
         self.hRecord.homeRecordImage = RecordState.FoulFlyOut.rawValue
-        
+        self.outCount()
         self.pitcherScoreBoardInfo.outCount += 1
         self.complete()
     }
@@ -129,17 +132,20 @@ class BattingMenuViewController: UIViewController{
         self.hRecord.hittingRecord = RecordState.LineDrive
         self.hRecord.homeRecord = RecordState.LineDrive
         self.hRecord.homeRecordImage = RecordState.LineDrive.rawValue
+        self.outCount()
+        self.pitcherScoreBoardInfo.outCount += 1
         self.complete()
     }
     
     //베이스 터치(X)
     @IBAction func clickBaseTouch(_ sender: Any) {
-        self.hRecord.homeRecord = RecordState.LineDrive
-        self.hRecord.homeRecordImage = RecordState.LineDrive.rawValue
-        self.complete()
+//        self.hRecord.homeRecord = RecordState.LineDrive
+//        self.hRecord.homeRecordImage = RecordState.LineDrive.rawValue
+//        self.complete()
     }
     
     @IBAction func clickExit(_ sender: Any) {
+//        self.complete()
     }
     
     func complete() {
@@ -157,5 +163,19 @@ class BattingMenuViewController: UIViewController{
     }
     
 
-    
+    func outCount(){
+        switch pitcherScoreBoardInfo.outCount {
+        case 0:
+            self.hRecord.centerRecord = RecordState.OutCountOne
+            self.hRecord.centerRecordImage = RecordState.OutCountOne.rawValue
+        case 1:
+            self.hRecord.centerRecord = RecordState.OutCountTwo
+            self.hRecord.centerRecordImage = RecordState.OutCountTwo.rawValue
+        case 2:
+            self.hRecord.centerRecord = RecordState.OutCountThree
+            self.hRecord.centerRecordImage = RecordState.OutCountThree.rawValue
+        default: break
+            
+        }
+    }
 }

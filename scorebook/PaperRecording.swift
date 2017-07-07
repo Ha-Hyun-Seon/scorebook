@@ -61,13 +61,24 @@ class PaperRecording {
         
         switch self.currentHrecord.hittingRecord {
             
-           //----------------------------
+           //----------------------------LineDrive
+        case RecordState.LineDrive://라인드라이브
+            
+            self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
+            self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)
+            
+            
+            
+            
         case RecordState.FlyOut://플라이아웃
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
+            self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)
+          
+        case RecordState.FoulFlyOut://플라이아웃
             
-           // self.currentHrecord.runnerLocation = "1루" //넣는것 아님 주루에 갈경우
-            
+            self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
+            self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)
             
             
             
@@ -181,4 +192,5 @@ class PaperRecording {
 //        self.runnerAnimation(recordState: self.currentHrecord.hittingRecord)
         
     }
+    
 }
