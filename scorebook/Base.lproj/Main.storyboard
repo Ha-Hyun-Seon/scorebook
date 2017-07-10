@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IMZ-eF-jZm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IMZ-eF-jZm">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1857,7 +1857,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boO-8F-Ych" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2001" y="-924"/>
+            <point key="canvasLocation" x="3087" y="-887"/>
         </scene>
         <!--Runner Menu View Controller-->
         <scene sceneID="F9q-f0-Hls">
@@ -3540,7 +3540,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dil-tM-fCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2128" y="-925"/>
+            <point key="canvasLocation" x="3214" y="-889"/>
         </scene>
         <!--Defender Hitter Out Menu View Controller-->
         <scene sceneID="uqu-cY-Dps">
@@ -3583,7 +3583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8JM-Rp-4L2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2254" y="-925"/>
+            <point key="canvasLocation" x="3340" y="-889"/>
         </scene>
         <!--Runner Record Menu View Controller-->
         <scene sceneID="tTd-PG-Hlg">
@@ -3644,7 +3644,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0D-EF-zpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2215" y="-630"/>
+            <point key="canvasLocation" x="1972" y="-927"/>
         </scene>
         <!--Pinch Runner Record Menu View Controller-->
         <scene sceneID="VVv-fJ-2vC">
@@ -3739,7 +3739,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Lx-KY-Rxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2399" y="-558"/>
+            <point key="canvasLocation" x="2156" y="-856"/>
         </scene>
         <!--Change Fielder Menu View Controller-->
         <scene sceneID="53Y-IU-g7y">
@@ -3954,7 +3954,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaH-fP-TFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2030" y="-630"/>
+            <point key="canvasLocation" x="3298" y="-633"/>
         </scene>
         <!--Change Runner Menu View Controller-->
         <scene sceneID="swY-0Z-9Ep">
@@ -4049,45 +4049,43 @@
                         <viewControllerLayoutGuide type="bottom" id="L5G-Mc-h7E"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="M64-TR-3WX">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="285"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defenseMenu_defenseView.png" translatesAutoresizingMaskIntoConstraints="NO" id="nwd-CB-VkB">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="220"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waitMenu_runnerView.png" translatesAutoresizingMaskIntoConstraints="NO" id="nwd-CB-VkB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPZ-nQ-P4x" userLabel="Button - 포구 후 송구 동작">
-                                <rect key="frame" x="18" y="55" width="164" height="40"/>
+                                <rect key="frame" x="6" y="90" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="defenseMenu_catchAndThrow_bt.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjo-5U-bxh" userLabel="Button - 송구자 실책 진루">
-                                <rect key="frame" x="18" y="103" width="164" height="40"/>
+                                <rect key="frame" x="6" y="135" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="defenseMenu_throwErrorAdvance_bt.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1G-vw-Qi3" userLabel="Button - 포구자 실책 진루">
-                                <rect key="frame" x="20" y="151" width="164" height="40"/>
+                                <rect key="frame" x="6" y="182" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="defenseMenu_catchErrorAdvance_bt.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3i-ha-9XQ" userLabel="Button - 수비수 실책 진루">
-                                <rect key="frame" x="20" y="199" width="164" height="40"/>
+                                <rect key="frame" x="6" y="228" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="defenseMenu_defenseErrorAdvance_bt.png"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bcy-qb-1N7">
-                                <rect key="frame" x="143" y="247" width="39" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Owo-aK-78M">
+                                <rect key="frame" x="166" y="90" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="나가기">
-                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <state key="normal" image="waitMenu_tagOut_bt.png"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="200" height="285"/>
+                    <size key="freeformSize" width="320" height="300"/>
                     <connections>
                         <outlet property="addAdvanceMenuViewInCatchButton" destination="C1G-vw-Qi3" id="3Bh-dG-chl"/>
                         <outlet property="addAdvanceMenuViewInDefenseErrorButton" destination="C3i-ha-9XQ" id="B6O-9v-bDS"/>
@@ -4097,7 +4095,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJ3-h3-uqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="-925"/>
+            <point key="canvasLocation" x="2162" y="-484"/>
         </scene>
         <!--Defender Tag Out Menu View Controller-->
         <scene sceneID="D0a-8h-hXZ">
@@ -4143,7 +4141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GcW-iZ-76D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2505" y="-925"/>
+            <point key="canvasLocation" x="3465" y="-889"/>
         </scene>
         <!--Defender Not Out Menu View Controller-->
         <scene sceneID="OKC-HX-uG1">
@@ -4186,7 +4184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5cM-SZ-li4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2631" y="-925"/>
+            <point key="canvasLocation" x="3591" y="-889"/>
         </scene>
         <!--Baseman Runner Record Menu View Controller-->
         <scene sceneID="bhc-Wg-FTL">
@@ -4257,7 +4255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oSO-Hd-bFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2582" y="-630"/>
+            <point key="canvasLocation" x="3117" y="-631"/>
         </scene>
         <!--Recording Paper View Controller-->
         <scene sceneID="xEN-Ap-Nwn">
