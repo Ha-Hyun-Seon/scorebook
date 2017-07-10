@@ -83,8 +83,9 @@ class PaperRecording {
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
             self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)
+            
           
-        case RecordState.FoulFlyOut://플라이아웃
+        case RecordState.FoulFlyOut://파울플라이아웃
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)//아웃"K"이미지
             self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)//중간 팀전체 아웃횟수

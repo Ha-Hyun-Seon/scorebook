@@ -492,6 +492,8 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //애니메이션 실행
         self.runnerAnimation(recordState: self.currentHrecord.hittingRecord)
         
+//        self.runnerAnimation(recordState: self.currentHrecord.hittingRecord)
+        
         //타격완료(투구 정보란 입력)
         if recordingByThing == .Batter {
             self.currentHrecord.pitcherRecord.append(RecordState.PitchingEnd)
@@ -1176,11 +1178,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.currentPLineup.pitcherTotalCount += 1
             self.lblPitcherTotalCount.text = String(self.currentPLineup.pitcherTotalCount)
         }
-        
-//        //총 투구수는 무조건 올라 간다.
-//        self.currentPLineup.pitcherTotalCount += 1
-//        self.lblPitcherTotalCount.text = String(self.currentPLineup.pitcherTotalCount)
-        
+
         //스트라이크 3개면 삼진 아웃
         if self.pitcherScoreBoardInfo.strikeCount == 3 {
         
@@ -1189,6 +1187,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.setBatterRecordByPitcher(recordState: RecordState.StrikeOut)
             self.hRecord.centerRecord = RecordState.OutCountOne
             self.hRecord.centerRecordImage = RecordState.OutCountOne.rawValue
+            
             //완료
 //            self.completeCycle()
         }
@@ -1255,6 +1254,11 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         self.actionPopState = .HoldRunner
         self.setBatterRecord()
     }
+    
+    
+  
+    
+    
     
     func setBatterRecord() {
         

@@ -97,12 +97,12 @@ class BaseRunnerAnimation {
                 self.oneRunnerHRecord = self.currentHRecord
             case .RunnerState1:
                 //1루만 있을 경우
-                self.runnerState = .RunnerState2
+                self.runnerState = .RunnerState5
                 
             case .RunnerState2:
                 //1,2루만 있을 경우
                 self.addActionState = .Default
-                self.runnerState = .RunnerState4
+                self.runnerState = .RunnerState6
                 
             case .RunnerState3:
                 //1,2,3루만 있을 경우
@@ -117,8 +117,11 @@ class BaseRunnerAnimation {
             case .RunnerState5:
                 //2루만 있을 경우
                 self.addActionState = .Default
-                self.runnerState = .RunnerState4
-                
+                self.runnerState = .RunnerState7
+                self.twoRunnerInit()
+                self.twoRunnerOneMove()
+                self.threeRunnerHRecord = self.tempTwoRunnerHRecord
+                self.threeRunnerHRecord.runnerLocation = "3루"
             case .RunnerState6:
                 //2,3루만 있을 경우
                 self.addActionState = .Default
