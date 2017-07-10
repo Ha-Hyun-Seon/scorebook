@@ -143,6 +143,7 @@ class PitchingMenuViewController: UIViewController {
    
     //타격방해
     @IBAction func clickBatterInterfere(_ sender: AnyObject) {
+        
         self.hRecord.pitcherRecord.append(RecordState.PitchingEnd)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingEnd.rawValue)
         

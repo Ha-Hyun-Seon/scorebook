@@ -646,6 +646,8 @@ class RunnerAnimation {
             moveRunCount = 1
         case .HitByPitch:
             moveRunCount = 1
+        case .BatterInterfere:
+            moveRunCount = 1
         default:
             moveRunCount = 0
         }

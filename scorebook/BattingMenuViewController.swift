@@ -100,6 +100,16 @@ class BattingMenuViewController: UIViewController{
     
     //번트
     @IBAction func clickInfieldBunt(_ sender: Any) {
+        //타격 기록
+        self.hRecord.hittingRecord = RecordState.InfieldBunt
+        
+        //홈 - 1루간 정보만 필요
+        self.hRecord.homeRecord = RecordState.InfieldBunt
+        self.hRecord.homeRecordImage = RecordState.InfieldBunt.rawValue
+        
+        self.hRecord.pitcherRecord.append(RecordState.InfieldBunt)
+        self.hRecord.pitcherRecordImage.append(RecordState.InfieldBunt.rawValue)
+        self.complete()
     }
     
     //플라이

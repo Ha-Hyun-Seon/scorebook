@@ -62,6 +62,15 @@ class PaperRecording {
         switch self.currentHrecord.hittingRecord {
             
            //----------------------------LineDrive
+        case RecordState.InfieldBunt://번트
+            
+            self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
+            
+            self.currentLineup.hittingCount += 1
+            
+            
+            
+            
         case RecordState.LineDrive://라인드라이브
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
@@ -77,11 +86,16 @@ class PaperRecording {
           
         case RecordState.FoulFlyOut://플라이아웃
             
+            self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)//아웃"K"이미지
+            self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)//중간 팀전체 아웃횟수
+            
+            
+            
+        case RecordState.BatterInterfere://타격방해
+            
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
-            self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)
             
-            
-            
+            self.currentHrecord.runnerLocation = "1루"
             
             
         case RecordState.HitByPitch://사구

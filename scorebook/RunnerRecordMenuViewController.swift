@@ -68,12 +68,26 @@ class RunnerRecordMenuViewController: UIViewController {
     }
     
     //수비수 실책
-    @IBAction func clickDefenseErrorButton(_ sender: Any) {
+    @IBAction func clickDefenseErrorButton(_ sender: Any) {//클릭후 수비수 클릭을 할수 있어야됨
+        //수비수클릭시 DefenderErrorMenuView가 나와야됨
+        self.recordState = RecordState.AdvanceArrow
+        self.addActionRunnerSate = AddActionRunnerState.ErrorAction
+        self.complete()
         
     }
     
     //태그 아웃
     @IBAction func clickTagOutButton(_ sender: Any) {
+        
+        //ErrorAction
+        //self.recordState = RecordState.AdvanceArrow
+        self.addActionRunnerSate = AddActionRunnerState.ErrorAction
+        
+        
+        
+        self.complete()
+        
+        
     }
     
     func complete() {
