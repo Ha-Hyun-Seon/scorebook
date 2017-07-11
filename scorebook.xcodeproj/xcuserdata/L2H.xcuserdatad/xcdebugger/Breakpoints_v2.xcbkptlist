@@ -58,11 +58,11 @@
                   moduleName = "scorebook"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/L2H/Desktop/company%20file/scorebook/scorebook/GameRecordViewController.swift"
-                  timestampString = "521362778.015661"
+                  timestampString = "521441141.182999"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1509"
-                  endingLineNumber = "1509"
+                  startingLineNumber = "1497"
+                  endingLineNumber = "1497"
                   offsetFromSymbolStart = "5349">
                </Location>
                <Location
@@ -73,11 +73,11 @@
                   moduleName = "scorebook"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/L2H/Desktop/company%20file/scorebook/scorebook/GameRecordViewController.swift"
-                  timestampString = "521362778.018009"
+                  timestampString = "521441141.186538"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1509"
-                  endingLineNumber = "1509"
+                  startingLineNumber = "1497"
+                  endingLineNumber = "1497"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "scorebook/RunnerAnimation.swift"
-            timestampString = "521367086.959207"
+            timestampString = "521431632.117821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "757"
-            endingLineNumber = "757"
+            startingLineNumber = "777"
+            endingLineNumber = "777"
             landmarkName = "getMoveCount(recordState:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -384,6 +384,38 @@
             startingLineNumber = "641"
             endingLineNumber = "641"
             landmarkName = "RunnerAnimation(recordState:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "scorebook/BaseRunnerAnimation.swift"
+            timestampString = "521440969.950826"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "RunnerAnimation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "scorebook/BaseRunnerAnimation.swift"
+            timestampString = "521440969.950826"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
+            landmarkName = "RunnerAnimation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
