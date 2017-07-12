@@ -765,6 +765,56 @@ class RunnerAnimation {
 //                return
             }
         }
+        else if moveRunCount == 100 {
+            switch runnerState {
+                
+            case .Default:
+                break
+            case .RunnerState1:
+                //1루만 있을 경우
+                self.runnerState = .RunnerState1
+                self.oneRunnerInit()
+                self.oneRunnerHalfMove()
+                self.oneRunnerHRecord = self.tempOneRunnerHRecord
+                self.addActionState = .oneAction
+            case .RunnerState2:
+                //1,2루만 있을 경우
+                self.runnerState = .RunnerState2
+                self.oneRunnerInit()
+                self.twoRunnerInit()
+                self.oneRunnerHalfMove()
+                self.twoRunnerHalfMove()
+                self.oneRunnerHRecord = self.tempOneRunnerHRecord
+                self.twoRunnerHRecord = self.tempTwoRunnerHRecord
+                self.addActionState = .TwoAction
+            case .RunnerState3:
+                //1,2,3루만 있을 경우
+                self.addActionState = .ThreeAction
+            case .RunnerState4:
+                //1,3루만 있을 경우
+                self.addActionState = .TwoAction
+            case .RunnerState5:
+                //2루만 있을 경우
+                self.runnerState = .RunnerState2
+                self.twoRunnerInit()
+                self.twoRunnerHalfMove()
+                self.twoRunnerHRecord = self.tempTwoRunnerHRecord
+                self.addActionState = .oneAction
+            case .RunnerState6:
+                //2,3루만 있을 경우
+                self.addActionState = .TwoAction
+            case .RunnerState7:
+                //3루만 있을 경우
+                self.runnerState = .RunnerState7
+                self.threeRunnerInit()
+                self.threeRunnerHalfMove()
+                self.threeRunnerHRecord = self.tempThreeRunnerHRecord
+                self.addActionState = .oneAction
+            default:
+                return
+            }
+            animationTime = 0.5
+        }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + animationTime) {
             self.complete()
@@ -791,8 +841,8 @@ class RunnerAnimation {
             moveRunCount = 1
         case .BatterInterfere:
             moveRunCount = 1
-//        case .FlyOut://
-//            moveRunCount = 5
+        case .LineDrive:
+            moveRunCount = 100
         default:
             moveRunCount = 0
         }

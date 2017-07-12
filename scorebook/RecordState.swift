@@ -223,4 +223,7 @@ enum RecordState : String {
     //연속진루
     case AdvanceArrow = "연속진루"
     
+    //진루없음
+    case NotAdvance = "진루없음"
+    
 }
