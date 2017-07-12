@@ -487,6 +487,7 @@ class RunnerAnimation {
                 
             case .RunnerState6:
                 //2,3루만 있을 경우
+                
                 self.runnerState = .RunnerState7
                 self.twoRunnerInit()
                 self.threeRunnerInit()
@@ -673,10 +674,7 @@ class RunnerAnimation {
                     self.oneRunnerHRecord = self.tempOneRunnerHRecord
                     self.twoRunnerHRecord = self.tempTwoRunnerHRecord
                     
-//                    self.twoRunnerHRecord.runnerLocation = "2루"
-//                    self.twoRunnerHRecord.oneRecordImage = Utils(currentHRecord: self.currentHRecord).getRecordStateImageStringByBatterNumber()
-//                    self.threeRunnerHRecord.runnerLocation = "3루"
-//                    self.threeRunnerHRecord.twoRecordImage = Utils(currentHRecord: self.currentHRecord).getRecordStateImageStringByBatterNumber()
+
                 case .RunnerState3:
                     //1,2,3루만 있을 경우
                     self.addActionState = .ThreeAction
@@ -732,7 +730,7 @@ class RunnerAnimation {
                     self.threeRunnerInit()
                     self.threeRunnerHalfMove()
                     self.twoRunnerHalfMove()
-                    self.oneRunnerHRecord = self.currentHRecord
+//                    self.oneRunnerHRecord = self.currentHRecord
                     self.twoRunnerHRecord = self.tempTwoRunnerHRecord
                     self.threeRunnerHRecord = self.tempThreeRunnerHRecord
                 case .RunnerState7:

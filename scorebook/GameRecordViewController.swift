@@ -791,7 +791,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         
         baseRunnerAnimation.completeDelegate = self
         self.addActionRunnerState = addActionRunnerState
-        baseRunnerAnimation.RunnerAnimation()
+        baseRunnerAnimation.RunnerAnimation(hittingRecord: self.currentHrecord.hittingRecord)
         
         //주자 추가 기록 완료시 기록지에 기록
         setRunnerPaperRecording(runnerPosition: runnerPosition, record : record)
