@@ -226,4 +226,7 @@ enum RecordState : String {
     //진루없음
     case NotAdvance = "진루없음"
     
+    //태그아웃
+    case TagOut = "태그아웃"
+    
 }

@@ -707,7 +707,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         self.tempRunnerHRecord = HRecordInfo()
     }
     
-    func AddActionAnimationComplete(oneRunnerHRecord : HRecordInfo, twoRunnerHRecord : HRecordInfo, threeRunnerHRecord : HRecordInfo, homeRunnerHRecordList : [HRecordInfo],tempRunnerHRecord : HRecordInfo, runnerState : RunnerState, addActionState : AddActionState) {
+    func AddActionAnimationComplete(oneRunnerHRecord : HRecordInfo, twoRunnerHRecord : HRecordInfo, threeRunnerHRecord : HRecordInfo, homeRunnerHRecordList : [HRecordInfo],tempRunnerHRecord : HRecordInfo, runnerState : RunnerState, addActionState : AddActionState, runnerPosition: RunnerPosition) {
         
         self.oneRunnerHRecord = oneRunnerHRecord
         self.twoRunnerHRecord = twoRunnerHRecord

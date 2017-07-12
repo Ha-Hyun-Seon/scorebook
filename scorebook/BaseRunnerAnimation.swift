@@ -88,6 +88,320 @@ class BaseRunnerAnimation {
     
     func RunnerAnimation(hittingRecord : RecordState) {
         
+        //루 이동은 무조건 한루
+        if runnerPosition == .OneRunner {
+            switch runnerState {
+                
+            case .Default:
+                self.runnerState = .RunnerState1
+                self.oneRunnerHRecord = self.currentHRecord
+                
+            case .RunnerState10:
+                //1-2 중간
+                self.runnerState = .RunnerState6
+                
+            case .RunnerState11:
+                //1-2 중간, 2-3 중간(1H, 2H)
+                
+                if self.recordState == .NotAdvance {
+                    //진루 없음
+                    self.runnerState = .RunnerState14
+                    self.oneRunnerBackOneMove()
+                    self.tempOneRunnerHRecord.runnerLocation = "1루"
+                    self.oneRunnerHRecord = self.tempOneRunnerHRecord
+                } else {
+                    //진루
+                    self.runnerState = .RunnerState19
+                    self.oneRunnerOneMove()
+                    self.tempOneRunnerHRecord.runnerLocation = "2루"
+                    self.twoRunnerHRecord = self.tempOneRunnerHRecord
+                }
+                
+                
+            case .RunnerState12:
+                //1-2 중간, 2
+                //진루 불가능
+                
+                if self.recordState == .TagOut {
+                    //진루 없음
+                    self.runnerState = .RunnerState5
+                    self.runner1_2.isHidden = true
+                    self.twoRunnerHRecord = self.tempTwoRunnerHRecord
+                } else {
+                    //진루
+                    self.runnerState = .RunnerState2
+                    self.oneRunnerBackOneMove()
+                    self.oneRunnerHRecord = self.tempOneRunnerHRecord
+                    self.twoRunnerHRecord = self.tempTwoRunnerHRecord
+                }
+                
+                
+            case .RunnerState13:
+                //1-2 중간, 3
+                self.addActionState = .Default
+                self.runnerState = .RunnerState2
+                
+            case .RunnerState14:
+                //1, 2-3 중간
+                self.addActionState = .Default
+                self.runnerState = .RunnerState7
+                self.twoRunnerInit()
+                self.twoRunnerOneMove()
+                self.threeRunnerHRecord = self.tempTwoRunnerHRecord
+                self.threeRunnerHRecord.runnerLocation = "3루"
+            case .RunnerState15:
+                //1, 3-홈 중간
+                self.addActionState = .Default
+                self.runnerState = .RunnerState4
+                
+            case .RunnerState16:
+                self.addActionState = .Default
+                //1, 2-3 중간, 3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState17:
+                self.addActionState = .Default
+                //1, 2, 3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState18:
+                self.addActionState = .Default
+                //2 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState19:
+                self.addActionState = .Default
+                //2, 2-3 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState20:
+                self.addActionState = .Default
+                //2, 3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState21:
+                self.addActionState = .Default
+                //2-3 중간, 3
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState22:
+                self.addActionState = .Default
+                //2-3 중간, 3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState23:
+                self.addActionState = .Default
+                //3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            default:
+                return
+            }
+            
+        }
+        else if runnerPosition == .TwoRunner {
+            switch runnerState {
+                
+            case .Default:
+                self.runnerState = .RunnerState1
+                self.oneRunnerHRecord = self.currentHRecord
+                
+            case .RunnerState10:
+                //1-2 중간
+                self.runnerState = .RunnerState6
+                
+            case .RunnerState11:
+                //1-2 중간, 2-3 중간
+                
+                if self.recordState == .NotAdvance {
+                    //진루 없음
+                    self.runnerState = .RunnerState12
+                    self.twoRunnerBackOneMove()
+                    self.oneRunnerHRecord = self.tempOneRunnerHRecord
+                    self.twoRunnerHRecord = self.tempTwoRunnerHRecord
+                } else {
+                    //진루
+                    self.runnerState = .RunnerState19
+                    self.oneRunnerOneMove()
+                    self.tempOneRunnerHRecord.runnerLocation = "2루"
+                    self.twoRunnerHRecord = self.tempOneRunnerHRecord
+                }
+                
+                
+            case .RunnerState12:
+                //1-2 중간, 2
+                //진루 불가능
+                self.addActionState = .Default
+                
+            case .RunnerState13:
+                //1-2 중간, 3
+                self.addActionState = .Default
+                self.runnerState = .RunnerState2
+                
+            case .RunnerState14:
+                //1, 2-3 중간
+                self.addActionState = .Default
+                
+            case .RunnerState15:
+                //1, 3-홈 중간
+                self.addActionState = .Default
+                self.runnerState = .RunnerState4
+                
+            case .RunnerState16:
+                self.addActionState = .Default
+                //1, 2-3 중간, 3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState17:
+                self.addActionState = .Default
+                //1, 2, 3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState18:
+                self.addActionState = .Default
+                //2 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState19:
+                self.addActionState = .Default
+                //2, 2-3 중간
+                //진루없음 불가능
+                
+                if self.recordState == .TagOut {
+                    //진루 없음
+                    self.runnerState = .RunnerState5
+                    self.runner2_3.isHidden = true
+                    self.twoRunnerHRecord = self.tempTwoRunnerHRecord
+                } else {
+                    //진루
+                    self.runnerState = .RunnerState6
+                    self.twoRunnerOneMove()
+                    self.twoRunnerHRecord = self.tempTwoRunnerHRecord
+                    self.threeRunnerHRecord = self.tempThreeRunnerHRecord
+                }
+                
+                
+            case .RunnerState20:
+                self.addActionState = .Default
+                //2, 3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState21:
+                self.addActionState = .Default
+                //2-3 중간, 3
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState22:
+                self.addActionState = .Default
+                //2-3 중간, 3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            case .RunnerState23:
+                self.addActionState = .Default
+                //3-홈 중간
+                self.runnerState = .RunnerState1
+                
+            default:
+                return
+            }
+            
+        }
+        else if runnerPosition == .ThreeRunner {
+            switch runnerState {
+            case .Default:
+                self.runnerState = .RunnerState1
+                self.oneRunnerHRecord = self.currentHRecord
+            case .RunnerState1:
+                //1루만 있을 경우
+                self.runnerState = .RunnerState2
+                
+            case .RunnerState2:
+                //1,2루만 있을 경우
+                self.addActionState = .Default
+                self.runnerState = .RunnerState4
+                
+                self.twoRunnerOneMove()
+                self.threeRunnerHRecord = self.tempTwoRunnerHRecord
+                
+                self.threeRunnerHRecord.runnerLocation = "3루"
+                self.threeRunnerHRecord.twoRecordImage = Utils(currentHRecord: self.currentHRecord).getRecordStateImageStringByBatterNumber()
+            case .RunnerState3:
+                //1,2,3루만 있을 경우
+                if self.addActionState == .TwoAction {
+                    //기존 2,3루일 경우에 해당
+                    self.addActionState = .oneAction
+                    self.runnerState = .RunnerState2
+                    self.threeRunnerOneMove()
+                    self.oneRunnerHRecord = self.currentHRecord
+                    self.twoRunnerHRecord = self.tempTwoRunnerHRecord
+                    self.threeRunnerHRecord = self.tempThreeRunnerHRecord
+                    self.tempThreeRunnerHRecord.runnerLocation = ""
+                    self.tempThreeRunnerHRecord.threeRecordImage = Utils(currentHRecord: self.currentHRecord).getRecordStateImageStringByBatterNumber()
+                    self.homeRunnerHRecordList.append(self.tempThreeRunnerHRecord)
+                }
+                else {
+                    //기존 1,3루일 경우에 해당
+                    self.addActionState = .Default
+                    self.runnerState = .RunnerState2
+                    self.threeRunnerOneMove()
+                    self.oneRunnerHRecord = self.currentHRecord
+                    self.twoRunnerHRecord = self.tempOneRunnerHRecord
+                    self.threeRunnerHRecord = self.tempThreeRunnerHRecord
+                    self.tempThreeRunnerHRecord.runnerLocation = ""
+                    self.tempThreeRunnerHRecord.threeRecordImage = Utils(currentHRecord: self.currentHRecord).getRecordStateImageStringByBatterNumber()
+                    self.homeRunnerHRecordList.append(self.tempThreeRunnerHRecord)
+                }
+                
+                
+            case .RunnerState4:
+                //1,3루만 있을 경우
+                
+                if self.addActionState == .oneAction {
+                    self.addActionState = .Default
+                    self.runnerState = .RunnerState4
+                    self.threeRunnerOneMove()
+                    
+                    self.oneRunnerHRecord = self.currentHRecord
+                    self.threeRunnerHRecord = self.tempThreeRunnerHRecord
+                    
+                    self.tempRunnerHRecord.runnerLocation = ""
+                    self.tempRunnerHRecord.threeRecord = self.recordState
+                    self.tempRunnerHRecord.threeRecordImage = self.recordState.rawValue
+                    self.homeRunnerHRecordList.append(self.tempRunnerHRecord)
+                }
+                else {
+                    self.addActionState = .Default
+                    self.runnerState = .RunnerState1
+                    self.threeRunnerOneMove()
+                    self.homeRunnerHRecordList.append(self.tempThreeRunnerHRecord)
+                }
+                
+            case .RunnerState5:
+                //2루만 있을 경우
+                self.addActionState = .Default
+                self.runnerState = .RunnerState4
+                
+            case .RunnerState6:
+                //2,3루만 있을 경우
+                self.addActionState = .Default
+                self.runnerState = .RunnerState4
+                
+            case .RunnerState7:
+                self.addActionState = .Default
+                //3루만 있을 경우
+                self.runnerState = .RunnerState1
+                
+            default:
+                return
+            }
+            
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.complete()
+        }
+        
+        /*
         switch hittingRecord{
         case .FlyOut:
             //루 이동은 무조건 한루
@@ -839,17 +1153,12 @@ class BaseRunnerAnimation {
                 }
                 
             }
-            
+        
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                 self.complete()
             }
         }
-        
-        
-        
-       
-            
-        
+        */
         
         
     }
@@ -1278,15 +1587,14 @@ class BaseRunnerAnimation {
     func complete() {
         if((self.completeDelegate) != nil)
         {
-            if self.addActionState == .Default{
+            if self.runnerState.rawValue.contains("H") == false {
                 //주자들 초기화
                 self.setRunnerViewByRunnerState()
                 completeDelegate?.AnimationComplete(oneRunnerHRecord: self.oneRunnerHRecord, twoRunnerHRecord: self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList : self.homeRunnerHRecordList, runnerState : self.runnerState, addActionState : self.addActionState)
             }
             else {
-                completeDelegate?.AddActionAnimationComplete(oneRunnerHRecord: self.oneRunnerHRecord, twoRunnerHRecord: self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList : self.homeRunnerHRecordList, tempRunnerHRecord : self.tempRunnerHRecord, runnerState : self.runnerState, addActionState : self.addActionState)
+                completeDelegate?.AddActionAnimationComplete(oneRunnerHRecord: self.oneRunnerHRecord, twoRunnerHRecord: self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList : self.homeRunnerHRecordList, tempRunnerHRecord : self.tempRunnerHRecord, runnerState : self.runnerState, addActionState : self.addActionState, runnerPosition: self.runnerPosition)
             }
-            
         }
     }
     

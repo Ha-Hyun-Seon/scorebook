@@ -18,6 +18,21 @@ enum RunnerState : String {
     case RunnerState5 = "2"
     case RunnerState6 = "2,3"
     case RunnerState7 = "3"
+    
+    case RunnerState10 = "1H"           //1-2 중간
+    case RunnerState11 = "1H,2H"        //1-2 중간, 2-3 중간
+    case RunnerState12 = "1H,2"         //1-2 중간, 2
+    case RunnerState13 = "1H,3"         //1-2 중간, 3
+    case RunnerState14 = "1,2H"         //1, 2-3 중간
+    case RunnerState15 = "1,3H"         //1, 3-홈 중간
+    case RunnerState16 = "1,2H,3H"      //1, 2-3 중간, 3-홈 중간
+    case RunnerState17 = "1,2,3H"       //1, 2, 3-홈 중간
+    case RunnerState18 = "2H"           //2 중간
+    case RunnerState19 = "2,2H"         //2, 2-3 중간
+    case RunnerState20 = "2,3H"         //2, 3-홈 중간
+    case RunnerState21 = "2H,3"         //2-3 중간, 3
+    case RunnerState22 = "2H,3H"        //2-3 중간, 3-홈 중간
+    case RunnerState23 = "3H"           //3-홈 중간
 }
 
 //루 상태

@@ -166,7 +166,7 @@ class RunnerAnimation {
             case .RunnerState4:
                 //1,3루만 있을 경우
                 self.addActionState = .oneAction
-                self.runnerState = .RunnerState3
+                self.runnerState = .RunnerState17
                 self.oneRunnerInit()
                 self.threeRunnerInit()
                 self.threeRunnerHalfMove()
@@ -181,7 +181,7 @@ class RunnerAnimation {
             case .RunnerState5:
                 //2루만 있을 경우
                 self.addActionState = .oneAction
-                self.runnerState = .RunnerState2
+                self.runnerState = .RunnerState14
                 self.twoRunnerInit()
                 self.twoRunnerHalfMove()
                 self.oneRunnerHRecord = self.currentHRecord
@@ -189,7 +189,7 @@ class RunnerAnimation {
             case .RunnerState6:
                 //2,3루만 있을 경우
                 self.addActionState = .TwoAction
-                self.runnerState = .RunnerState3
+                self.runnerState = .RunnerState16
                 self.twoRunnerInit()
                 self.threeRunnerInit()
                 self.threeRunnerHalfMove()
@@ -200,7 +200,7 @@ class RunnerAnimation {
             case .RunnerState7:
                 self.addActionState = .oneAction
                 //3루만 있을 경우
-                self.runnerState = .RunnerState4
+                self.runnerState = .RunnerState15
                 self.threeRunnerInit()
                 self.threeRunnerHalfMove()
                 self.oneRunnerHRecord = self.currentHRecord
@@ -487,7 +487,6 @@ class RunnerAnimation {
                 
             case .RunnerState6:
                 //2,3루만 있을 경우
-                
                 self.runnerState = .RunnerState7
                 self.twoRunnerInit()
                 self.threeRunnerInit()
@@ -772,14 +771,14 @@ class RunnerAnimation {
                 break
             case .RunnerState1:
                 //1루만 있을 경우
-                self.runnerState = .RunnerState1
+                self.runnerState = .RunnerState10
                 self.oneRunnerInit()
                 self.oneRunnerHalfMove()
                 self.oneRunnerHRecord = self.tempOneRunnerHRecord
                 self.addActionState = .oneAction
             case .RunnerState2:
                 //1,2루만 있을 경우
-                self.runnerState = .RunnerState2
+                self.runnerState = .RunnerState11
                 self.oneRunnerInit()
                 self.twoRunnerInit()
                 self.oneRunnerHalfMove()
@@ -1211,17 +1210,14 @@ class RunnerAnimation {
     func complete() {
         if((self.completeDelegate) != nil)
         {
-            //print(String(self.isOneRunner) + ", " + String(self.isTwoRunner) + ", " + String(self.isThreeRunner))
-            
-            if self.addActionState == .Default{
+            if self.runnerState.rawValue.contains("H") == false {
                 //주자들 초기화
                 self.setRunnerViewByRunnerState()
                 completeDelegate?.AnimationComplete(oneRunnerHRecord: self.oneRunnerHRecord, twoRunnerHRecord: self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList : self.homeRunnerHRecordList, runnerState : self.runnerState, addActionState : self.addActionState)
             }
             else {
-                completeDelegate?.AddActionAnimationComplete(oneRunnerHRecord: self.oneRunnerHRecord, twoRunnerHRecord: self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList : self.homeRunnerHRecordList, tempRunnerHRecord : self.tempRunnerHRecord, runnerState : self.runnerState, addActionState : self.addActionState)
+                completeDelegate?.AddActionAnimationComplete(oneRunnerHRecord: self.oneRunnerHRecord, twoRunnerHRecord: self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList : self.homeRunnerHRecordList, tempRunnerHRecord : self.tempRunnerHRecord, runnerState : self.runnerState, addActionState : self.addActionState, runnerPosition: self.runnerPosition)
             }
-        
         }
     }
 }
