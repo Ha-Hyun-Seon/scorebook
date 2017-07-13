@@ -808,7 +808,7 @@ class RunnerAnimation {
                 self.threeRunnerHRecord = self.tempThreeRunnerHRecord
             case .RunnerState5:
                 //2루만 있을 경우
-                self.runnerState = .RunnerState2
+                self.runnerState = .RunnerState18
                 self.twoRunnerInit()
                 self.twoRunnerHalfMove()
                 self.twoRunnerHRecord = self.tempTwoRunnerHRecord
