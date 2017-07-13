@@ -555,11 +555,14 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         }
         else {
             
-            let index = self.currentInningInfo.hRecord.index(where: { $0.number == record.number })
-            if index != nil {
-                let indexPath = IndexPath(item: index!, section: 0)
-                self.recordTableView.reloadRows(at: [indexPath], with: .top)
+            if self.runnerState.rawValue.contains("H") == false {
+                let index = self.currentInningInfo.hRecord.index(where: { $0.number == record.number })
+                if index != nil {
+                    let indexPath = IndexPath(item: index!, section: 0)
+                    self.recordTableView.reloadRows(at: [indexPath], with: .top)//
+                }
             }
+            
         }
         
     }
@@ -649,7 +652,73 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             }
         }
     }
-    
+    func setRunnerPaperRecordingByBatter01() {
+        
+        //첫 타자 패스(메인에서 올라옴)
+        if self.isFirstBatter == true {
+            return
+        }
+        
+        var index : [Int] = [Int]()
+        switch self.runnerState {
+
+//        case .RunnerState26:
+//            //2,2H,3H로 갈때
+//            if self.recordCount < 0 {
+//                if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
+//                    index.append(indexValue - 1)
+//                }
+//            }
+//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.threeRunnerHRecord.number } ) {
+//                index.append(indexValue - 1)
+//            }
+//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.tempRunnerHRecord.number } ) {
+//                index.append(indexValue - 1)
+//            }
+//            
+//        case .RunnerState27:
+//            //2,3,3H
+//            if self.recordCount < 0 {
+//                if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
+//                    index.append(indexValue)
+//                }
+//            }
+//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.threeRunnerHRecord.number } ) {
+//                index.append(indexValue)
+//            }
+
+//        case .RunnerState6:
+//            //1,2,3루만 있을 경우
+//            if self.recordCount < 0 {
+//                if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
+//                    index.append(indexValue - 1)
+//                }
+//            }
+//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.threeRunnerHRecord.number } ) {
+//                index.append(indexValue - 1)
+//            }
+//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.tempRunnerHRecord.number } ) {
+//                index.append(indexValue - 1)
+//            }
+            
+            
+            
+            
+        default:
+            return
+        }
+        
+        if index.count > 0 {
+            for number in 0...index.count - 1 {
+                let indexNumber = index[number]
+                let indexPath = IndexPath(item: indexNumber, section: 0)
+                self.recordTableView.beginUpdates()
+                self.recordTableView.reloadRows(at: [indexPath], with: .automatic)
+                self.recordTableView.endUpdates()
+            }
+        }
+    }
+
     //주자들 포지션 초기화
     func initializeRunnerPosition() {
         
@@ -673,10 +742,10 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     //애니메이션 완료
-    func AnimationComplete(oneRunnerHRecord : HRecordInfo, twoRunnerHRecord : HRecordInfo, threeRunnerHRecord : HRecordInfo, homeRunnerHRecordList : [HRecordInfo], runnerState : RunnerState, addActionState : AddActionState) {
+    func AnimationComplete(oneRunnerHRecord : HRecordInfo, twoRunnerHRecord : HRecordInfo, threeRunnerHRecord : HRecordInfo, homeRunnerHRecordList : [HRecordInfo], runnerState : RunnerState, addActionState : AddActionState, runnerPosition: RunnerPosition) {
 
         //완료 버튼 보이기
-        if self.addActionState == .Default || addActionState == .Default {
+        if runnerState.rawValue.contains("H") == false {
             self.btnDone.isHidden = false
         }
         
@@ -720,7 +789,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         
         self.addActionRunnerState = .BatterAction
         
-        self.setRunnerPaperRecordingByBatter()
+        self.setRunnerPaperRecordingByBatter01()
         //홈 기록
         self.recordHomein()
     }

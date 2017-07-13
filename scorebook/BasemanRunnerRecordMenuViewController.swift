@@ -70,8 +70,14 @@ class BasemanRunnerRecordMenuViewController: UIViewController {
 
     }
     @IBAction func clickConnectedStateRunnerOut(_ sender: Any) {
+        self.recordState = RecordState.TagOut
+        self.addActionRunnerSate = AddActionRunnerState.BatterAction
+        self.complete()
     }
     @IBAction func clickSeparateNotAdvance(_ sender: Any) {
+        self.recordState = RecordState.NotAdvance
+        self.addActionRunnerSate = AddActionRunnerState.BatterAction
+        self.complete()
     }
     
     func SetButtons() {
