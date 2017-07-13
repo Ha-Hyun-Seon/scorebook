@@ -555,14 +555,11 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         }
         else {
             
-            if self.runnerState.rawValue.contains("H") == false {
-                let index = self.currentInningInfo.hRecord.index(where: { $0.number == record.number })
-                if index != nil {
-                    let indexPath = IndexPath(item: index!, section: 0)
-                    self.recordTableView.reloadRows(at: [indexPath], with: .top)//
-                }
+            let index = self.currentInningInfo.hRecord.index(where: { $0.number == record.number })
+            if index != nil {
+                let indexPath = IndexPath(item: index!, section: 0)
+                self.recordTableView.reloadRows(at: [indexPath], with: .top)
             }
-            
         }
         
     }
@@ -638,6 +635,8 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
                     index.append(indexValue)
                 }
             }
+        case .RunnerState16:
+            print("aaa")
         default:
             return
         }
@@ -652,6 +651,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             }
         }
     }
+    
     func setRunnerPaperRecordingByBatter01() {
         
         //첫 타자 패스(메인에서 올라옴)
@@ -661,49 +661,22 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         
         var index : [Int] = [Int]()
         switch self.runnerState {
-
-//        case .RunnerState26:
-//            //2,2H,3H로 갈때
-//            if self.recordCount < 0 {
-//                if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
-//                    index.append(indexValue - 1)
-//                }
-//            }
-//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.threeRunnerHRecord.number } ) {
-//                index.append(indexValue - 1)
-//            }
-//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.tempRunnerHRecord.number } ) {
-//                index.append(indexValue - 1)
-//            }
-//            
-//        case .RunnerState27:
-//            //2,3,3H
-//            if self.recordCount < 0 {
-//                if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
-//                    index.append(indexValue)
-//                }
-//            }
-//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.threeRunnerHRecord.number } ) {
-//                index.append(indexValue)
-//            }
-
-//        case .RunnerState6:
-//            //1,2,3루만 있을 경우
-//            if self.recordCount < 0 {
-//                if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
-//                    index.append(indexValue - 1)
-//                }
-//            }
-//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.threeRunnerHRecord.number } ) {
-//                index.append(indexValue - 1)
-//            }
-//            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.tempRunnerHRecord.number } ) {
-//                index.append(indexValue - 1)
-//            }
-            
-            
-            
-            
+        case .RunnerState10:
+            //1루만 있을 경우
+            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.oneRunnerHRecord.number } ) {
+                index.append(indexValue)
+            }
+        case .RunnerState16:
+            //2, 2H, 3H일 경우
+            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
+                index.append(indexValue - 1)
+            }
+            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.threeRunnerHRecord.number } ) {
+                index.append(indexValue - 1)
+            }
+            if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.tempRunnerHRecord.number } ) {
+                index.append(indexValue - 1)
+            }
         default:
             return
         }
@@ -718,7 +691,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             }
         }
     }
-
+    
     //주자들 포지션 초기화
     func initializeRunnerPosition() {
         
@@ -1749,14 +1722,17 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-//        print(String(self.currentInningInfo.hRecord.count))
+        var recordNumber : Int = self.currentInningInfo.hRecord.count
         
         if self.recordCount < 0 {
             if self.actionPopState == .Default {
-                return self.currentInningInfo.hRecord.count
+//            if self.runnerState.rawValue.contains("H") == false {
+//                return self.currentInningInfo.hRecord.count
+//                return recordNumber
             }
             else {
-                return self.currentInningInfo.hRecord.count - 1
+                recordNumber = recordNumber - 1
+//                return self.currentInningInfo.hRecord.count - 1
             }
         }
         else {
@@ -1767,9 +1743,14 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
 //                return self.currentInningInfo.hRecord.count
 //            }
             
-            return self.currentInningInfo.hRecord.count
-            
+//            return self.currentInningInfo.hRecord.count
         }
+        
+        print("numberOfRows")
+        print(String(recordNumber))
+        print("InSection")
+        
+        return recordNumber
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

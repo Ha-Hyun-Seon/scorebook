@@ -70,19 +70,17 @@ class BasemanRunnerRecordMenuViewController: UIViewController {
 
     }
     @IBAction func clickConnectedStateRunnerOut(_ sender: Any) {
-        self.recordState = RecordState.TagOut
-        self.addActionRunnerSate = AddActionRunnerState.BatterAction
-        self.complete()
     }
     @IBAction func clickSeparateNotAdvance(_ sender: Any) {
         self.recordState = RecordState.NotAdvance
+        
         self.addActionRunnerSate = AddActionRunnerState.BatterAction
         self.complete()
     }
     
     func SetButtons() {
         if runnerPosition == .ThreeRunner {
-            if runnerState == .RunnerState4 {
+            if self.runnerState == .RunnerState4 || self.runnerState == .RunnerState51 {
                 self.separateNotAdvanceButton.isHidden = true
             }
         }
@@ -96,6 +94,10 @@ class BasemanRunnerRecordMenuViewController: UIViewController {
         
         //2H를 선택하고 루상태값이 2루에 있는 경우에는 진루없음 불가
         if runnerPosition == .TwoRunner {
+            if self.runnerState == .RunnerState21 {
+                self.batterByAdvanceButton.isEnabled = false
+            }
+            
             if self.runnerState == .RunnerState19 {
                 self.separateNotAdvanceButton.isEnabled = false
             }
