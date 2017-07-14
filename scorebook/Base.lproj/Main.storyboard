@@ -1744,7 +1744,7 @@
         <!--Change Menu View Controller-->
         <scene sceneID="Kuc-0P-4HI">
             <objects>
-                <viewController id="yM4-iv-d79" customClass="ChangeMenuViewController" customModule="scorebook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="changePlayersMenu" id="yM4-iv-d79" customClass="ChangeMenuViewController" customModule="scorebook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fpO-tj-abt"/>
                         <viewControllerLayoutGuide type="bottom" id="7Zn-Nm-HcO"/>

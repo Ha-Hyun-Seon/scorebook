@@ -58,6 +58,11 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     var homeRunnerHRecordList : [HRecordInfo] = [HRecordInfo]()
     var tempRunnerHRecord : HRecordInfo = HRecordInfo()
     
+    //중간주자별 기록
+    var oneHalfRunnerHRecord : HRecordInfo = HRecordInfo()
+    var twoHalfRunnerHRecord : HRecordInfo = HRecordInfo()
+    var threeHalfRunnerHRecord : HRecordInfo = HRecordInfo()
+    
     //포지션별 주자 형태
     var runnerState : RunnerState = RunnerState.Default
     
@@ -749,13 +754,17 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         self.tempRunnerHRecord = HRecordInfo()
     }
     
-    func AddActionAnimationComplete(oneRunnerHRecord : HRecordInfo, twoRunnerHRecord : HRecordInfo, threeRunnerHRecord : HRecordInfo, homeRunnerHRecordList : [HRecordInfo],tempRunnerHRecord : HRecordInfo, runnerState : RunnerState, addActionState : AddActionState, runnerPosition: RunnerPosition) {
+    func AddActionAnimationComplete(oneRunnerHRecord : HRecordInfo, twoRunnerHRecord : HRecordInfo, threeRunnerHRecord : HRecordInfo, homeRunnerHRecordList : [HRecordInfo],tempRunnerHRecord : HRecordInfo, oneHalfRunnerHRecord : HRecordInfo, twoHalfRunnerHRecord : HRecordInfo, threeHalfRunnerHRecord : HRecordInfo, runnerState : RunnerState, addActionState : AddActionState, runnerPosition: RunnerPosition) {
         
         self.oneRunnerHRecord = oneRunnerHRecord
         self.twoRunnerHRecord = twoRunnerHRecord
         self.threeRunnerHRecord = threeRunnerHRecord
         self.homeRunnerHRecordList = homeRunnerHRecordList
         self.tempRunnerHRecord = tempRunnerHRecord
+        
+        self.oneHalfRunnerHRecord = oneHalfRunnerHRecord
+        self.twoHalfRunnerHRecord = twoHalfRunnerHRecord
+        self.threeHalfRunnerHRecord = threeHalfRunnerHRecord
         
         self.runnerState = runnerState
         self.addActionState = addActionState
@@ -829,7 +838,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     //중가에 멈춰서 추가 기록된 주자들 기록
     func BaseRunnerCompletePopover(runnerPosition : RunnerPosition, record : HRecordInfo, addActionRunnerState : AddActionRunnerState, recordState : RecordState) {
         
-        let baseRunnerAnimation : BaseRunnerAnimation = BaseRunnerAnimation(runner1: self.btnRunner1, runner2: self.btnRunner2, runner3: self.btnRunner3, runnerH_1 : self.btnRunnerH_1, runner1_2 : self.btnRunner1_2, runner2_3 : self.btnRunner2_3, runner3_H : self.btnRunner3_H, currentHRecord: self.currentHrecord, oneRunnerHRecord : self.oneRunnerHRecord, twoRunnerHRecord : self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList: self.homeRunnerHRecordList, tempRunnerHRecord : self.tempRunnerHRecord, runnerState : self.runnerState, runnerPosition : runnerPosition, recordState : recordState, addActionState : self.addActionState)
+        let baseRunnerAnimation : BaseRunnerAnimation = BaseRunnerAnimation(runner1: self.btnRunner1, runner2: self.btnRunner2, runner3: self.btnRunner3, runnerH_1 : self.btnRunnerH_1, runner1_2 : self.btnRunner1_2, runner2_3 : self.btnRunner2_3, runner3_H : self.btnRunner3_H, currentHRecord: self.currentHrecord, oneRunnerHRecord : self.oneRunnerHRecord, twoRunnerHRecord : self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList: self.homeRunnerHRecordList, tempRunnerHRecord : self.tempRunnerHRecord, oneHalfRunnerHRecord : self.oneHalfRunnerHRecord, twoHalfRunnerHRecord : self.twoHalfRunnerHRecord, threeHalfRunnerHRecord : self.threeHalfRunnerHRecord, runnerState : self.runnerState, runnerPosition : runnerPosition, recordState : recordState, addActionState : self.addActionState)
         
         baseRunnerAnimation.completeDelegate = self
         self.addActionRunnerState = addActionRunnerState
@@ -1010,6 +1019,8 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         }
         else {
             //메인 메뉴를 띄워야 한다
+            print("메인메뉴")
+            self.changeDefenderPlayer()
         }
     }
     
@@ -1879,6 +1890,19 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         userDefaults.synchronize()
         
         
+    }
+    
+    //수비수 교체
+    func changeDefenderPlayer() {
+        let fielderMenuViewController = storyboard?.instantiateViewController(withIdentifier: "changePlayersMenu") as! ChangeMenuViewController
+        fielderMenuViewController.preferredContentSize = CGSize(width: 220, height: 360)
+        fielderMenuViewController.modalPresentationStyle = .popover
+        
+        if let popoverController = fielderMenuViewController.popoverPresentationController {
+            popoverController.permittedArrowDirections = .any
+            popoverController.delegate = self
+        }
+        present(fielderMenuViewController, animated: true, completion: nil)
     }
     
 }
