@@ -628,6 +628,10 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
                 if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
                     index.append(indexValue)
                 }
+            }else if self.recordCount < 2 {//?? 일단 기록됨
+                if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
+                    index.append(indexValue)
+                }
             }
         case .RunnerState6:
             //2,3루만 있을 경우
@@ -675,12 +679,12 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         var index : [Int] = [Int]()
         switch self.runnerState {
         case .RunnerState10:
-            //1루만 있을 경우
+            //1H
             if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.oneRunnerHRecord.number } ) {
-                index.append(indexValue)
+                index.append(2)
             }
         case .RunnerState16:
-            //2, 2H, 3H일 경우
+            //1, 2H, 3H일 경우
             if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.twoRunnerHRecord.number } ) {
                 index.append(indexValue - 1)
             }
