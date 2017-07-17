@@ -80,7 +80,7 @@ class BasemanRunnerRecordMenuViewController: UIViewController {
     
     func SetButtons() {
         if runnerPosition == .ThreeRunner {
-            if self.runnerState == .RunnerState4 || self.runnerState == .RunnerState51 {
+            if self.runnerState == .RunnerState4 || self.runnerState == .RunnerState29 {
                 self.separateNotAdvanceButton.isHidden = true
             }
         }

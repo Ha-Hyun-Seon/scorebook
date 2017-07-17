@@ -49,38 +49,6 @@
             endingLineNumber = "1563"
             landmarkName = "setBatBaseInformation()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "scorebook.GameRecordViewController.setBatBaseInformation () -&gt; ()"
-                  moduleName = "scorebook"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/L2H/Desktop/company%20file/scorebook%20new/scorebook/GameRecordViewController.swift"
-                  timestampString = "521626205.406848"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1566"
-                  endingLineNumber = "1566"
-                  offsetFromSymbolStart = "5349">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "scorebook.GameRecordViewController.(setBatBaseInformation () -&gt; ()).(closure #4)"
-                  moduleName = "scorebook"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/L2H/Desktop/company%20file/scorebook%20new/scorebook/GameRecordViewController.swift"
-                  timestampString = "521626205.409289"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1566"
-                  endingLineNumber = "1566"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -111,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1322"
             endingLineNumber = "1322"
-            landmarkName = "BatterCompletedPopover()"
+            landmarkName = "setBatterRecord()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -143,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1323"
             endingLineNumber = "1323"
-            landmarkName = "BatterCompletedPopover()"
+            landmarkName = "setBatterRecord()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -175,7 +143,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1299"
             endingLineNumber = "1299"
-            landmarkName = "setPitcherScoreBoard()"
+            landmarkName = "reSetPitcherStrikeBall()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -223,7 +191,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
             endingLineNumber = "90"
-            landmarkName = "RunnerAnimation(hittingRecord:)"
+            landmarkName = "init(runner1:runner2:runner3:runnerH_1:runner1_2:runner2_3:runner3_H:currentHRecord:oneRunnerHRecord:twoRunnerHRecord:threeRunnerHRecord:homeRunnerHRecordList:tempRunnerHRecord:oneHalfRunnerHRecord:twoHalfRunnerHRecord:threeHalfRunnerHRecord:runnerState:runnerPosition:recordState:addActionState:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -239,7 +207,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "485"
             endingLineNumber = "485"
-            landmarkName = "setPaperRecording(recordingByThing:)"
+            landmarkName = "clickPositionSP(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -271,7 +239,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "735"
             endingLineNumber = "735"
-            landmarkName = "runnerAnimation(recordState:)"
+            landmarkName = "AnimationComplete(oneRunnerHRecord:twoRunnerHRecord:threeRunnerHRecord:homeRunnerHRecordList:runnerState:addActionState:runnerPosition:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -294,22 +262,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "scorebook/RunnerAnimation.swift"
-            timestampString = "521367086.959207"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "RunnerAnimation(recordState:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -319,7 +271,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
             endingLineNumber = "102"
-            landmarkName = "RunnerAnimation(recordState:)"
+            landmarkName = "init(runner1:runner2:runner3:runnerH_1:runner1_2:runner2_3:runner3_H:currentHRecord:oneRunnerHRecord:twoRunnerHRecord:threeRunnerHRecord:homeRunnerHRecordList:runnerState:addActionState:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -352,6 +304,22 @@
             startingLineNumber = "113"
             endingLineNumber = "113"
             landmarkName = "RunnerAnimation(recordState:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "scorebook/GameRecordViewController.swift"
+            timestampString = "521948825.11491"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "660"
+            endingLineNumber = "660"
+            landmarkName = "setRunnerPaperRecordingByBatter01()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

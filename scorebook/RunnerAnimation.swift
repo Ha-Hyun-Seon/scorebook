@@ -682,7 +682,7 @@ class RunnerAnimation {
                 self.threeHalfRunnerHRecord = self.tempThreeRunnerHRecord
             case .RunnerState4:
                 //1,3루만 있을 경우
-                self.runnerState = .RunnerState52
+                self.runnerState = .RunnerState25//1H,3H
                 self.oneRunnerInit()
                 self.threeRunnerInit()
                 self.oneRunnerHalfMove()
@@ -706,7 +706,7 @@ class RunnerAnimation {
                 self.threeHalfRunnerHRecord = self.tempThreeRunnerHRecord
             case .RunnerState7:
                 //3루만 있을 경우
-                self.runnerState = .RunnerState7
+                self.runnerState = .RunnerState23
                 self.threeRunnerInit()
                 self.threeRunnerHalfMove()
                 self.threeHalfRunnerHRecord = self.tempThreeRunnerHRecord
@@ -744,6 +744,8 @@ class RunnerAnimation {
         case .FlyOut:
             moveRunCount = 100
         case .LineDrive:
+            moveRunCount = 100
+        case .FoulFlyOut:
             moveRunCount = 100
         default:
             moveRunCount = 0

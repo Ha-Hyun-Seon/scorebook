@@ -571,13 +571,21 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     
     //추가된 주자들 기록지를 새로 고침 한다.
     func setRunnerPaperRecordingByBatter() {
-        
+        //안타?
         //첫 타자 패스(메인에서 올라옴)
         if self.isFirstBatter == true {
             return
         }
         
         var index : [Int] = [Int]()
+        
+        
+        //if let indexValue = 타자순번.index( where : { $0.number == 주자기록지 번호 } ) {
+        //index.append(indexValue)
+        
+        
+        
+        
         switch self.runnerState {
         case .RunnerState1:
             //1루만 있을 경우
