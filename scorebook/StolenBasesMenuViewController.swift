@@ -18,16 +18,16 @@ class StolenBasesMenuViewController: UIViewController {
     
     @IBAction func clickStealSuccess(_ sender: UIButton) {
         self.recordState = RecordState.StealImage
-        switch runnerPosition {
-        case OneRunner:
-            <#code#>
-        case OneRunner:
-            <#code#>
-        case OneRunner:
-            <#code#>
-        default:
-            <#code#>
-        }
+//        switch runnerPosition {
+//        case OneRunner:
+//            <#code#>
+//        case OneRunner:
+//            <#code#>
+//        case OneRunner:
+//            <#code#>
+//        default:
+//            <#code#>
+//        }
         self.hRecord.oneRecord = RecordState.StealImage
         self.hRecord.oneRecordImage = RecordState.StealImage.rawValue
         Complite()
