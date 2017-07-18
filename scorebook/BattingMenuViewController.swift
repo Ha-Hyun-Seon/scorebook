@@ -161,7 +161,7 @@ class BattingMenuViewController: UIViewController{
     func complete() {
         if((self.completeDelegate) != nil)
         {
-            print(pitcherScoreBoardInfo.outCount)
+            print("아웃카운트 : \(pitcherScoreBoardInfo.outCount)")
             completeDelegate?.BatterCompletedPopover()
             
             //

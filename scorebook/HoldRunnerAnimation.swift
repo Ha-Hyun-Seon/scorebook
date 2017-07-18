@@ -118,7 +118,7 @@ class HoldRunnerAnimation {
                 
             case .RunnerState5:
                 //2루만 있을 경우
-                self.runnerState = .RunnerState4
+                self.runnerState = .RunnerState7
                 
             case .RunnerState6:
                 //2,3루만 있을 경우

@@ -464,6 +464,7 @@
 		478D3AEB1E93972E00FCACF8 /* EmptySegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478D3AEA1E93972E00FCACF8 /* EmptySegue.swift */; };
 		47A7693F1E5EB44B0032906F /* RuunerAnimation_bak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A7693E1E5EB44B0032906F /* RuunerAnimation_bak.swift */; };
 		47B7B7C91E0BD86E00847286 /* PitcherRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B7B7C81E0BD86E00847286 /* PitcherRecord.swift */; };
+		947C66271F1C953600061842 /* PickOffPopoverComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C66261F1C953600061842 /* PickOffPopoverComplete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -947,6 +948,7 @@
 		478D3AEA1E93972E00FCACF8 /* EmptySegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptySegue.swift; sourceTree = "<group>"; };
 		47A7693E1E5EB44B0032906F /* RuunerAnimation_bak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuunerAnimation_bak.swift; sourceTree = "<group>"; };
 		47B7B7C81E0BD86E00847286 /* PitcherRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitcherRecord.swift; sourceTree = "<group>"; };
+		947C66261F1C953600061842 /* PickOffPopoverComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickOffPopoverComplete.swift; path = ../PickOffPopoverComplete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1205,6 +1207,7 @@
 		477F43071E5AD78B009D7F24 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				947C66261F1C953600061842 /* PickOffPopoverComplete.swift */,
 				477F43081E5AD7FD009D7F24 /* PitcherPopoverComplete.swift */,
 				477F46941E5D4E1E009D7F24 /* BatterPopoverComplete.swift */,
 				477EF6F01E65696800CDE26B /* RunnerAnimationComplete.swift */,
@@ -2195,6 +2198,7 @@
 				47839A271E483D73003A6503 /* DefenderErrorMenuViewController.swift in Sources */,
 				476DC1B21E97555F009B3030 /* ChangePlayerTableViewCell.swift in Sources */,
 				471F81BC1E8111DD00F72344 /* RecordPaperBodyTableViewCell.swift in Sources */,
+				947C66271F1C953600061842 /* PickOffPopoverComplete.swift in Sources */,
 				47839A3B1E486028003A6503 /* ChangeRunnerMenuViewController.swift in Sources */,
 				478737FD1E5446C100A06DBB /* GameRecordViewController.swift in Sources */,
 				477F46971E5D7383009D7F24 /* PositionNumber.swift in Sources */,

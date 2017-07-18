@@ -46,7 +46,7 @@ enum RunnerState : String {
     case RunnerState34 = "1H,2,3"     //1-2중간, 2, 3//
     case RunnerState35 = "2,2H,3"     //2,2H, 3//
     
-   
+    
 }
 
 //루 상태
@@ -67,7 +67,9 @@ enum AddActionState : String {
 //팝업 상태
 enum ActionPopState : String {
     case Default = "메인메뉴"
-    case HoldRunner = "루도착주자"
+    //    case HoldRunner = "루도착주자"
+    case BeforCompleteHoldRunner = "Done하기 전"
+    case CompleteHoldRunner = "Done한후 루 도착주자"
     case HalfRunner = "중간주자"
 }
 

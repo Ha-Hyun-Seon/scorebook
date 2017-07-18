@@ -25,14 +25,14 @@ class RunnerAnimation {
     
     
     //주자 상태
-//    0. 아무도 없을 경우 - 타자 무조건 이동
-//    1. 1루만 있을 경우 - 무조건 이동
-//    2. 1,2루만 있을 경우 - 무조건 이동
-//    3. 1,2,3루만 있을 경우 - 무조건 이동
-//    4. 1,3루만 있을 경우 - 1루만 무조건 이동, 3루 주자는 중간에 멈춤
-//    5. 2루만 있을 경우 - 2루 주자 중간에 멈춤
-//    6. 2,3루만 있을 경우 - 2,3루 주자 중간에 멈춤
-//    7. 3루만 있을 경우 - 3루 주자 중간에 멈춤
+    //    0. 아무도 없을 경우 - 타자 무조건 이동
+    //    1. 1루만 있을 경우 - 무조건 이동
+    //    2. 1,2루만 있을 경우 - 무조건 이동
+    //    3. 1,2,3루만 있을 경우 - 무조건 이동
+    //    4. 1,3루만 있을 경우 - 1루만 무조건 이동, 3루 주자는 중간에 멈춤
+    //    5. 2루만 있을 경우 - 2루 주자 중간에 멈춤
+    //    6. 2,3루만 있을 경우 - 2,3루 주자 중간에 멈춤
+    //    7. 3루만 있을 경우 - 3루 주자 중간에 멈춤
     
     var runnerState : RunnerState = RunnerState.Default
     
@@ -67,9 +67,9 @@ class RunnerAnimation {
     var tempRunnerHRecord : HRecordInfo = HRecordInfo()
     
     //중간주자 기록
-    var tempOneHalfRunnerHRecord : HRecordInfo = HRecordInfo()
-    var tempTwoHalfRunnerHRecord : HRecordInfo = HRecordInfo()
-    var tempThreeHalfRunnerHRecord : HRecordInfo = HRecordInfo()
+    //    var tempOneHalfRunnerHRecord : HRecordInfo = HRecordInfo()
+    //    var tempTwoHalfRunnerHRecord : HRecordInfo = HRecordInfo()
+    //    var tempThreeHalfRunnerHRecord : HRecordInfo = HRecordInfo()
     
     ////주자 포지션
     var runnerPosition : RunnerPosition = RunnerPosition.Default
@@ -550,6 +550,9 @@ class RunnerAnimation {
                 self.runnerState = .Default
                 self.oneRunnerInit()
                 self.oneRunnerThreeMove()
+                
+                self.tempOneRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempOneRunnerHRecord)
             case .RunnerState2:
                 //1,2루만 있을 경우
                 self.runnerState = .Default
@@ -557,6 +560,12 @@ class RunnerAnimation {
                 self.twoRunnerInit()
                 self.twoRunnerTwoMove()
                 self.oneRunnerThreeMove()
+                
+                self.tempOneRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempOneRunnerHRecord)
+                
+                self.tempTwoRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempTwoRunnerHRecord)
             case .RunnerState3:
                 //1,2,3루만 있을 경우
                 self.runnerState = .Default
@@ -566,6 +575,15 @@ class RunnerAnimation {
                 self.threeRunnerOneMove()
                 self.twoRunnerTwoMove()
                 self.oneRunnerThreeMove()
+                
+                self.tempOneRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempOneRunnerHRecord)
+                
+                self.tempTwoRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempTwoRunnerHRecord)
+                
+                self.tempThreeRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempThreeRunnerHRecord)
             case .RunnerState4:
                 //1,3루만 있을 경우
                 self.runnerState = .Default
@@ -573,11 +591,20 @@ class RunnerAnimation {
                 self.threeRunnerInit()
                 self.threeRunnerOneMove()
                 self.oneRunnerThreeMove()
+                
+                self.tempOneRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempOneRunnerHRecord)
+                
+                self.tempThreeRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempThreeRunnerHRecord)
             case .RunnerState5:
                 //2루만 있을 경우
                 self.runnerState = .Default
                 self.twoRunnerInit()
                 self.twoRunnerTwoMove()
+                
+                self.tempTwoRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempTwoRunnerHRecord)
             case .RunnerState6:
                 //2,3루만 있을 경우
                 self.runnerState = .Default
@@ -585,14 +612,26 @@ class RunnerAnimation {
                 self.threeRunnerInit()
                 self.threeRunnerOneMove()
                 self.twoRunnerTwoMove()
+                
+                self.tempTwoRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempTwoRunnerHRecord)
+                
+                self.tempThreeRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempThreeRunnerHRecord)
             case .RunnerState7:
                 //3루만 있을 경우
                 self.runnerState = .Default
                 self.threeRunnerInit()
                 self.threeRunnerOneMove()
+                
+                self.tempThreeRunnerHRecord.runnerLocation = ""
+                self.homeRunnerHRecordList.append(self.tempThreeRunnerHRecord)
             default:
                 return
             }
+            
+            // 타자 무조건 홈인
+            self.homeRunnerHRecordList.append(self.currentHRecord)
             
             self.batterFourMove()
             animationTime = 2
@@ -804,7 +843,7 @@ class RunnerAnimation {
     
     //타자 이동 - 4
     func batterFourMove() {
-
+        
         UIView.animateKeyframes(withDuration: 2.0, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/4, animations: {
                 self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
@@ -849,7 +888,7 @@ class RunnerAnimation {
             })
             
         }, completion: {finished in})
-
+        
     }
     
     //1루주자 이동 - 2
@@ -938,7 +977,7 @@ class RunnerAnimation {
             })
             
         }, completion: {finished in})
-
+        
     }
     
     
