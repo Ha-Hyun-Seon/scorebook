@@ -12,6 +12,29 @@ import UIKit
 
 class PinchRunnerRecordMenuViewController: UIViewController {
     
+    //자기 기록지
+    var hRecord : HRecordInfo = HRecordInfo()
+    //타격 기록지
+    var currentHRecord : HRecordInfo = HRecordInfo()
+    //주자 포지션
+    var runnerPosition : RunnerPosition = RunnerPosition.Default
+    var runnerCompleteDelegate : BaseRunnerComplete?
+    
+    //루 상태(1,12,13,23....)
+    var runnerState : RunnerState = .Default
+    
+    //주자 진루 형태
+    var addActionRunnerState : AddActionRunnerState = AddActionRunnerState.Default
+    
+    
+    
+    
+    
+    var addActionRunnerSate : AddActionRunnerState = AddActionRunnerState.Default
+    var recordState : RecordState = RecordState.Default
+    var holdrunnerCompleteDelegate : HoldRunnerComplete?
+    
+    
     @IBOutlet weak var wildPitchButton: UIButton!   // 폭투에 의한
     @IBOutlet weak var passedBallButton: UIButton!  // 포일에 의한
     @IBOutlet weak var defenseErrorCausedByAdvanceButton: UIButton! // 실책에 의한
@@ -23,15 +46,72 @@ class PinchRunnerRecordMenuViewController: UIViewController {
     @IBOutlet weak var waitStateStealErrorButton: UIButton! // 도루 실패
     @IBOutlet weak var separateNotAdvanceButton: UIButton!  // 진루 없음
     
+    @IBAction func clickWildPitch(_ sender: UIButton) {
+    }
+    
+    @IBAction func clickPassedBall(_ sender: UIButton) {
+    }
+    
+    @IBAction func clickDefenseError(_ sender: UIButton) {
+    }
+    
+    @IBAction func clickBatterByAdvance(_ sender: UIButton) {
+    }
+    
+    @IBAction func clickStealByAdvance(_ sender: UIButton) {
+        self.recordState = RecordState.StealImage
+        complete()
+    }
+    
+    @IBAction func clickCheckAdvance(_ sender: UIButton) {
+    }
+    
+    @IBAction func clickRunnerAdvance(_ sender: UIButton) {
+    }
+    
+    @IBAction func clickTagOut(_ sender: UIButton) {
+    }
+    
+    @IBAction func clickWaitStateStealError(_ sender: UIButton) {
+    }
+    
+    @IBAction func clickSeparateNotAdvance(_ sender: UIButton) {
+        self.recordState = RecordState.NotAdvance
+        complete()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        wildPitchButton.isHidden = true
+        passedBallButton.isHidden = true
+        defenseErrorCausedByAdvanceButton.isHidden = true
+        batterByAdvanceButton.isHidden = true
+        stealByAdvanceButton.isHidden = true
+        checkAdvanceButton.isHidden = true
+        runnerAdvanceButton.isHidden = true
+        tagOutButton.isHidden = true
+        tagOutButton.isHidden = true
+        
+        switch addActionRunnerState {
+        case .StealAction:
+            stealByAdvanceButton.isHidden = false
+        default:
+            break
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+        
         // Dispose of any resources that can be recreated.
     }
-    
+    func complete(){
+        if ((self.holdrunnerCompleteDelegate) != nil) {
+            holdrunnerCompleteDelegate?.HoldRunnerCompletePopover(runnerPosition: self.runnerPosition, record: self.hRecord, addActionRunnerState: self.addActionRunnerSate, recordState: self.recordState)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 

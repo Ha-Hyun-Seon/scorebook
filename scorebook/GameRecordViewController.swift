@@ -729,7 +729,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         self.runnerState = runnerState
         self.addActionState = addActionState
         
-        self.addActionRunnerState = .BatterAction
+      //  self.addActionRunnerState = .BatterAction
         
         self.setRunnerPaperRecordingByBatter()
         //홈 기록
@@ -782,7 +782,22 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     //각 루에 도착한 주자들의 추가 기록
     func HoldRunnerCompletePopover(runnerPosition : RunnerPosition, record : HRecordInfo, addActionRunnerState : AddActionRunnerState, recordState : RecordState) {
         
-        let holdRunnerAnimation : HoldRunnerAnimation = HoldRunnerAnimation(runner1: self.btnRunner1, runner2: self.btnRunner2, runner3: self.btnRunner3, runnerH_1 : self.btnRunnerH_1, runner1_2 : self.btnRunner1_2, runner2_3 : self.btnRunner2_3, runner3_H : self.btnRunner3_H, currentHRecord: self.currentHrecord, oneRunnerHRecord : self.oneRunnerHRecord, twoRunnerHRecord : self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList: self.homeRunnerHRecordList, runnerState : self.runnerState, runnerPosition : runnerPosition, recordState : recordState, addActionState : self.addActionState)
+        
+        //
+        self.actionPopState = .BeforCompleteHoldRunner
+        self.btnPitcher.isHidden = true
+        self.btnDone.isHidden = true
+        self.lblPositionMessage.isHidden = false
+        self.positionImgSet(isOn: false)
+        if self.runnerState.rawValue.contains("H") == true {
+        self.lblPositionMessage.text = "추가기록을 입력 해주세요."
+        }
+        else{
+            self.lblPositionMessage.text = "대기상태의\n주자기록을 입력 해주세요."
+        }
+        //
+        
+        let holdRunnerAnimation : HoldRunnerAnimation = HoldRunnerAnimation(runner1: self.btnRunner1, runner2: self.btnRunner2, runner3: self.btnRunner3, runnerH_1 : self.btnRunnerH_1, runner1_2 : self.btnRunner1_2, runner2_3 : self.btnRunner2_3, runner3_H : self.btnRunner3_H, currentHRecord: self.currentHrecord, oneRunnerHRecord : self.oneRunnerHRecord, twoRunnerHRecord : self.twoRunnerHRecord, threeRunnerHRecord : self.threeRunnerHRecord, homeRunnerHRecordList: self.homeRunnerHRecordList, tempRunnerHRecord : self.tempRunnerHRecord, oneHalfRunnerHRecord : self.oneHalfRunnerHRecord, twoHalfRunnerHRecord : self.twoHalfRunnerHRecord, threeHalfRunnerHRecord : self.threeHalfRunnerHRecord, runnerState : self.runnerState, runnerPosition : runnerPosition, recordState : recordState, addActionState : self.addActionState)
         
         holdRunnerAnimation.completeDelegate = self
         self.addActionRunnerState = addActionRunnerState
@@ -852,6 +867,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             runnerMenuViewController.mainRunnerMenuCompleteDelegate = self
             runnerMenuViewController.holdRunnerComplete = self
             runnerMenuViewController.hRecord = self.oneRunnerHRecord;
+            runnerMenuViewController.currentHRecord = self.currentHrecord
             runnerMenuViewController.runnerPosition = RunnerPosition.OneRunner
             runnerMenuViewController.currentInningInfo = self.currentInningInfo
             runnerMenuViewController.currentLineup = self.currentLineup
@@ -894,7 +910,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             }
             present(runnerRecordMenuViewController, animated: true, completion: nil)
         }
-        else {
+        else if self.actionPopState == .CompleteHoldRunner {
             //주자 교체
             let runnerMenuViewController = storyboard?.instantiateViewController(withIdentifier: "mainrunnermenu") as! RunnerMenuViewController
             runnerMenuViewController.changeRunnerCompleteDelegate = self
@@ -943,11 +959,12 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             }
             present(runnerRecordMenuViewController, animated: true, completion: nil)
         }
-        else {
+        else if self.actionPopState == .CompleteHoldRunner {
             //주자 교체
             let runnerMenuViewController = storyboard?.instantiateViewController(withIdentifier: "mainrunnermenu") as! RunnerMenuViewController
             runnerMenuViewController.changeRunnerCompleteDelegate = self
             runnerMenuViewController.mainRunnerMenuCompleteDelegate = self
+            runnerMenuViewController.holdRunnerComplete = self
             runnerMenuViewController.hRecord = self.threeRunnerHRecord;
             runnerMenuViewController.runnerPosition = RunnerPosition.ThreeRunner
             runnerMenuViewController.currentInningInfo = self.currentInningInfo
@@ -1138,6 +1155,25 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
                 popoverController.delegate = self
             }
             present(basemanRunnerRecordMenuViewController, animated: true, completion: nil)
+        }else if self.addActionRunnerState == .StealAction{
+            let pinchRunnerRecordMenuViewController = storyboard?.instantiateViewController(withIdentifier: "pinchrunnermenu") as! PinchRunnerRecordMenuViewController
+            
+            pinchRunnerRecordMenuViewController.addActionRunnerState = self.addActionRunnerState;
+            pinchRunnerRecordMenuViewController.holdrunnerCompleteDelegate = self;
+            pinchRunnerRecordMenuViewController.hRecord = self.twoRunnerHRecord;
+            pinchRunnerRecordMenuViewController.currentHRecord = self.currentHrecord
+            pinchRunnerRecordMenuViewController.runnerPosition = RunnerPosition.TwoRunner
+            pinchRunnerRecordMenuViewController.runnerState = self.runnerState
+            pinchRunnerRecordMenuViewController.preferredContentSize = CGSize(width: 300, height: 465)
+            pinchRunnerRecordMenuViewController.modalPresentationStyle = .popover
+            
+            if let popoverController = pinchRunnerRecordMenuViewController.popoverPresentationController {
+                popoverController.sourceView = sender as! UIView
+                popoverController.sourceRect = sender.bounds
+                popoverController.permittedArrowDirections = .any
+                popoverController.delegate = self
+            }
+            present(pinchRunnerRecordMenuViewController, animated: true, completion: nil)
         }
     }
     
@@ -1278,6 +1314,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //타격 완료
         //타격 종료 일 경우 주자들의 추가 입력 가능하게 변경한다.
         self.actionPopState = .BeforCompleteHoldRunner
+        self.addActionRunnerState = AddActionRunnerState.BatterAction
         self.setBatterRecord()
     }
     
@@ -1696,8 +1733,8 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     @IBAction func clickDone(_ sender: Any) {
         
         //기록 완료시에 주자들의 추가 입력이 메인 팝업으로 변경
-        self.actionPopState = .Default
-        
+        self.actionPopState = .CompleteHoldRunner
+        self.lblPositionMessage.text = ""
         //다음 타석 정의
         self.completeCycle()
         

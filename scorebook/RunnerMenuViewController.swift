@@ -22,6 +22,8 @@ class RunnerMenuViewController: UIViewController {
     var teamKind = ""
     var mainRunnerMenuCompleteDelegate : MainRunnerMenuComplete?
     var changeRunnerCompleteDelegate : ChangeRunnerComplete?
+    var currentHRecord : HRecordInfo = HRecordInfo()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +40,9 @@ class RunnerMenuViewController: UIViewController {
         let stolenBasesMenuViewController = storyboard?.instantiateViewController(withIdentifier: "stolenbasesmenu") as! StolenBasesMenuViewController
         
         stolenBasesMenuViewController.hRecord = self.hRecord;
+        stolenBasesMenuViewController.currentHRecord = self.currentHRecord
         stolenBasesMenuViewController.runnerPosition = self.runnerPosition
-        
+        stolenBasesMenuViewController.holdRunnerComplete = self.holdRunnerComplete
         
         
         stolenBasesMenuViewController.preferredContentSize = CGSize(width: 200, height: 208)
@@ -62,6 +65,7 @@ class RunnerMenuViewController: UIViewController {
         let pickOffMenuViewController = storyboard?.instantiateViewController(withIdentifier: "pickoffmenu") as! PickOffMenuViewController //팝오버할 뷰컨트롤러 선언
 //                stolenBasesMenuViewController.stolenBasesCompleteDelegate = self.stolenBasesCompleteDelegate
 //                stolenBasesMenuViewController.teamKind = self.teamKind
+        
         pickOffMenuViewController.preferredContentSize = CGSize(width: 200, height: 208)//사이즈(창크기) 조절
         
         pickOffMenuViewController.modalPresentationStyle = .popover//팝오버 선언
@@ -111,7 +115,6 @@ class RunnerMenuViewController: UIViewController {
     
     
     func complete(){
-//        mainRunnerMenuCompleteDelegate?.MainRunnerMenuCompletePopover(runnerPosition: self.runnerPosition, record: self.hRecord, addActionRunnerState: self.addActionRunnerState)
         holdRunnerComplete?.HoldRunnerCompletePopover(runnerPosition: self.runnerPosition, record: self.hRecord, addActionRunnerState: self.addActionRunnerState, recordState: self.recordState)
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }

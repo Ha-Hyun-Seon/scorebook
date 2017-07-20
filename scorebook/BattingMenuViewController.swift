@@ -16,7 +16,8 @@ class BattingMenuViewController: UIViewController{
     //투구 전광판 (스트라이크, 볼, 아웃 카운트)
     var pitcherScoreBoardInfo : PitcherScoreBoardInfo = PitcherScoreBoardInfo()
     
-    
+    //달리는 주자 형태
+    var addActionRunnerState : AddActionRunnerState = AddActionRunnerState.Default
     
     @IBOutlet weak var batterConnectedButton: UIButton! // 포구 후 송구 동작 버튼
 //
@@ -58,7 +59,7 @@ class BattingMenuViewController: UIViewController{
     @IBAction func clickOneHit(_ sender: Any) {
         //타격 기록
         self.hRecord.hittingRecord = RecordState.OneHit
-        
+        addActionRunnerState = AddActionRunnerState.BatterAction
         //홈 - 1루간 정보만 필요
         self.hRecord.homeRecord = RecordState.OneHit
         self.hRecord.homeRecordImage = RecordState.OneHit.rawValue
@@ -69,6 +70,9 @@ class BattingMenuViewController: UIViewController{
    
     //2루타
     @IBAction func clickTwoHit(_ sender: Any) {
+        
+        self.addActionRunnerState = AddActionRunnerState.BatterAction
+        
         //타격 기록
         self.hRecord.hittingRecord = RecordState.TwoHit
         
@@ -84,6 +88,12 @@ class BattingMenuViewController: UIViewController{
     
     //3루타
     @IBAction func clickThreeHit(_ sender: Any) {
+        
+        self.addActionRunnerState = AddActionRunnerState.BatterAction
+        
+        
+        
+        
         //타격 기록
         self.hRecord.hittingRecord = RecordState.ThreeHit
         
@@ -163,11 +173,7 @@ class BattingMenuViewController: UIViewController{
         {
             print("아웃카운트 : \(pitcherScoreBoardInfo.outCount)")
             completeDelegate?.BatterCompletedPopover()
-            
-            //
-//            self.dismiss(animated: true, completion: nil)
-//            self.parent?.dismiss(animated: true, completion: nil)
-            
+       
             self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         }
     }

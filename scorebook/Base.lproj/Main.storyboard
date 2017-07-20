@@ -3667,7 +3667,7 @@
         <!--Pinch Runner Record Menu View Controller-->
         <scene sceneID="VVv-fJ-2vC">
             <objects>
-                <viewController id="Yqf-mP-VRm" customClass="PinchRunnerRecordMenuViewController" customModule="scorebook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pinchrunnermenu" id="Yqf-mP-VRm" customClass="PinchRunnerRecordMenuViewController" customModule="scorebook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="67M-Ke-HdR"/>
                         <viewControllerLayoutGuide type="bottom" id="qCF-6D-soQ"/>
@@ -3680,55 +3680,85 @@
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4m-oz-bNQ" userLabel="Button - 폭투에 의한 진루">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4m-oz-bNQ" userLabel="Button - 폭투에 의한 진루">
                                 <rect key="frame" x="6" y="90" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_wildPitchAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickWildPitch:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="Cg5-fB-Nm0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1S-JH-OJL" userLabel="Button - 포일에 의한 진루">
                                 <rect key="frame" x="6" y="138" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_FastballAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickPassedBall:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="2sd-o3-YPd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifw-8d-vk7" userLabel="Button - 실책에 의한 진루">
                                 <rect key="frame" x="6" y="186" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_ErrorAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickDefenseError:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="jEZ-0N-ypU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qmj-iI-0gr" userLabel="Button - 타자에 의한 진루">
                                 <rect key="frame" x="6" y="232" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_batterAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickBatterByAdvance:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="R7n-iP-Keg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYa-Q9-Kaf" userLabel="Button - 스틸에 의한 진루">
                                 <rect key="frame" x="6" y="280" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_stealAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickStealByAdvance:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="75U-p1-X4d"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWq-GO-y3l" userLabel="Button - 견제에 의한 진루">
                                 <rect key="frame" x="6" y="328" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_checkAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickCheckAdvance:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="Cz3-Y8-Cjq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqK-J8-c4O" userLabel="Button - 주자에 의한 진루">
                                 <rect key="frame" x="6" y="376" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_RunnerAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickRunnerAdvance:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="0dv-5r-aqG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hI-la-9Je" userLabel="Button - 태그 아웃">
                                 <rect key="frame" x="156" y="90" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_tagOut_bt.png"/>
+                                <connections>
+                                    <action selector="clickTagOut:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="Dmz-xh-aLk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9U-t1-Le8" userLabel="Button - 도루 실패">
                                 <rect key="frame" x="156" y="138" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_stealError_bt.png"/>
+                                <connections>
+                                    <action selector="clickWaitStateStealError:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="2jq-cN-tzJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edA-cN-ON2" userLabel="Button - 진루 없음">
                                 <rect key="frame" x="156" y="186" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_NoAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickSeparateNotAdvance:" destination="Yqf-mP-VRm" eventType="touchUpInside" id="8rc-cz-GMd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwI-xM-aJE">
                                 <rect key="frame" x="255" y="424" width="39" height="30"/>

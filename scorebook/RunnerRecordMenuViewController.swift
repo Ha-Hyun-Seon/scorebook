@@ -60,8 +60,30 @@ class RunnerRecordMenuViewController: UIViewController {
 //            self.recordState = RecordState.HomeAdvanceArrows
 //        }
         //연속 진루
-        self.recordState = RecordState.AdvanceArrow
-        self.addActionRunnerSate = AddActionRunnerState.BatterAction
+//        switch self.runnerPosition {
+//        case .OneRunner:
+//            <#code#>
+//        case .TwoRunner:
+//            <#code#>
+//        case .ThreeRunner:
+//            <#code#>
+//        default:
+//            <#code#>
+//        }
+//        switch self.addActionRunnerSate {
+//        case .BatterAction:
+            self.recordState = RecordState.AdvanceArrow
+            self.addActionRunnerSate = AddActionRunnerState.BatterAction
+//        case .ErrorAction:
+//            self.recordState = RecordState.AdvanceArrow
+//            self.addActionRunnerSate = AddActionRunnerState.ErrorAction
+//        case .StealAction:
+//            self.recordState = RecordState.AdvanceArrow
+//            self.addActionRunnerSate = AddActionRunnerState.StealAction
+//        default:
+//            break
+//        }
+//        
         
         self.complete()
 

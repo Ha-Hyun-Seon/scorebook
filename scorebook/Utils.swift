@@ -54,6 +54,8 @@ enum AddActionRunnerState : String {
     case Default = ""
     case BatterAction = "타자에의한"
     case ErrorAction = "실책에의한"
+    case StealAction = "스틸에의한"
+    //~에의한 추가
 }
 
 //추가 입력 상태
@@ -69,6 +71,7 @@ enum ActionPopState : String {
     case Default = "메인메뉴"
     //    case HoldRunner = "루도착주자"
     case BeforCompleteHoldRunner = "Done하기 전"
+    
     case CompleteHoldRunner = "Done한후 루 도착주자"
     case HalfRunner = "중간주자"
 }

@@ -546,7 +546,7 @@ class BaseRunnerAnimation {
                     self.threeRunnerHRecord = self.threeHalfRunnerHRecord
                 } else {
                     //진루 불가ok
-                    self.runnerState = .RunnerState26
+                    self.runnerState = .RunnerState14
                     self.oneRunnerHRecord = self.tempOneRunnerHRecord
                     self.threeRunnerOneMove()
                     self.threeHalfRunnerHRecord.runnerLocation = ""
