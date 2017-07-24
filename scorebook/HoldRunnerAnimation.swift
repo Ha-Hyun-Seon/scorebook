@@ -361,7 +361,7 @@ class HoldRunnerAnimation {
                 self.threeRunnerHRecord = self.tempTwoRunnerHRecord
                 self.threeRunnerHRecord.runnerLocation = "3루"
                 self.threeRunnerHRecord.twoRecordImage = self.recordState.rawValue
-                self.threeRunnerHRecord.twoRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
+//                self.threeRunnerHRecord.twoRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
                 
             case .RunnerState5:
                 //2
@@ -1140,72 +1140,72 @@ class HoldRunnerAnimation {
     }
     
     //타자 주자 초기화
-    func  batterRunnerInit() {
-        self.homeLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-        self.runnerH_1.isHidden = false
-    }
-    
-    //타자 이동 - 1
-    func batterOneMove() {
-        
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/1, animations: {
-                self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-        }, completion: {finished in})
-        
-    }
-    
-    //타자 이동 - 2
-    func batterTwoMove() {
-        
-        UIView.animateKeyframes(withDuration: 1, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2, animations: {
-                self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 2/2, animations: {
-                self.twoLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            
-        }, completion: {finished in})
-    }
-    
-    //타자 이동 - 3
-    func batterThreeMove() {
-        
-        UIView.animateKeyframes(withDuration: 1.5, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3, animations: {
-                self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
-                self.twoLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: {
-                self.threeLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            
-        }, completion: {finished in})
-    }
-    
-    //타자 이동 - 4
-    func batterFourMove() {
-        UIView.animateKeyframes(withDuration: 2, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/4, animations: {
-                self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 1/4, relativeDuration: 1/4, animations: {
-                self.twoLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 2/4, relativeDuration: 1/4, animations: {
-                self.threeLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 3/4, relativeDuration: 1/4, animations: {
-                self.homeLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
-            })
-            
-        }, completion: {finished in})
-    }
-    
+//    func  batterRunnerInit() {
+//        self.homeLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//        self.runnerH_1.isHidden = false
+//    }
+//    
+//    //타자 이동 - 1
+//    func batterOneMove() {
+//        
+//        UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
+//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/1, animations: {
+//                self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//        }, completion: {finished in})
+//        
+//    }
+//    
+//    //타자 이동 - 2
+//    func batterTwoMove() {
+//        
+//        UIView.animateKeyframes(withDuration: 1, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
+//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2, animations: {
+//                self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 2/2, animations: {
+//                self.twoLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            
+//        }, completion: {finished in})
+//    }
+//    
+//    //타자 이동 - 3
+//    func batterThreeMove() {
+//        
+//        UIView.animateKeyframes(withDuration: 1.5, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
+//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3, animations: {
+//                self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
+//                self.twoLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: {
+//                self.threeLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            
+//        }, completion: {finished in})
+//    }
+//    
+//    //타자 이동 - 4
+//    func batterFourMove() {
+//        UIView.animateKeyframes(withDuration: 2, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
+//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/4, animations: {
+//                self.oneLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 1/4, relativeDuration: 1/4, animations: {
+//                self.twoLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 2/4, relativeDuration: 1/4, animations: {
+//                self.threeLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 3/4, relativeDuration: 1/4, animations: {
+//                self.homeLocation(runner: self.runnerH_1, imageName: self.runnerImageName)
+//            })
+//            
+//        }, completion: {finished in})
+//    }
+//    
     //1루주자 초기화
     func oneRunnerInit() {
         self.oneLocation(runner: self.runner1_2, imageName: runnerImageName)

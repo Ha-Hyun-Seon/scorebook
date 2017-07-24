@@ -50,6 +50,58 @@ class Lineup : NSObject, NSCoding {
     //홈런
     var homerunCount : Int = 0
     
+    //득점
+    var getScoreCount : Int = 0
+    
+    
+    //var 00Count : Int = 0
+    //루타수
+    
+    
+    //타점
+    
+    
+    //도루
+    
+    
+    //도루자
+    
+    
+    //희타
+    
+    
+    //희비
+    
+    
+    //4구
+    var batterBaseOnBallsCount : Int = 0
+    
+    //고의4구
+    
+    
+    //사구
+    var hitByPitchCount : Int = 0
+    
+    //삼진
+    var batterStrikeOutCount : Int = 0
+    
+    //병살타
+    
+    
+    //잔루(진루없음)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //투수일 경우 전체 기록
     //총 투구수
     var pitcherTotalCount : Int = 0

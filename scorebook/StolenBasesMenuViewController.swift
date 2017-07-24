@@ -26,11 +26,12 @@ class StolenBasesMenuViewController: UIViewController {
         case .OneRunner:
             self.hRecord.oneRecord = RecordState.StealImage
             self.hRecord.oneRecordImage = RecordState.StealImage.rawValue
-            self.hRecord.oneRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
+            self.hRecord.oneRecordText = currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
            
         case .TwoRunner:
             self.hRecord.twoRecord = RecordState.StealImage
             self.hRecord.twoRecordImage = RecordState.StealImage.rawValue
+//            self.hRecord.oneRecordText = currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
         case .ThreeRunner:
             self.hRecord.threeRecord = RecordState.StealImage
             self.hRecord.threeRecordImage = RecordState.StealImage.rawValue
@@ -51,7 +52,7 @@ class StolenBasesMenuViewController: UIViewController {
         case .TwoRunner:
             self.hRecord.twoRecord = RecordState.StealError
             self.hRecord.twoRecordImage = RecordState.StealError.rawValue
-            self.hRecord.twoRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
+//            self.hRecord.twoRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
         case .ThreeRunner:
             self.hRecord.threeRecord = RecordState.StealError
             self.hRecord.threeRecordImage = RecordState.StealError.rawValue

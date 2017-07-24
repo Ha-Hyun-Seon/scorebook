@@ -898,6 +898,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             runnerRecordMenuViewController.runnerCompleteDelegate = self;
             runnerRecordMenuViewController.hRecord = self.twoRunnerHRecord;
             runnerRecordMenuViewController.isRunning = self.isThreeRunner
+            runnerRecordMenuViewController.runnerState = self.runnerState
             runnerRecordMenuViewController.runnerPosition = RunnerPosition.TwoRunner
             runnerRecordMenuViewController.preferredContentSize = CGSize(width: 300, height: 280)
             runnerRecordMenuViewController.modalPresentationStyle = .popover
@@ -1244,6 +1245,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //스트라이크 3개면 삼진 아웃
         if self.pitcherScoreBoardInfo.strikeCount == 3 {
             
+            self.currentLineup.batterStrikeOutCount += 1
             self.currentPLineup.pitcherStrikeOutCount += 1
             self.pitcherScoreBoardInfo.outCount += 1
             self.setBatterRecordByPitcher(recordState: RecordState.StrikeOut)
@@ -1262,6 +1264,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         if self.pitcherScoreBoardInfo.ballCount == 4 {
             
             self.currentPLineup.pitcherBaseOnBallsCount += 1
+            self.currentLineup.batterBaseOnBallsCount += 1
             self.actionPopState = .BeforCompleteHoldRunner
             
             
@@ -1897,6 +1900,52 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     
     @IBAction func tmpRecordComplete(_ sender: Any) {
         
+        
+        
+        
+        let alertController = UIAlertController(title: "경기 종료", message: "기록확인 화면으로 넘어갑니다.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let DestructiveAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+            //
+            print("취소")
+            
+        }
+        
+        let okAction = UIAlertAction(title: "확인", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            //
+            print("확인")
+            let statsCompletionViewController = self.storyboard?.instantiateViewController(withIdentifier: "StatsDataLoadingVC") as! StatsCompletionViewController
+            statsCompletionViewController.visitedTeam = self.visitedTeam
+            statsCompletionViewController.homeTeam = self.homeTeam
+            statsCompletionViewController.mainLineupInfo = self.visitedTeam.mainLineupInfo
+            statsCompletionViewController.visitedTeam.mainLineupInfo = self.visitedTeam.mainLineupInfo
+            statsCompletionViewController.homeTeam.mainLineupInfo = self.homeTeam.mainLineupInfo
+            
+//            statsCompletionViewController.vPRecord = self.vPRecord
+//            statsCompletionViewController.hPRecord = self.hPRecord
+//            statsCompletionViewController.lblDS1ST.text = self.lblDS1ST.text
+            
+            
+            
+            
+            if let popoverController = statsCompletionViewController.popoverPresentationController {
+                popoverController.sourceView = sender as! UIView
+                popoverController.sourceRect = (sender as AnyObject).bounds
+                popoverController.permittedArrowDirections = .any
+                popoverController.delegate = self
+            }
+            self.present(statsCompletionViewController, animated: true, completion: nil)
+
+        }
+        
+        alertController.addAction(DestructiveAction)
+        
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+        
+
         let userDefaults = UserDefaults.standard
         let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.teams)
         
@@ -1905,6 +1954,21 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         
         
     }
+    
+    func change(){
+//        let statsCompletionViewController = self.storyboard?.instantiateViewController(withIdentifier: "StatsDataLoadingVC") as! StatsCompletionViewController
+//        statsCompletionViewController.visitedTeam = self.visitedTeam
+//        statsCompletionViewController.homeTeam = self.homeTeam
+//        if let popoverController = statsCompletionViewController.popoverPresentationController {
+//            popoverController.sourceView = sender as! UIView
+//            popoverController.sourceRect = (sender as AnyObject).bounds
+//            popoverController.permittedArrowDirections = .any
+//            popoverController.delegate = self
+//        }
+//        self.present(statsCompletionViewController, animated: true, completion: nil)
+    }
+    
+    
     
     //수비수 교체
     func changeDefenderPlayer(sender : AnyObject) {

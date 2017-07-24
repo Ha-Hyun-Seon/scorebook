@@ -465,6 +465,9 @@
 		47A7693F1E5EB44B0032906F /* RuunerAnimation_bak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A7693E1E5EB44B0032906F /* RuunerAnimation_bak.swift */; };
 		47B7B7C91E0BD86E00847286 /* PitcherRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B7B7C81E0BD86E00847286 /* PitcherRecord.swift */; };
 		947C66271F1C953600061842 /* PickOffPopoverComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C66261F1C953600061842 /* PickOffPopoverComplete.swift */; };
+		94961DB71F20836500E0C27C /* StatsCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94961DB61F20836500E0C27C /* StatsCompletionViewController.swift */; };
+		94961DB91F20906000E0C27C /* StatsCompletionBatterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94961DB81F20906000E0C27C /* StatsCompletionBatterTableViewCell.swift */; };
+		94961DBB1F2090DC00E0C27C /* StatsCompletionPitcherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94961DBA1F2090DC00E0C27C /* StatsCompletionPitcherTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -949,6 +952,9 @@
 		47A7693E1E5EB44B0032906F /* RuunerAnimation_bak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuunerAnimation_bak.swift; sourceTree = "<group>"; };
 		47B7B7C81E0BD86E00847286 /* PitcherRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitcherRecord.swift; sourceTree = "<group>"; };
 		947C66261F1C953600061842 /* PickOffPopoverComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickOffPopoverComplete.swift; path = ../PickOffPopoverComplete.swift; sourceTree = "<group>"; };
+		94961DB61F20836500E0C27C /* StatsCompletionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsCompletionViewController.swift; sourceTree = "<group>"; };
+		94961DB81F20906000E0C27C /* StatsCompletionBatterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsCompletionBatterTableViewCell.swift; sourceTree = "<group>"; };
+		94961DBA1F2090DC00E0C27C /* StatsCompletionPitcherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsCompletionPitcherTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1008,6 +1014,7 @@
 				478737FC1E5446C100A06DBB /* GameRecordViewController.swift */,
 				471F81B81E8111DD00F72344 /* RecordingPaperViewController.swift */,
 				478D3AE81E938E7B00FCACF8 /* ContainerViewController.swift */,
+				94961DB61F20836500E0C27C /* StatsCompletionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1114,6 +1121,8 @@
 				476CE9761E49A9C3004870BF /* SelectedLineupTableViewCell.swift */,
 				470897151E49BB4600B52D26 /* LineupTableViewCell.swift */,
 				470488661E5FCDF7005ABA5C /* RecordTableViewCell.swift */,
+				94961DB81F20906000E0C27C /* StatsCompletionBatterTableViewCell.swift */,
+				94961DBA1F2090DC00E0C27C /* StatsCompletionPitcherTableViewCell.swift */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -2182,6 +2191,7 @@
 				47839A231E4824A2003A6503 /* StolenBasesMenuViewController.swift in Sources */,
 				47839A2F1E4847E1003A6503 /* DefenderTagOutMenuViewController.swift in Sources */,
 				470897161E49BB4600B52D26 /* LineupTableViewCell.swift in Sources */,
+				94961DB71F20836500E0C27C /* StatsCompletionViewController.swift in Sources */,
 				47115FBF1E27131200E6571F /* TeamInfo.swift in Sources */,
 				475EE48D1E35D8FA00FD4A69 /* AddTeamPlayerViewController.swift in Sources */,
 				47839A311E484974003A6503 /* DefenderNotOutMenuViewController.swift in Sources */,
@@ -2208,8 +2218,10 @@
 				47839A2D1E484528003A6503 /* DefenderAddRunMenuViewController.swift in Sources */,
 				4769EB391E3893A20099D6C5 /* TeamAddSelectionTableViewCell.swift in Sources */,
 				475DA2D21E8E33810054B81B /* Utils.swift in Sources */,
+				94961DBB1F2090DC00E0C27C /* StatsCompletionPitcherTableViewCell.swift in Sources */,
 				477EF6F11E65696800CDE26B /* RunnerAnimationComplete.swift in Sources */,
 				475EE48F1E35E93300FD4A69 /* TeamAddSelectionViewController.swift in Sources */,
+				94961DB91F20906000E0C27C /* StatsCompletionBatterTableViewCell.swift in Sources */,
 				4780FACC1E9786A800C6AF4C /* MainRunnerMenuComplete.swift in Sources */,
 				47839A291E484082003A6503 /* DefenderRunnerOutMenuViewController.swift in Sources */,
 				477F43091E5AD7FD009D7F24 /* PitcherPopoverComplete.swift in Sources */,
