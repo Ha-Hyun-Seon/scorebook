@@ -71,8 +71,8 @@ enum ActionPopState : String {
     case Default = "메인메뉴"
     //    case HoldRunner = "루도착주자"
     case BeforCompleteHoldRunner = "Done하기 전"
-    
     case CompleteHoldRunner = "Done한후 루 도착주자"
+    case RunnerStop = "미완성상태"
     case HalfRunner = "중간주자"
 }
 
@@ -81,6 +81,21 @@ enum RecordingByThing : String {
     case Default = ""
     case Pitcher = "투수에의해"
     case Batter = "타자에의해"
+}
+
+//완료 상태(타자의 완료와, 주자의 완료 구분)
+enum StatusDone : String {
+    case Default = ""
+    case BatterDone = "타자완료"
+    case RunnerDone = "주자완료"
+}
+
+//도루 상태
+enum StealState : String {
+    case Default = ""
+    case oneSteal = "한명"
+    case twoSteal = "두명"
+    case threeSteal = "세명"
 }
 
 extension Array {
@@ -92,7 +107,6 @@ extension Array {
         // return 0 <= index && index < self.count ? self[index] : nil
     }
 }
-
 
 class Utils {
     
@@ -179,6 +193,48 @@ class Utils {
             imageString = RecordState.NumberNine.rawValue
         case "29":
             imageString = RecordState.NumberNine.rawValue
+        default:
+            imageString = ""
+        }
+        
+        return imageString
+    }
+}
+
+class UtilsImage {
+    
+    var currentHRecord : HRecordInfo = HRecordInfo()
+    var recordState : RecordState = .Default
+    var runnerPosition : RunnerPosition = .Default
+    
+    init(currentHRecord : HRecordInfo, recordState : RecordState, runnerPosition : RunnerPosition){
+        self.currentHRecord = currentHRecord
+        self.recordState = recordState
+        self.runnerPosition = runnerPosition
+    }
+    
+    func getRecordStateImageStringByBatterNumber() -> String {
+        var imageString : String = ""
+        switch self.recordState {
+        case .AdvanceArrow:
+            //연속진루
+            switch self.runnerPosition {
+            case .OneRunner:
+                imageString = RecordState.TwoAdvanceArrows.rawValue
+            case .TwoRunner:
+                imageString = RecordState.ThreeAdvanceArrows.rawValue
+            case .ThreeRunner:
+                imageString = RecordState.HomeAdvanceArrows.rawValue
+            default:
+                imageString = ""
+            }
+        case .StealImage:
+            //도루
+            imageString = RecordState.StealImage.rawValue
+        case .DoubleStealImage:
+            imageString = RecordState.DoubleStealImage.rawValue
+        case .TripleStealImage:
+            imageString = RecordState.TripleStealImage.rawValue
         default:
             imageString = ""
         }

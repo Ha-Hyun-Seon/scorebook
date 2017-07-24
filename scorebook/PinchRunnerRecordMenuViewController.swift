@@ -26,14 +26,9 @@ class PinchRunnerRecordMenuViewController: UIViewController {
     //주자 진루 형태
     var addActionRunnerState : AddActionRunnerState = AddActionRunnerState.Default
     
-    
-    
-    
-    
     var addActionRunnerSate : AddActionRunnerState = AddActionRunnerState.Default
     var recordState : RecordState = RecordState.Default
     var holdrunnerCompleteDelegate : HoldRunnerComplete?
-    
     
     @IBOutlet weak var wildPitchButton: UIButton!   // 폭투에 의한
     @IBOutlet weak var passedBallButton: UIButton!  // 포일에 의한
@@ -82,19 +77,19 @@ class PinchRunnerRecordMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        wildPitchButton.isHidden = true
-        passedBallButton.isHidden = true
-        defenseErrorCausedByAdvanceButton.isHidden = true
-        batterByAdvanceButton.isHidden = true
-        stealByAdvanceButton.isHidden = true
-        checkAdvanceButton.isHidden = true
-        runnerAdvanceButton.isHidden = true
-        tagOutButton.isHidden = true
-        tagOutButton.isHidden = true
+        wildPitchButton.isEnabled = false
+        passedBallButton.isEnabled = false
+        defenseErrorCausedByAdvanceButton.isEnabled = false
+        batterByAdvanceButton.isEnabled = false
+        stealByAdvanceButton.isEnabled = false
+        checkAdvanceButton.isEnabled = false
+        runnerAdvanceButton.isEnabled = false
+        tagOutButton.isEnabled = false
+        tagOutButton.isEnabled = false
         
         switch addActionRunnerState {
         case .StealAction:
-            stealByAdvanceButton.isHidden = false
+            stealByAdvanceButton.isEnabled = true
         default:
             break
         }
@@ -109,7 +104,7 @@ class PinchRunnerRecordMenuViewController: UIViewController {
     }
     func complete(){
         if ((self.holdrunnerCompleteDelegate) != nil) {
-            holdrunnerCompleteDelegate?.HoldRunnerCompletePopover(runnerPosition: self.runnerPosition, record: self.hRecord, addActionRunnerState: self.addActionRunnerSate, recordState: self.recordState)
+            holdrunnerCompleteDelegate?.HoldRunnerCompletePopover(runnerPosition: self.runnerPosition, record: self.hRecord, addActionRunnerState: self.addActionRunnerState, recordState: self.recordState)
             self.dismiss(animated: true, completion: nil)
         }
     }
