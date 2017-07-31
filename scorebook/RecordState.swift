@@ -217,11 +217,16 @@ enum RecordState : String {
     case StealError = "RP_StealError.png"
     
     //보크 이미지 없음
+    case Balk = "보크"
+
     //에러 이미지 없음
     
     
     //연속진루
     case AdvanceArrow = "연속진루"
+    
+    //포구송구
+    case ThroughPass = "포구송구"
     
     //진루없음
     case NotAdvance = "진루없음"

@@ -48,7 +48,7 @@ class StolenBasesMenuViewController: UIViewController {
         case .OneRunner:
             self.hRecord.oneRecord = RecordState.StealError
             self.hRecord.oneRecordImage = RecordState.StealError.rawValue
-            self.hRecord.oneRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
+//            self.hRecord.oneRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
         case .TwoRunner:
             self.hRecord.twoRecord = RecordState.StealError
             self.hRecord.twoRecordImage = RecordState.StealError.rawValue
@@ -56,11 +56,11 @@ class StolenBasesMenuViewController: UIViewController {
         case .ThreeRunner:
             self.hRecord.threeRecord = RecordState.StealError
             self.hRecord.threeRecordImage = RecordState.StealError.rawValue
-            self.hRecord.threeRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
+//            self.hRecord.threeRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
         default:
             break
         }
-        
+        addActionRunnerState = AddActionRunnerState.StealAction
         complete()
     }
     override func viewDidLoad() {

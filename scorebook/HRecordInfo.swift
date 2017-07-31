@@ -81,6 +81,9 @@ class HRecordInfo : NSObject, NSCoding {
     //투구수
     var pitcherCount:[String:Int] = [String:Int]()
     
+    //reload체크
+    var isChanged : Bool = false
+    
     override init() {
     }
     

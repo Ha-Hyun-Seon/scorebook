@@ -10,6 +10,8 @@ import UIKit
 
 class GameRecordViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDataSource, UITableViewDelegate, PitcherPopoverComplete, BatterPopoverComplete, RunnerAnimationComplete, HoldRunnerComplete, BaseRunnerComplete, MainRunnerMenuComplete, ChangeRunnerComplete {
     
+    var runnerPosition1 : RunnerPosition = RunnerPosition.Default
+    var sendd : String = ""
     var teams : [TeamInfo] = [TeamInfo]()
     var visitedTeam : TeamInfo = TeamInfo()
     var homeTeam : TeamInfo = TeamInfo()
@@ -23,6 +25,9 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     
     //공수 교대 상태
     var isOffenceDefenceChange : Bool = false
+    
+    //현재 팀 정보
+    var currentTeam : TeamInfo = TeamInfo()
     
     //현재 이닝 정보
     var currentInningInfo : InningInfo = InningInfo()
@@ -253,9 +258,9 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //야구공
         self.ivBall.isHidden = true
         
-        let temp : Set<Lineup> = Set(self.visitedTeam.lineupInfo).subtracting(Set(self.visitedTeam.mainLineupInfo))
-        let temp1 : Set<Lineup> = Set(self.visitedTeam.lineupInfo).intersection(Set(self.visitedTeam.mainLineupInfo))
-        let arr : [Lineup] = Array(temp)
+//        let temp : Set<Lineup> = Set(self.visitedTeam.lineupInfo).subtracting(Set(self.visitedTeam.mainLineupInfo))
+//        let temp1 : Set<Lineup> = Set(self.visitedTeam.lineupInfo).intersection(Set(self.visitedTeam.mainLineupInfo))
+//        let arr : [Lineup] = Array(temp)
         
         
         
@@ -289,6 +294,9 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //공격팀 정보 셋팅
         //맨 처음은 원정팀 1번타자
         self.currentLineup = self.visitedTeam.mainLineupInfo[0]
+        
+        //현재 공격팀 정보를 넣는다.
+        self.currentTeam = self.visitedTeam
         
         //포지션별 등번호 셋팅(첫 시작은 HomeTeam 수비)
         //홈팀
@@ -460,6 +468,22 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         self.btnPositionRF.setBackgroundImage(UIImage(named: imgName)?.withRenderingMode(.alwaysOriginal), for: .normal)
         
     }
+    //포지션 이미지 설정2-투수,포수
+    func positionImgSet2(isOn : Bool){
+        
+        var imgName : String = ""
+        
+        if isOn {
+            imgName = "PV_position_on_btn.png"
+        }
+        else {
+            imgName = "PV_position_off_btn.png"
+        }
+        self.btnPositionSP.setBackgroundImage(UIImage(named: imgName)?.withRenderingMode(.alwaysOriginal), for: .normal)
+        self.btnPositionC.setBackgroundImage(UIImage(named: imgName)?.withRenderingMode(.alwaysOriginal), for: .normal)
+       
+        
+    }
     
     //투구 팝업
     @IBAction func clickPitcher(_ sender: AnyObject) {
@@ -499,11 +523,27 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
 
         
         
-        self.setPositionClickInfo(homeRecordText: PositionNumber.OneBase.rawValue)
+        self.setPositionClickInfo(homeRecordText: PositionNumber.SP.rawValue)
         
         if self.positionClickState == "S" {
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPositionSP)
+        }else if self.positionClickState == "U" {
+            self.ballAnimation(positionButton: self.btnPositionSP)
+            positionImgSet(isOn: true)
+            if runnerPosition1 == .OneRunner{
+                oneRunnerHRecord.oneRecordText = "\(PositionNumber.SP.rawValue)"
+            }else if runnerPosition1 == .TwoRunner{
+                twoRunnerHRecord.twoRecordText = "\(PositionNumber.SP.rawValue)"
+            }else
+                if runnerPosition1 == .ThreeRunner{
+                    threeRunnerHRecord.threeRecordText = "\(PositionNumber.SP.rawValue)"
+                }else{}
+
+        }else if self.positionClickState == "F" {
+            sendd = PositionNumber.SP.rawValue
+            self.addActionRunnerState = AddActionRunnerState.StealAction
+            self.runnerOut(sender: sender)
         }
         else {
             //메인 메뉴를 띄워야 한다
@@ -519,11 +559,31 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             return
         }
         
-        self.setPositionClickInfo(homeRecordText: PositionNumber.OneBase.rawValue)
+        self.setPositionClickInfo(homeRecordText: PositionNumber.C.rawValue)
         
         if self.positionClickState == "S" {
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPositionC)
+        }
+        else if self.positionClickState == "U" {
+            self.ballAnimation(positionButton: self.btnPositionC)
+            positionImgSet(isOn: true)
+            if runnerPosition1 == .OneRunner{
+                oneRunnerHRecord.oneRecordText = "\(PositionNumber.C.rawValue)"
+            }
+            else if runnerPosition1 == .TwoRunner{
+                twoRunnerHRecord.twoRecordText = "\(PositionNumber.C.rawValue)"
+            }
+            else if runnerPosition1 == .ThreeRunner{
+                    threeRunnerHRecord.threeRecordText = "\(PositionNumber.C.rawValue)"
+            }
+            else{}
+            
+        }
+        else if self.positionClickState == "F" {
+            sendd = PositionNumber.C.rawValue
+            self.ballAnimation(positionButton: self.btnPositionC)
+            self.runnerOut(sender: sender)
         }
         else {
             //메인 메뉴를 띄워야 한다
@@ -566,7 +626,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             //연속 진루 일 경우 루에 따라 이미지 변경
             if record.oneRecord == RecordState.AdvanceArrow {
                 record.oneRecord = RecordState.TwoAdvanceArrows
-//                record.oneRecordImage = RecordState.TwoAdvanceArrows.rawValue
+                record.oneRecordImage = RecordState.TwoAdvanceArrows.rawValue
             }
             self.oneRunnerHRecord = record
             runnerHRecord = self.oneRunnerHRecord
@@ -575,7 +635,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             //연속 진루 일 경우 루에 따라 이미지 변경
             if record.twoRecord == RecordState.AdvanceArrow {
                 record.twoRecord = RecordState.ThreeAdvanceArrows
-//                record.twoRecordImage = RecordState.ThreeAdvanceArrows.rawValue
+                record.twoRecordImage = RecordState.ThreeAdvanceArrows.rawValue
             }
             self.twoRunnerHRecord = record
             runnerHRecord = self.twoRunnerHRecord
@@ -584,7 +644,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             //연속 진루 일 경우 루에 따라 이미지 변경
             if record.threeRecord == RecordState.AdvanceArrow {
                 record.threeRecord = RecordState.HomeAdvanceArrows
-//                record.threeRecordImage = RecordState.HomeAdvanceArrows.rawValue
+                record.threeRecordImage = RecordState.HomeAdvanceArrows.rawValue
             }
             
 //            if addActionState == .oneAction {
@@ -605,11 +665,11 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         }
         else {
             
-            let index = self.currentInningInfo.hRecord.index(where: { $0.number == record.number })
-            if index != nil {
-                let indexPath = IndexPath(item: index!, section: 0)
-                self.recordTableView.reloadRows(at: [indexPath], with: .top)
-            }
+//            let index = self.currentInningInfo.hRecord.index(where: { $0.number == record.number })
+//            if index != nil {
+//                let indexPath = IndexPath(item: index!, section: 0)
+//                self.recordTableView.reloadRows(at: [indexPath], with: .top)
+//            }
         }
         
     }
@@ -622,6 +682,25 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             return
         }
         
+        for index in 0...self.currentInningInfo.hRecord.count - 1 {
+            if self.currentInningInfo.hRecord[index].isChanged == true {
+                var indexNumber = 0
+                if self.currentInningInfo.hRecord.count > 3 {
+                    indexNumber = index - 1
+                }
+                else{
+                    indexNumber = index
+                }
+                
+                let indexPath = IndexPath(item: indexNumber, section: 0)
+                self.recordTableView.beginUpdates()
+                self.recordTableView.reloadRows(at: [indexPath], with: .automatic)
+                self.recordTableView.endUpdates()
+                
+                //                self.currentInningInfo.hRecord[index].isChanged = false
+            }
+}
+/*
         var index : [Int] = [Int]()
         
         if self.recordCount < 0 {
@@ -649,7 +728,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             }
         }
         
-        
+        */
         /*
          if self.runnerState.rawValue.contains("H") == false {
          if index.count > 0 {
@@ -669,6 +748,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
          1. Done상태에서
          - 경우 1) 홈럼 -> 1안타 -> Done -> 주자 도루 -> 연속진루 -> Done
          */
+        /*
         if index.count > 0 {
             if let indexValue = self.currentInningInfo.hRecord.index( where : { $0.number == self.currentHrecord.number } ) {
                 if self.recordCount < 0 {
@@ -694,6 +774,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
                 self.recordTableView.endUpdates()
             }
         }
+ */
     }
     
     // setRunnerPaperRecordingByBatter호출시 index.removeLast 호출 제외 시키기 : 우선 사용 안함
@@ -756,6 +837,9 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         
         //임시 기록지 초기화
         self.tempRunnerHRecord = HRecordInfo()
+        
+        
+        print("애니메이션 완료후 hRecord : \(self.currentInningInfo.hRecord.count)")
     }
     
     func AddActionAnimationComplete(oneRunnerHRecord : HRecordInfo, twoRunnerHRecord : HRecordInfo, threeRunnerHRecord : HRecordInfo, homeRunnerHRecordList : [HRecordInfo],tempRunnerHRecord : HRecordInfo, oneHalfRunnerHRecord : HRecordInfo, twoHalfRunnerHRecord : HRecordInfo, threeHalfRunnerHRecord : HRecordInfo, runnerState : RunnerState, addActionState : AddActionState, runnerPosition: RunnerPosition) {
@@ -807,11 +891,11 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
                     
                     if self.recordCount < 0 {
                         //상태가 Done 전이라면 아직 TableView에 추가 되지 않았기 때문에 -1을 한다
-                        if self.actionPopState == .BeforCompleteHoldRunner || self.actionPopState == .RunnerStop {
+                        if self.actionPopState == .BeforCompleteHoldRunner || self.actionPopState == .RunnerStop{
                             indexNumber = indexNumber - 1
                         }
                     }
-                    
+                    print("//홈인한 레코드 리플레쉬 : \(indexNumber)")
                     let indexPath = IndexPath(item: indexNumber, section: 0)
                     self.recordTableView.beginUpdates()
                     self.recordTableView.reloadRows(at: [indexPath], with: .automatic)
@@ -820,12 +904,20 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             }
         }
         
+        //타점정보
+        self.currentLineup.runBattedIn += self.homeRunnerHRecordList.count
+        
         //홈인 기록 다 하고 나면 초기화
         self.homeRunnerHRecordList.removeAll()
         
         if self.runnerState == .Default {
-            self.actionPopState = .Default
-            self.clickDone((Any).self)
+            if self.addActionRunnerState != .StealAction{
+                self.actionPopState = .Default
+                self.clickDone((Any).self)
+            }else{
+                ballInitailize()
+                //11111111
+            }
         }
     }
     //도루상태 업
@@ -848,8 +940,77 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.statusDone = .RunnerDone
         }
         
+        
         var finalRecordState = recordState
+        
+        if finalRecordState == .ThroughPass{
+            switch sendd {
+            case "1":
+                self.ballAnimation(positionButton: self.btnPositionSP)
+            case "2":
+                self.ballAnimation(positionButton: self.btnPositionC)
+            case "3":
+                self.ballAnimation(positionButton: self.btnPosition1B)
+            case "4":
+                self.ballAnimation(positionButton: self.btnPosition2B)
+            case "5":
+                self.ballAnimation(positionButton: self.btnPositionSS)
+            case "6":
+                self.ballAnimation(positionButton: self.btnPosition3B)
+            case "7":
+                self.ballAnimation(positionButton: self.btnPositionLF)
+            case "8":
+                self.ballAnimation(positionButton: self.btnPositionCF)
+            case "9":
+                self.ballAnimation(positionButton: self.btnPositionRF)
+            default:
+                break
+            }
+            if record.threeRecord == .StealError{
+                record.threeRecordText += "-\(sendd)"
+            }else if record.twoRecord == .StealError{
+                record.twoRecordText += "-\(sendd)"
+            }else if record.oneRecord == .StealError{
+                record.oneRecordText += "-\(sendd)"
+            }else{}
+        }
+        else if finalRecordState == .TagOut{
+            switch sendd {
+            case "1":
+                self.ballAnimation(positionButton: self.btnPositionSP)
+            case "2":
+                self.ballAnimation(positionButton: self.btnPositionC)
+            case "3":
+                self.ballAnimation(positionButton: self.btnPosition1B)
+            case "4":
+                self.ballAnimation(positionButton: self.btnPosition2B)
+            case "5":
+                self.ballAnimation(positionButton: self.btnPositionSS)
+            case "6":
+                self.ballAnimation(positionButton: self.btnPosition3B)
+            case "7":
+                self.ballAnimation(positionButton: self.btnPositionLF)
+            case "8":
+                self.ballAnimation(positionButton: self.btnPositionCF)
+            case "9":
+                self.ballAnimation(positionButton: self.btnPositionRF)
+            default:
+                break
+            }
+            if record.threeRecord == .StealError{
+                record.threeRecordText += "-\(sendd)"
+            }else if record.twoRecord == .StealError{
+                record.twoRecordText += "-\(sendd)"
+            }else if record.oneRecord == .StealError{
+                record.oneRecordText += "-\(sendd)"
+            }else{}
+            self.pitcherScoreBoardInfo.outCount += 1
+            print(self.pitcherScoreBoardInfo.outCount)
+//            positionImgSet2(isOn: true)
+        }
+        
         //도루 상태업
+        if finalRecordState == .StealImage || finalRecordState == .TagOut || finalRecordState == .AdvanceArrow{
         if finalRecordState == .StealImage {
             if self.stealState == .oneSteal {
                 finalRecordState = getStealState(rState: .StealImage)
@@ -863,6 +1024,10 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
                 finalRecordState = getStealState(rState: .Default)
                 self.stealState = .oneSteal
             }
+            
+            //도루정보
+            let findLineup : Lineup = self.currentTeam.mainLineupInfo.first(where : { $0.memberNumber == record.memberNumber })!
+            findLineup.stolenBases += 1
         }
         
         self.actionPopState = .BeforCompleteHoldRunner
@@ -871,7 +1036,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         self.lblPositionMessage.isHidden = false
         self.positionImgSet(isOn: false)
         if self.runnerState.rawValue.contains("H") == true {
-        self.lblPositionMessage.text = "추가기록을 입력 해주세요."
+            self.lblPositionMessage.text = "추가기록을 입력 해주세요."
         }
         else{
             self.lblPositionMessage.text = "대기상태의\n주자기록을 입력 해주세요."
@@ -883,12 +1048,27 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         holdRunnerAnimation.completeDelegate = self
         self.addActionRunnerState = addActionRunnerState
         holdRunnerAnimation.RunnerAnimation()
-        
+            if runnerState != .RunnerState1 || runnerState != .RunnerState2 || runnerState != .RunnerState3 || runnerState != .RunnerState4 || runnerState != .RunnerState5 || runnerState != .RunnerState6 || runnerState != .RunnerState7{
+                UIView.animate(withDuration: 1.0, animations: ({
+                    self.ivBall.alpha  = 0;
+                }))
+            }
         //주자 추가 기록 완료시 기록지에 기록
         setRunnerPaperRecording(runnerPosition: runnerPosition, record : record)
         
-        self.recordHomein()
-        
+//        self.recordHomein()
+    }
+        else if finalRecordState == .StealError {
+            runnerPosition1 = runnerPosition
+//            self.statusDone = .RunnerDone		//  "타자완료"
+//            
+//            
+//            
+//            //타격 종료 일 경우 주자들의 추가 입력 가능하게 변경한다.
+//            self.actionPopState = .RunnerStop		//"미완성상태"
+//            self.addActionRunnerState = AddActionRunnerState.StealAction		//"타자에의한"
+            self.setFailRecord()
+        }
     }
     
     //중가에 멈춰서 추가 기록된 주자들 기록
@@ -1079,7 +1259,6 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     
     //1루수 포지션 Click
     @IBAction func clickPosition1B(_ sender: AnyObject) {
-        
         //아웃카운트 체크
         if self.pitcherScoreBoardInfo.outCount == 3 {
             self.checkThreeOut()
@@ -1092,7 +1271,14 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPosition1B)
         }
-        else {
+        else if self.positionClickState == "F"{
+//            self.setPaperRecording(recordingByThing: .Pitcher)
+//            self.ballAnimation(positionButton: self.btnPosition1B)
+            sendd = PositionNumber.OneBase.rawValue
+            self.addActionRunnerState = AddActionRunnerState.StealAction
+            self.runnerOut(sender: sender)
+        }
+        else{
             //메인 메뉴를 띄워야 한다
             self.changeDefenderPlayer(sender : sender)
         }
@@ -1112,6 +1298,13 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         if self.positionClickState == "S" {
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPosition2B)
+        }
+        else if self.positionClickState == "F"{
+            //            self.setPaperRecording(recordingByThing: .Pitcher)
+            //            self.ballAnimation(positionButton: self.btnPosition1B)
+            sendd = PositionNumber.TwoBase.rawValue
+            self.addActionRunnerState = AddActionRunnerState.StealAction
+            self.runnerOut(sender: sender)
         }
         else {
             //메인 메뉴를 띄워야 한다
@@ -1134,6 +1327,14 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPositionSS)
         }
+        else if self.positionClickState == "F"{
+            //            self.setPaperRecording(recordingByThing: .Pitcher)
+            //            self.ballAnimation(positionButton: self.btnPosition1B)
+            sendd = PositionNumber.SS.rawValue
+            self.addActionRunnerState = AddActionRunnerState.StealAction
+            self.runnerOut(sender: sender)
+        }
+
         else {
             //메인 메뉴를 띄워야 한다
             self.changeDefenderPlayer(sender : sender)
@@ -1155,6 +1356,14 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPosition3B)
         }
+        else if self.positionClickState == "F"{
+            //            self.setPaperRecording(recordingByThing: .Pitcher)
+            //            self.ballAnimation(positionButton: self.btnPosition1B)
+            sendd = PositionNumber.ThreeBase.rawValue
+            self.addActionRunnerState = AddActionRunnerState.StealAction
+            self.runnerOut(sender: sender)
+        }
+
         else {
             //메인 메뉴를 띄워야 한다
             self.changeDefenderPlayer(sender : sender)
@@ -1176,6 +1385,14 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPositionLF)
         }
+        else if self.positionClickState == "F"{
+            //            self.setPaperRecording(recordingByThing: .Pitcher)
+            //            self.ballAnimation(positionButton: self.btnPosition1B)
+            sendd = PositionNumber.LF.rawValue
+            self.addActionRunnerState = AddActionRunnerState.StealAction
+            self.runnerOut(sender: sender)
+        }
+
         else {
             //메인 메뉴를 띄워야 한다
             self.changeDefenderPlayer(sender : sender)
@@ -1197,6 +1414,14 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPositionCF)
         }
+        else if self.positionClickState == "F"{
+            //            self.setPaperRecording(recordingByThing: .Pitcher)
+            //            self.ballAnimation(positionButton: self.btnPosition1B)
+            sendd = PositionNumber.CF.rawValue
+            self.addActionRunnerState = AddActionRunnerState.StealAction
+            self.runnerOut(sender: sender)
+        }
+
         else {
             //메인 메뉴를 띄워야 한다
             self.changeDefenderPlayer(sender : sender)
@@ -1218,6 +1443,15 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.setPaperRecording(recordingByThing: .Batter)
             self.ballAnimation(positionButton: self.btnPositionRF)
         }
+        else if self.positionClickState == "F"{
+            //            self.setPaperRecording(recordingByThing: .Pitcher)
+            //            self.ballAnimation(positionButton: self.btnPosition1B)
+            sendd = PositionNumber.RF.rawValue
+            self.addActionRunnerState = AddActionRunnerState.StealAction
+            self.runnerOut(sender: sender)
+//            self.ballAnimation(positionButton: self.btnPositionRF)
+        }
+
         else {
             //메인 메뉴를 띄워야 한다
             self.changeDefenderPlayer(sender : sender)
@@ -1309,7 +1543,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             }
             present(basemanRunnerRecordMenuViewController, animated: true, completion: nil)
         }else if self.addActionRunnerState == .StealAction{
-            //도루, 실패 팝업
+            //도루, 실패 팝업 (폭투에 의한, 스틸에 의한,...)
             let pinchRunnerRecordMenuViewController = storyboard?.instantiateViewController(withIdentifier: "pinchrunnermenu") as! PinchRunnerRecordMenuViewController
             
             pinchRunnerRecordMenuViewController.addActionRunnerState = self.addActionRunnerState;
@@ -1406,7 +1640,7 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         self.reSetPitcherStrikeBall()
         
         //타격 정보 설정
-        self.currentHrecord.hittingRecord = recordState
+//        self.currentHrecord.hittingRecord = recordState
         self.currentHrecord.homeRecord = recordState
         self.currentHrecord.homeRecordImage = recordState.rawValue
         self.setPaperRecording(recordingByThing: .Pitcher)
@@ -1425,10 +1659,17 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         //스트라이크 3개면 삼진 아웃
         if self.pitcherScoreBoardInfo.strikeCount == 3 {
             
-            self.currentLineup.batterStrikeOutCount += 1
+            self.currentLineup.strikeOut += 1
             self.currentPLineup.pitcherStrikeOutCount += 1
             self.pitcherScoreBoardInfo.outCount += 1
-            self.setBatterRecordByPitcher(recordState: RecordState.StrikeOut)
+            
+            //스트라이트 3개로 구분함
+            self.currentHrecord.hittingRecord = RecordState.StrikeOut
+            self.setBatterRecordByPitcher(recordState: self.currentHrecord.hittingRecord)
+            
+            self.currentHrecord.centerRecord = RecordState.OutCountOne
+            self.currentHrecord.centerRecordImage = RecordState.OutCountOne.rawValue
+            
             self.hRecord.centerRecord = RecordState.OutCountOne
             self.hRecord.centerRecordImage = RecordState.OutCountOne.rawValue
             
@@ -1441,29 +1682,33 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         
         
         //볼 4개면 볼넷
-        if self.pitcherScoreBoardInfo.ballCount == 4 {
+        if self.pitcherScoreBoardInfo.ballCount == 4 && self.currentHrecord.hittingRecord != .IntentionalBall {
             
             self.currentPLineup.pitcherBaseOnBallsCount += 1
-            self.currentLineup.batterBaseOnBallsCount += 1
+            self.currentLineup.baseOnBalls += 1
             self.actionPopState = .BeforCompleteHoldRunner
             
             
-            self.setBatterRecordByPitcher(recordState: RecordState.FourBall)
+            //볼 4개로 구분함
+            self.currentHrecord.hittingRecord = RecordState.FourBall
+            self.setBatterRecordByPitcher(recordState: self.currentHrecord.hittingRecord)
+            
+            //볼넷 정보
+            //            self.currentLineup.baseOnBalls += 1
             
             
-            self.oneRunnerHRecord = self.currentHrecord
+//            self.oneRunnerHRecord = self.currentHrecord
             
             //완료
             //            self.completeCycle()
         }
         //타격방해
         if self.pitcherScoreBoardInfo.orderCount == 1{
-            print("타격방해 \(self.pitcherScoreBoardInfo.orderCount)")
             self.actionPopState = .BeforCompleteHoldRunner
-            self.setBatterRecordByPitcher(recordState: RecordState.BatterInterfere)
             
+            self.setBatterRecordByPitcher(recordState: self.currentHrecord.hittingRecord)
             
-            self.oneRunnerHRecord = self.currentHrecord
+            //            self.oneRunnerHRecord = self.currentHrecord
         }
         
         
@@ -1475,7 +1720,27 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         if self.pitcherScoreBoardInfo.ballCount == 5 {
             self.currentPLineup.pitcherBaseOnBallsCount += 1//현재투수 볼카운트
             self.actionPopState = .BeforCompleteHoldRunner
-            self.setBatterRecordByPitcher(recordState: RecordState.HitByPitch)//완료후 이미지
+            self.setBatterRecordByPitcher(recordState: self.currentHrecord.hittingRecord)
+            //            self.setBatterRecordByPitcher(recordState: RecordState.HitByPitch)//완료후 이미지
+            
+            //            self.oneRunnerHRecord = self.currentHrecord
+            
+            //사구 정보
+            //            self.currentLineup.hitByPitch += 1
+        }
+        
+        //고의 4구
+        if self.currentHrecord.hittingRecord == .IntentionalBall {
+            self.actionPopState = .BeforCompleteHoldRunner
+            
+            self.setBatterRecordByPitcher(recordState: self.currentHrecord.hittingRecord)
+        }
+        
+        if self.currentHrecord.hittingRecord == .FourBall ||
+            self.currentHrecord.hittingRecord == .IntentionalBall ||
+            self.currentHrecord.hittingRecord == .HitByPitch ||
+            self.currentHrecord.hittingRecord == .NotOut ||
+            self.currentHrecord.hittingRecord == .Balk {
             
             self.oneRunnerHRecord = self.currentHrecord
         }
@@ -1510,7 +1775,18 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         self.setBatterRecord()
     }
     
-    
+    func setFailRecord() {
+        self.btnPitcher.isHidden = true
+        self.btnDone.isHidden = true
+        self.lblPositionMessage.isHidden = false
+//        self.btnRunner1.isEnabled = false
+//        self.btnRunner2.isEnabled = false
+//        self.btnRunner3.isEnabled = false
+        positionImgSet2(isOn: true)
+//        self.positionImgSet(isOn: true)
+        //포지션 클릭 상태(타격 메뉴 이후 타구 방향 선택)
+        self.positionClickState = "U"
+    }
     
     
     
@@ -1792,6 +2068,8 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.currentHrecord = self.currentInningInfo.hRecord[recordCount]
             self.isOffenceDefenceChange = false
             self.displayLabelColorChange()
+            
+            self.runnerState = .Default
         }
         else {
             //다음 타자일 경우
@@ -1857,6 +2135,20 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             if self.currentInningInfo.kind == "BT" {
                 self.isInningChange = true
             }
+            
+            //잔루 정보
+            if self.oneRunnerHRecord.memberNumber != "" {
+                let findOneLineup : Lineup = self.currentTeam.mainLineupInfo.first(where : { $0.memberNumber == self.oneRunnerHRecord.memberNumber })!
+                findOneLineup.leftOnBase += 1
+            }
+            if self.twoRunnerHRecord.memberNumber != "" {
+                let findOneLineup : Lineup = self.currentTeam.mainLineupInfo.first(where : { $0.memberNumber == self.twoRunnerHRecord.memberNumber })!
+                findOneLineup.leftOnBase += 1
+            }
+            if self.threeRunnerHRecord.memberNumber != "" {
+                let findOneLineup : Lineup = self.currentTeam.mainLineupInfo.first(where : { $0.memberNumber == self.threeRunnerHRecord.memberNumber })!
+                findOneLineup.leftOnBase += 1
+            }
         }
         
         //공수 교대 일때 기록지 TableView를 초기화 한다.
@@ -1912,11 +2204,19 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
             self.lblAttackTeamName.text = self.visitedTeam.name
             self.lblDefenseTeamName.text = self.homeTeam.name
             self.positionMemberNumberSet(kind: "H")
+            
+            //현재 공격팀
+            self.currentTeam = TeamInfo()
+            self.currentTeam = self.visitedTeam
         }
         else {
             self.lblAttackTeamName.text = self.homeTeam.name
             self.lblDefenseTeamName.text = self.visitedTeam.name
             self.positionMemberNumberSet(kind: "V")
+            
+            //현재 공격팀
+            self.currentTeam = TeamInfo()
+            self.currentTeam = self.homeTeam
         }
         
         
@@ -1924,17 +2224,22 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     
     @IBAction func clickDone(_ sender: Any) {
         if self.statusDone == .BatterDone {
+            print("타자완료버튼후1 : \(self.currentInningInfo.hRecord.count)")
+            
             //타자 완료일 경우
             //기록 완료시에 주자들의 추가 입력이 메인 팝업으로 변경
             self.actionPopState = .CompleteHoldRunner
             self.lblPositionMessage.text = ""
-            
+            self.addActionRunnerState = .Default
             self.stealState = .Default
             //다음 타석 정의
             self.completeCycle()
+            print("타자완료버튼21 : \(self.currentInningInfo.hRecord.count)")
+            ivBall.alpha  = 1;
             self.ballInitailize()
             
             self.statusDone = .Default
+            print("타자완료버튼후3 : \(self.currentInningInfo.hRecord.count)")
             
         } else if self.statusDone == .RunnerDone {
             //주자 완료일 경우
@@ -1942,13 +2247,45 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
                 self.btnDone.isHidden = true
                 self.btnPitcher.isHidden = false
                 self.actionPopState = .CompleteHoldRunner
+                self.addActionRunnerState = .Default
                 self.statusDone = .Default
+                print("주자완료버튼후 : \(self.currentInningInfo.hRecord.count)")
+                ivBall.alpha  = 1;
+                ballInitailize()
                 return
             }
         }
-
+        
+        //타자 기록 통계
+        self.batterRecordingStatistics()
+        
+        //change check 모두 False
+        for index in 0...self.currentInningInfo.hRecord.count - 1 {
+            self.currentInningInfo.hRecord[index].isChanged = false
+        }
+        
+    }
+    //타자 기록 통계 정보
+    func batterRecordingStatistics() {
+        switch self.currentHrecord.hittingRecord {
+        case .StrikeOut:
+            //삼진
+            self.currentLineup.strikeOut += 1
+        case .FourBall:
+            //볼넷
+            self.currentLineup.baseOnBalls += 1
+        case .HitByPitch:
+            //사구
+            self.currentLineup.hitByPitch += 1
+        case .IntentionalBall:
+            //고의4구
+            self.currentLineup.intentionalBaseOnBalls += 1
+        default:
+            break
+        }
     }
     
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -1958,30 +2295,24 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
         var recordNumber : Int = self.currentInningInfo.hRecord.count
         
         if self.recordCount < 0 {
-            if self.actionPopState == .Default {
-                //            if self.runnerState.rawValue.contains("H") == false {
-                //                return self.currentInningInfo.hRecord.count
-                //                return recordNumber
+            if self.actionPopState == .CompleteHoldRunner {
+                
             }
             else {
                 recordNumber = recordNumber - 1
-                //                return self.currentInningInfo.hRecord.count - 1
             }
+            /*
+             if self.actionPopState == .Default {
+             //            if self.runnerState.rawValue.contains("H") == false {
+             //                return self.currentInningInfo.hRecord.count
+             //                return recordNumber
+             }
+             else {
+             recordNumber = recordNumber - 1
+             //                return self.currentInningInfo.hRecord.count - 1
+             }
+             */
         }
-        else {
-            //            if self.actionPopState == .HoldRunner {
-            //                return self.currentInningInfo.hRecord.count - 1
-            //            }
-            //            else {
-            //                return self.currentInningInfo.hRecord.count
-            //            }
-            
-            //            return self.currentInningInfo.hRecord.count
-        }
-        
-        //        print("numberOfRows")
-        //        print(String(recordNumber))
-        //        print("InSection")
         
         return recordNumber
     }
@@ -2054,15 +2385,23 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     func ballAnimation(positionButton : UIButton) {
-        
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/1, animations: {
-                self.ivBall.frame.origin.x = positionButton.frame.origin.x
-                self.ivBall.frame.origin.y = positionButton.frame.origin.y
+        if self.positionClickState == "S" || self.positionClickState == "F"{
+            UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/1, animations: {
+                    self.ivBall.frame.origin.x = positionButton.frame.origin.x
+                    self.ivBall.frame.origin.y = positionButton.frame.origin.y
+                    
+                })
                 
-            })
-            
-        }, completion: {finished in})
+            }, completion: {finished in})
+        }else{
+            self.positionClickState = "F"
+//            self.hRecord.oneRecordText = (positionButton.titleLabel?.text?.replacingOccurrences(of: "btnPosition", with: ""))!
+//                Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")
+            self.ivBall.frame.origin.x = positionButton.frame.origin.x
+            self.ivBall.frame.origin.y = positionButton.frame.origin.y
+        }
+        
     }
     
     func ballInitailize() {
@@ -2164,7 +2503,22 @@ class GameRecordViewController: UIViewController, UIPopoverPresentationControlle
     }
    
     
-    
+    func runnerOut(sender : AnyObject){
+        let defenderAddRunMenuViewController = storyboard?.instantiateViewController(withIdentifier: "defenderAddRunMenu") as! DefenderAddRunMenuViewController
+        defenderAddRunMenuViewController.preferredContentSize = CGSize(width: 320, height: 300)
+        defenderAddRunMenuViewController.modalPresentationStyle = .popover
+        defenderAddRunMenuViewController.hRecord = self.oneRunnerHRecord
+        defenderAddRunMenuViewController.addActionRunnerState = self.addActionRunnerState
+        defenderAddRunMenuViewController.holdRunnerComplete = self
+        defenderAddRunMenuViewController.runnerPosition = self.runnerPosition1
+        defenderAddRunMenuViewController.sendd = sendd
+        if let popoverController = defenderAddRunMenuViewController.popoverPresentationController {
+            popoverController.sourceView = sender as? UIView
+            popoverController.permittedArrowDirections = .any
+            popoverController.delegate = self
+        }
+        present(defenderAddRunMenuViewController, animated: true, completion: nil)
+    }
     
     //수비수 교체
     func changeDefenderPlayer(sender : AnyObject) {

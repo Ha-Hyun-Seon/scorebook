@@ -35,7 +35,12 @@ class Lineup : NSObject, NSCoding {
     var positionTemp:String = ""
     
     //타자일 전체 경우 기록
+    //타석
+    //:자기 차례가 몇번인지 (무조건 +1)
+    var plateAppearance : Int = 0
+    
     //타수
+    //: 번트, 고의사구, 사구, 볼넷을 뺀 타석 (자기가 희생해서 이득을 취할때와 자기의 의도와 상관없이 점수가 날때)
     var timeAtBat : Int = 0
     
     //안타
@@ -56,50 +61,48 @@ class Lineup : NSObject, NSCoding {
     
     //var 00Count : Int = 0
     //루타수
+    //:HRecordInfo의 HittingRecord정보 1루- 1, 2루-2, 3루-3, 홈런-4
+    var totalBase : Int = 0
     
-    
-    //타점
-    
+    //타점(득점타)
+    //:자기가 쳐서 홈에 들어온 사람수
+    var runBattedIn : Int = 0
     
     //도루
-    
+    //:자기가 도루 성공한 경우, 스틸에 의한 진루한 경우
+    var stolenBases : Int = 0
     
     //도루자
-    
-    
+    //:?
     //희타
-    
-    
+    //:?
     //희비
+    //:?
     
-    
-    //4구
-    var batterBaseOnBallsCount : Int = 0
+    //4구(볼넷)
+    //:자기가 볼넷으로 진루 되었을때
+    var baseOnBalls : Int = 0
     
     //고의4구
-    
+    //:자기가 고의4구 눌렸을때
+    var intentionalBaseOnBalls : Int = 0
     
     //사구
-    var hitByPitchCount : Int = 0
+    //:자기가 사구 눌렸을때
+    var hitByPitch : Int = 0
     
     //삼진
-    var batterStrikeOutCount : Int = 0
+    //:스트라이크 세번
+    var strikeOut : Int = 0
     
     //병살타
+    //:한번쳤을때 Done누르기전에 아웃카운트가 두번일때 병살 : 현재 타자의 기록
+    var doublePlay : Int = 0
     
     
-    //잔루(진루없음)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    //잔루
+    //:3아웃될때 베이스에 있는 주자 기록에 +1
+    var leftOnBase : Int = 0
     
     
     //투수일 경우 전체 기록
@@ -112,8 +115,26 @@ class Lineup : NSObject, NSCoding {
     //볼넷 내준 수
     var pitcherBaseOnBallsCount : Int = 0
     
+    //타석
+    //:
+    //타수
+    //피안타
+    //피홈런
+    //희타
+    //희비
+    //4구
+    //고의4구
+    //사구
+    
     //삼진 수
     var pitcherStrikeOutCount : Int = 0
+    
+    //폭투
+    //보크
+    //실점
+    //자책점
+    //이닝수
+    //아웃카운터
     
     //라인업 선수 설정 완료
     var isSetName:Bool = false

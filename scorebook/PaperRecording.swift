@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class PaperRecording {
- 
+    
     //선수 정보
     var currentLineup : Lineup = Lineup()
     //현재 타격 기록지
@@ -48,49 +48,49 @@ class PaperRecording {
         self.ivBatterRecord3 = ivBatterRecord3
         self.ivBatterRecord4 = ivBatterRecord4
         self.ivBatterRecord5 = ivBatterRecord5
-       
+        
         self.lblBatterRecord1 = lblBatterRecord1
         self.lblBatterRecord2 = lblBatterRecord2
         self.lblBatterRecord3 = lblBatterRecord3
         self.lblBatterRecord4 = lblBatterRecord4
         self.lblPositionMessage = lblPositionMessage
     }
-
+    
     
     func setHittingDefine() {
         
         switch self.currentHrecord.hittingRecord {
             
-           //----------------------------LineDrive
+        //----------------------------LineDrive
         case RecordState.InfieldBunt://번트
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
             
             self.currentLineup.hittingCount += 1
             
-            
-            
-            
         case RecordState.LineDrive://라인드라이브
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
             self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)
             
-            
-            
+            //타수정보
+            self.currentLineup.timeAtBat += 1
             
         case RecordState.FlyOut://플라이아웃
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
             self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)
             
-          
+            //타수정보
+            self.currentLineup.timeAtBat += 1
+            
         case RecordState.FoulFlyOut://파울플라이아웃
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)//아웃"K"이미지
             self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: self.lblBatterRecord1)//중간 팀전체 아웃횟수
             
-            
+            //타수정보
+            self.currentLineup.timeAtBat += 1
             
         case RecordState.BatterInterfere://타격방해
             
@@ -98,22 +98,19 @@ class PaperRecording {
             
             self.currentHrecord.runnerLocation = "1루"
             
+            //타수정보
+            self.currentLineup.timeAtBat += 1
             
         case RecordState.HitByPitch://사구
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
             
             self.currentHrecord.runnerLocation = "1루"
+        case RecordState.IntentionalBall://고의4구
             
-           //----------------------------
+            self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
             
-            
-            
-            
-            
-            
-            
-            
+            self.currentHrecord.runnerLocation = "1루"
         case RecordState.FourBall://4구
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
@@ -133,6 +130,11 @@ class PaperRecording {
             
             self.currentLineup.hittingCount += 1
             
+            //타수정보
+            self.currentLineup.timeAtBat += 1
+            
+            //루타수
+            self.currentLineup.totalBase += 1
             
         case RecordState.TwoHit://2루타
             
@@ -143,6 +145,12 @@ class PaperRecording {
             
             self.currentLineup.hittingCount += 1
             self.currentLineup.doubleHittingCount += 1
+            
+            //타수정보
+            self.currentLineup.timeAtBat += 1
+            
+            //루타수
+            self.currentLineup.totalBase += 2
             
         case RecordState.ThreeHit://3루타
             
@@ -155,6 +163,12 @@ class PaperRecording {
             self.currentLineup.hittingCount += 1
             self.currentLineup.thirdHittingCount += 1
             
+            //타수정보
+            self.currentLineup.timeAtBat += 1
+            
+            //루타수
+            self.currentLineup.totalBase += 3
+            
         case RecordState.HomeRun://홈런
             
             self.setHittingImage(imageName: self.currentHrecord.homeRecordImage, imageControl: self.ivBatterRecord1, labelText: self.currentHrecord.homeRecordText, labelControl: self.lblBatterRecord1)
@@ -163,12 +177,21 @@ class PaperRecording {
             self.setHittingImage(imageName: self.currentHrecord.threeRecordImage, imageControl: self.ivBatterRecord4, labelText: self.currentHrecord.threeRecordText, labelControl: self.lblBatterRecord4)
             self.setHittingImage(imageName: self.currentHrecord.centerRecordImage, imageControl: self.ivBatterRecord5, labelText: self.currentHrecord.centerRecordText, labelControl: UILabel())
             
+            //홈런정보
+            self.currentLineup.homerunCount += 1
+            
+            //타수정보
+            self.currentLineup.timeAtBat += 1
+            
+            //루타수
+            self.currentLineup.totalBase += 4
+            
         default:
             return
         }
         
-        self.currentLineup.timeAtBat += 1
-        
+        //타석정보
+        self.currentLineup.plateAppearance += 1
     }
     
     func setRunnerRecordingDefine() {
@@ -193,18 +216,20 @@ class PaperRecording {
             return
         }
         
-        self.currentLineup.timeAtBat += 1
+        //        self.currentLineup.timeAtBat += 1
         
     }
     
     func setHittingImage(imageName : String, imageControl : AnyObject, labelText : String, labelControl : AnyObject) {
         
-        let image: UIImage = UIImage(named: imageName)!
-        (imageControl as! UIImageView).image = image
+        if imageName != "" {
+            let image: UIImage = UIImage(named: imageName)!
+            (imageControl as! UIImageView).image = image
+        }
         self.lblPositionMessage.isHidden = true
         (labelControl as! UILabel).text = labelText
         
-//        self.runnerAnimation(recordState: self.currentHrecord.hittingRecord)
+        //        self.runnerAnimation(recordState: self.currentHrecord.hittingRecord)
         
     }
     

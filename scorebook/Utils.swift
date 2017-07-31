@@ -98,6 +98,13 @@ enum StealState : String {
     case threeSteal = "세명"
 }
 
+enum Runner : String{
+    case Default = ""
+    case OneRunner = "1"
+    case TwoRunner = "2"
+    case ThreeRunner = "3"
+}
+
 extension Array {
     subscript (safe index: Int) -> Element? {
         // iOS 9 or later

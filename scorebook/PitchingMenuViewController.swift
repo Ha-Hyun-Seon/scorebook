@@ -30,15 +30,18 @@ class PitchingMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //낫 아웃 버튼
-        if isRunner1 == false && self.pitcherScoreBoardInfo.strikeCount == 2 {
-            self.notOutMenuView.isEnabled = true
-        }
-        
-        //고의 사구 버튼
-        if self.pitcherScoreBoardInfo.ballCount == 3 {
-            self.intentional4Balls.isEnabled = true
-        }
+        self.reload()
+        /*
+         //낫 아웃 버튼
+         if isRunner1 == false && self.pitcherScoreBoardInfo.strikeCount == 2 {
+         self.notOutMenuView.isEnabled = true
+         }
+         
+         //고의 사구 버튼
+         if self.pitcherScoreBoardInfo.ballCount == 3 {
+         self.intentional4Balls.isEnabled = true
+         }
+         */
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,6 +55,7 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingStrike)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingStrike.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
+        
         self.completeStrike()
         
             
@@ -72,6 +76,7 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingSwing)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingSwing.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
+        
         self.completeStrike()
         
     }
@@ -81,6 +86,7 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecord.append(RecordState.PitchingBuntSwing)
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingBuntSwing.rawValue)
         self.pitcherScoreBoardInfo.strikeCount += 1
+       
         self.completeStrike()
         
     }
@@ -114,16 +120,20 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingBall.rawValue)
         self.hRecord.homeRecord = RecordState.IntentionalBall
         self.hRecord.homeRecordImage = RecordState.IntentionalBall.rawValue
+        
+        self.hRecord.hittingRecord = RecordState.IntentionalBall
+        
         self.pitcherScoreBoardInfo.ballCount += 1
         self.pitcherScoreBoardInfo.isPitcherChanged = true
+        
         self.complete()
     }
     
     //사구
     @IBAction func clickFourBall(_ sender: AnyObject) {
-        self.hRecord.pitcherRecord.append(RecordState.PitchingEnd)//???????
-//----------------------------------------        
-    self.hRecord.pitcherRecordImage.append(RecordState.PitchingEnd.rawValue)//세로줄
+        self.hRecord.pitcherRecord.append(RecordState.PitchingEnd)
+        
+        self.hRecord.pitcherRecordImage.append(RecordState.PitchingEnd.rawValue)//세로줄
         if self.pitcherScoreBoardInfo.ballCount==3 {
             self.pitcherScoreBoardInfo.ballCount+=2
         }else if self.pitcherScoreBoardInfo.ballCount==2 {
@@ -135,9 +145,11 @@ class PitchingMenuViewController: UIViewController {
         }else{
             
         }
-//----------------------------------------
-   
+        
+        self.hRecord.hittingRecord = RecordState.HitByPitch
+        
         self.pitcherScoreBoardInfo.isPitcherChanged = true
+        
         self.complete()
     }
    
@@ -148,10 +160,12 @@ class PitchingMenuViewController: UIViewController {
         self.hRecord.pitcherRecordImage.append(RecordState.PitchingEnd.rawValue)
         
         self.hRecord.homeRecord = RecordState.BatterInterfere
-        print(self.hRecord.homeRecord.rawValue)
         self.hRecord.homeRecordImage = RecordState.BatterInterfere.rawValue
         self.pitcherScoreBoardInfo.orderCount = 1
         self.pitcherScoreBoardInfo.isPitcherChanged = true
+        
+        self.hRecord.hittingRecord = RecordState.BatterInterfere
+        
         self.complete()
     }
     
@@ -174,7 +188,7 @@ class PitchingMenuViewController: UIViewController {
         BattingMenuViewController.modalPresentationStyle = .popover
         
         if let popoverController = BattingMenuViewController.popoverPresentationController {
-            popoverController.sourceView = sender as! UIView
+            popoverController.sourceView = sender as? UIView
             popoverController.sourceRect = sender.bounds
             popoverController.permittedArrowDirections = .any
             popoverController.delegate = self.parent as! UIPopoverPresentationControllerDelegate?

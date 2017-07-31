@@ -202,10 +202,10 @@ class StatsCompletionViewController: UIViewController,UITableViewDelegate,UITabl
                 cell.caughtSteal.text = myIndex.name//도루자
                 cell.sacrificeHit.text = myIndex.name//희타
                 cell.sacrificeFly.text = myIndex.name//희비
-                cell.fourBalls.text = String(myIndex.batterBaseOnBallsCount)//4구
+                cell.fourBalls.text = String(myIndex.baseOnBalls)//4구
                 cell.intentionalWalk.text = myIndex.name//고의4구
-                cell.hitByPitch.text = String(myIndex.hitByPitchCount)//사구
-                cell.strikeOut.text = String(myIndex.batterStrikeOutCount)//삼진
+                cell.hitByPitch.text = String(myIndex.hitByPitch)//사구
+                cell.strikeOut.text = String(myIndex.strikeOut)//삼진
                 cell.doublePlay.text = myIndex.name//병살타
                 cell.leftOnBases.text = myIndex.name//잔루
                 

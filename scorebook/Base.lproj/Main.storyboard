@@ -1760,6 +1760,9 @@
                                         <state key="normal" backgroundImage="PV_position_on_btn.png">
                                             <color key="titleShadowColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="clickPositionC:" destination="U8X-Jk-ZYz" eventType="touchUpInside" id="PPX-J2-iuB"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ww0-oF-RLJ" userLabel="Button - 1루수">
                                         <rect key="frame" x="805" y="357" width="50" height="50"/>
@@ -4570,7 +4573,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4m-oz-bNQ" userLabel="Button - 폭투에 의한 진루">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4m-oz-bNQ" userLabel="Button - 폭투에 의한 진루">
                                 <rect key="frame" x="6" y="90" width="138" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_wildPitchAdvance_bt.png"/>
@@ -4981,7 +4984,7 @@
         <!--Defender Add Run Menu View Controller-->
         <scene sceneID="tbV-tm-Ke1">
             <objects>
-                <viewController id="0ig-FR-Rit" customClass="DefenderAddRunMenuViewController" customModule="scorebook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="defenderAddRunMenu" id="0ig-FR-Rit" customClass="DefenderAddRunMenuViewController" customModule="scorebook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3ZT-ly-xYK"/>
                         <viewControllerLayoutGuide type="bottom" id="L5G-Mc-h7E"/>
@@ -4998,26 +5001,41 @@
                                 <rect key="frame" x="6" y="90" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="defenseMenu_catchAndThrow_bt.png"/>
+                                <connections>
+                                    <action selector="clickCatchAndThrowButton:" destination="0ig-FR-Rit" eventType="touchUpInside" id="aDZ-ty-21e"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjo-5U-bxh" userLabel="Button - 송구자 실책 진루">
                                 <rect key="frame" x="6" y="135" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="defenseMenu_throwErrorAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickThrowButton:" destination="0ig-FR-Rit" eventType="touchUpInside" id="7Xx-nX-9YP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1G-vw-Qi3" userLabel="Button - 포구자 실책 진루">
                                 <rect key="frame" x="6" y="182" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="defenseMenu_catchErrorAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickCatchButton:" destination="0ig-FR-Rit" eventType="touchUpInside" id="oa1-MB-Izr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3i-ha-9XQ" userLabel="Button - 수비수 실책 진루">
                                 <rect key="frame" x="6" y="228" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="defenseMenu_defenseErrorAdvance_bt.png"/>
+                                <connections>
+                                    <action selector="clickErrorButton:" destination="0ig-FR-Rit" eventType="touchUpInside" id="Zvj-Ft-13V"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Owo-aK-78M">
                                 <rect key="frame" x="166" y="90" width="148" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="waitMenu_tagOut_bt.png"/>
+                                <connections>
+                                    <action selector="clickTagOutButton:" destination="0ig-FR-Rit" eventType="touchUpInside" id="z6D-xR-Nio"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
