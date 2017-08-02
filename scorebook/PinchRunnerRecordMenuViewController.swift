@@ -12,6 +12,9 @@ import UIKit
 
 class PinchRunnerRecordMenuViewController: UIViewController {
     
+    
+    
+    
     //자기 기록지
     var hRecord : HRecordInfo = HRecordInfo()
     //타격 기록지
@@ -67,9 +70,28 @@ class PinchRunnerRecordMenuViewController: UIViewController {
     @IBAction func clickTagOut(_ sender: UIButton) {
     }
     
+    //도루실패
     @IBAction func clickWaitStateStealError(_ sender: UIButton) {
+        self.recordState = RecordState.StealError
+        
+        switch self.runnerPosition {
+        case .OneRunner:
+            self.hRecord.oneRecord = RecordState.StealError
+            self.hRecord.oneRecordImage = RecordState.StealError.rawValue
+        case .TwoRunner:
+            self.hRecord.twoRecord = RecordState.StealError
+            self.hRecord.twoRecordImage = RecordState.StealError.rawValue
+        case .ThreeRunner:
+            self.hRecord.threeRecord = RecordState.StealError
+            self.hRecord.threeRecordImage = RecordState.StealError.rawValue
+        default:
+            break
+        }
+        addActionRunnerState = AddActionRunnerState.StealAction
+        complete()
     }
     
+    //진루없음
     @IBAction func clickSeparateNotAdvance(_ sender: UIButton) {
         self.recordState = RecordState.NotAdvance
         complete()
@@ -94,6 +116,7 @@ class PinchRunnerRecordMenuViewController: UIViewController {
             break
         }
         // Do any additional setup after loading the view, typically from a nib.
+        button()
     }
     
     override func didReceiveMemoryWarning() {
@@ -106,6 +129,64 @@ class PinchRunnerRecordMenuViewController: UIViewController {
         if ((self.holdrunnerCompleteDelegate) != nil) {
             holdrunnerCompleteDelegate?.HoldRunnerCompletePopover(runnerPosition: self.runnerPosition, record: self.hRecord, addActionRunnerState: self.addActionRunnerState, recordState: self.recordState)
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    func button(){
+        switch runnerPosition {
+        case .OneRunner:
+            switch runnerState {
+            case .RunnerState12:
+                stealByAdvanceButton.isEnabled = false
+            case .RunnerState17:
+                stealByAdvanceButton.isEnabled = false
+            case .RunnerState30:
+                stealByAdvanceButton.isEnabled = false
+            case .RunnerState34:
+                stealByAdvanceButton.isEnabled = false
+            default:
+                return
+            }
+        case .TwoRunner:
+            switch runnerState {
+            case .RunnerState19:
+                separateNotAdvanceButton.isEnabled = false
+            case .RunnerState21:
+                stealByAdvanceButton.isEnabled = false
+            case .RunnerState26:
+                separateNotAdvanceButton.isEnabled = false
+            case .RunnerState27:
+                stealByAdvanceButton.isEnabled = false
+            case .RunnerState32:
+                stealByAdvanceButton.isEnabled = false
+            case .RunnerState33:
+                stealByAdvanceButton.isEnabled = false
+            case .RunnerState34:
+                stealByAdvanceButton.isEnabled = false
+            case .RunnerState35:
+                stealByAdvanceButton.isEnabled = false
+                separateNotAdvanceButton.isEnabled = false
+            default:
+                return
+            }
+        case .ThreeRunner:
+            switch runnerState {
+            case .RunnerState19:
+                separateNotAdvanceButton.isEnabled = false
+            case .RunnerState26:
+                separateNotAdvanceButton.isEnabled = false
+            case .RunnerState27:
+                separateNotAdvanceButton.isEnabled = false
+            case .RunnerState28:
+                separateNotAdvanceButton.isEnabled = false
+            case .RunnerState29:
+                separateNotAdvanceButton.isEnabled = false
+            case .RunnerState31:
+                separateNotAdvanceButton.isEnabled = false
+            default:
+                return
+            }
+        default:
+            return
         }
     }
 }

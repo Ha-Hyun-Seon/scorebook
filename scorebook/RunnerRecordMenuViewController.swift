@@ -50,40 +50,8 @@ class RunnerRecordMenuViewController: UIViewController {
     @IBAction func clickAddAdvanceButton(_ sender: Any) {
 
         //주자 상태에 따라 진루
-//        if self.runnerPosition == RunnerPosition.OneRunner {
-//            self.recordState = RecordState.TwoAdvanceArrows
-//        }
-//        else if self.runnerPosition == RunnerPosition.TwoRunner {
-//            self.recordState = RecordState.ThreeAdvanceArrows
-//        }
-//        else if self.runnerPosition == RunnerPosition.ThreeRunner {
-//            self.recordState = RecordState.HomeAdvanceArrows
-//        }
-        //연속 진루
-//        switch self.runnerPosition {
-//        case .OneRunner:
-//            <#code#>
-//        case .TwoRunner:
-//            <#code#>
-//        case .ThreeRunner:
-//            <#code#>
-//        default:
-//            <#code#>
-//        }
-//        switch self.addActionRunnerSate {
-//        case .BatterAction:
             self.recordState = RecordState.AdvanceArrow
             self.addActionRunnerSate = AddActionRunnerState.BatterAction
-//        case .ErrorAction:
-//            self.recordState = RecordState.AdvanceArrow
-//            self.addActionRunnerSate = AddActionRunnerState.ErrorAction
-//        case .StealAction:
-//            self.recordState = RecordState.AdvanceArrow
-//            self.addActionRunnerSate = AddActionRunnerState.StealAction
-//        default:
-//            break
-//        }
-//        
         
         self.complete()
 
@@ -100,11 +68,29 @@ class RunnerRecordMenuViewController: UIViewController {
     
     //태그 아웃
     @IBAction func clickTagOutButton(_ sender: Any) {
-        
+        //2루만 완료
         //ErrorAction
         //self.recordState = RecordState.AdvanceArrow
-        self.addActionRunnerSate = AddActionRunnerState.ErrorAction
-        
+        if self.addActionRunnerSate == .StealAction{
+            self.recordState = RecordState.StealError
+            switch self.runnerPosition {
+                
+            case .OneRunner:
+                
+                self.hRecord.oneRecord = RecordState.StealError
+                self.hRecord.oneRecordImage = RecordState.TwoAdvanceArrows.rawValue
+            case .TwoRunner:
+                self.hRecord.twoRecord = RecordState.StealError
+                self.hRecord.twoRecordImage = RecordState.ThreeAdvanceArrows.rawValue
+            case .ThreeRunner:
+                self.hRecord.threeRecord = RecordState.StealError
+                self.hRecord.threeRecordImage = RecordState.HomeAdvanceArrows.rawValue
+            default:
+                break
+            }
+        }else{
+            self.recordState = RecordState.TagOut
+        }
         
         
         self.complete()

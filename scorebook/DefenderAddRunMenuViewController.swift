@@ -11,6 +11,8 @@ import UIKit
 
 
 class DefenderAddRunMenuViewController: UIViewController {
+    //야구공 위치
+    var ballXY : String = ""
     
     var recordState : RecordState = RecordState.Default
     var hRecord : HRecordInfo = HRecordInfo()
@@ -65,6 +67,9 @@ class DefenderAddRunMenuViewController: UIViewController {
             if hRecord.oneRecord == .StealError{
                 addOutMenuViewInCatchAndThrowButton.isEnabled=true
             }
+        }
+        if ballXY == sendd{
+            addOutMenuViewInCatchAndThrowButton.isEnabled = false
         }
     }
     
