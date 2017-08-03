@@ -137,6 +137,8 @@ class HoldRunnerAnimation {
                     twoHalfRun()
                     oneSTO1()
                     
+                } else if self.recordState == .AdvanceArrow{
+                    //연속진루 불가
                 } else {
                     self.runnerState = .RunnerState19
                     oneRunner()
@@ -698,6 +700,11 @@ class HoldRunnerAnimation {
                     twoHalfRun()
                     
                     
+                } else if self.recordState == .AdvanceArrow{
+                    self.runnerState = .RunnerState2   //1,2
+                    oneRunnerNoMove1()
+                    twoRunnerNoMove1()
+                    threeRunner()
                 } else {
                     self.runnerState = .RunnerState11   //1H,2H
                     oneHalfRun()
@@ -713,6 +720,10 @@ class HoldRunnerAnimation {
                     self.runnerState = .RunnerState10     //1H
                     threeSTO1()
                     oneHalfRun()
+                } else if self.recordState == .AdvanceArrow{
+                    self.runnerState = .RunnerState1   //1
+                    oneRunnerNoMove1()
+                    threeRunner()
                 } else {
                 self.runnerState = .RunnerState10   //1H
                 oneHalfRun()
@@ -728,11 +739,14 @@ class HoldRunnerAnimation {
                     self.runnerState = .RunnerState18     //2H
                     threeSTO1()
                     twoHalfRun()
-                } else {
-                self.runnerState = .RunnerState18   //2H
-                
-                twoHalfRun()
-                threeRunner()
+                } else if self.recordState == .AdvanceArrow{
+                    self.runnerState = .RunnerState5   //2
+                    twoRunnerNoMove1()
+                    threeRunner()
+                } else{
+                    self.runnerState = .RunnerState18   //2H
+                    twoHalfRun()
+                    threeRunner()
                 }
                 
             case .RunnerState7:
@@ -1109,7 +1123,8 @@ class HoldRunnerAnimation {
         else {
             self.oneLocation(runner: self.runner1_2, imageName: self.runnerGrayImageName)
         }
-        
+        self.runner1.isEnabled = true
+        self.runner1_2.isEnabled = true
         self.runner1_2.isHidden = false
         self.runner1.isHidden = true
     }
@@ -1175,7 +1190,8 @@ class HoldRunnerAnimation {
         else {
             self.twoLocation(runner: self.runner2_3, imageName: self.runnerGrayImageName)
         }
-        
+        self.runner2.isEnabled = true
+        self.runner2_3.isEnabled = true
         self.runner2_3.isHidden = false
         self.runner2.isHidden = true
     }
@@ -1214,13 +1230,8 @@ class HoldRunnerAnimation {
         }, completion: {finished in})
         self.runner2_3.isEnabled = false
     }
-    //3루주자 초기화
-//    func threeRunnerInit() {
-//        self.threeLocation(runner: self.runner3_H, imageName: runnerImageName)
-//        self.runner3_H.isHidden = false
-//        self.runner3.isHidden = true
-//    }
     
+    //3루주자 초기화
     func threeRunnerInit() {
         
         if self.runnerState.rawValue.contains("H") == false {
@@ -1229,7 +1240,8 @@ class HoldRunnerAnimation {
         else {
             self.threeLocation(runner: self.runner3_H, imageName: self.runnerGrayImageName)
         }
-        
+        self.runner3.isEnabled = true
+        self.runner3_H.isEnabled = true
         self.runner3_H.isHidden = false
         self.runner3.isHidden = true
     }
@@ -1421,9 +1433,13 @@ class HoldRunnerAnimation {
         
         
         self.runnerH_1.isEnabled = true
+        self.runner1.isEnabled = true
         self.runner1_2.isEnabled = true
+        self.runner2.isEnabled = true
         self.runner2_3.isEnabled = true
+        self.runner3.isEnabled = true
         self.runner3_H.isEnabled = true
+        
         
         //달리는 주자들 위치 초기화
         self.runnerH_1.frame.origin.x = 613
@@ -1463,7 +1479,7 @@ class HoldRunnerAnimation {
         self.twoRunnerHRecord.runnerLocation = "2루"
         self.twoRunnerHRecord.oneRecord = self.recordState
         self.twoRunnerHRecord.oneRecordImage = self.recordState.rawValue		//1-2루 사이 이미지
-        if self.recordState != .AdvanceArrow{
+        if self.recordState != .AdvanceArrow {
         self.twoRunnerHRecord.oneRecordText = Utils(currentHRecord: self.currentHRecord).currentHRecord.number.replacingOccurrences(of: "번타자", with: "")	//몇번타자가 있을때 도루했는지
         }
     }
@@ -1493,6 +1509,7 @@ class HoldRunnerAnimation {
         self.oneRunnerHRecord.runnerLocation = ""
         self.oneRunnerHRecord.oneRecord = self.recordState
         self.oneRunnerHRecord.oneRecordText += "T" 		//1-2루 사이 이미지
+        self.runner1.isHidden = true
         self.runner1_2.isHidden = true
 //        out()
         
@@ -1504,6 +1521,7 @@ class HoldRunnerAnimation {
         self.oneHalfRunnerHRecord.oneRecord = self.recordState
         self.oneHalfRunnerHRecord.oneRecordText += "T" 		//1-2루 사이 이미지
         self.runner1_2.isHidden = true
+        self.runner1.isHidden = true
     }
     func oneHalfBack(){
         //1H->1 돌아가기
@@ -1555,6 +1573,7 @@ class HoldRunnerAnimation {
         self.twoRunnerHRecord.runnerLocation = ""
         self.twoRunnerHRecord.twoRecord = self.recordState
         self.twoRunnerHRecord.twoRecordText += "T" 		//1-2루 사이 이미지
+        self.runner2.isHidden = true
         self.runner2_3.isHidden = true
     }
     func twoSTO2(){
@@ -1563,6 +1582,7 @@ class HoldRunnerAnimation {
         self.twoHalfRunnerHRecord.runnerLocation = ""
         self.twoHalfRunnerHRecord.twoRecord = self.recordState
         self.twoHalfRunnerHRecord.twoRecordText += "T" 		//1-2루 사이 이미지
+        self.runner2.isHidden = true
         self.runner2_3.isHidden = true
     }
     func twoHalfBack(){
@@ -1621,6 +1641,7 @@ class HoldRunnerAnimation {
         self.threeRunnerHRecord.runnerLocation = ""
         self.threeRunnerHRecord.threeRecord = self.recordState
         self.threeRunnerHRecord.threeRecordText += "T" 		//1-2루 사이 이미지
+        self.runner3.isHidden = true
         self.runner3_H.isHidden = true
     }
     func threeSTO2(){
@@ -1629,6 +1650,7 @@ class HoldRunnerAnimation {
         self.threeHalfRunnerHRecord.runnerLocation = ""
         self.threeHalfRunnerHRecord.threeRecord = self.recordState
         self.threeHalfRunnerHRecord.threeRecordText += "T" 		//1-2루 사이 이미지
+        self.runner3.isHidden = true
         self.runner3_H.isHidden = true
     }
     func threeHalfBack(){

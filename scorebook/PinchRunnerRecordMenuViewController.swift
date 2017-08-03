@@ -44,30 +44,57 @@ class PinchRunnerRecordMenuViewController: UIViewController {
     @IBOutlet weak var waitStateStealErrorButton: UIButton! // 도루 실패
     @IBOutlet weak var separateNotAdvanceButton: UIButton!  // 진루 없음
     
+    //폭투에 의한
     @IBAction func clickWildPitch(_ sender: UIButton) {
     }
     
+    //포일에 의한
     @IBAction func clickPassedBall(_ sender: UIButton) {
     }
     
+    // 실책에 의한
     @IBAction func clickDefenseError(_ sender: UIButton) {
     }
     
+    // 타자에 의한
     @IBAction func clickBatterByAdvance(_ sender: UIButton) {
     }
     
+    // 스틸에 의한
     @IBAction func clickStealByAdvance(_ sender: UIButton) {
         self.recordState = RecordState.StealImage
         complete()
     }
     
+    // 견제에 의한
     @IBAction func clickCheckAdvance(_ sender: UIButton) {
     }
     
+    // 주자에 의한
     @IBAction func clickRunnerAdvance(_ sender: UIButton) {
+        
+        self.recordState = RecordState.AdvanceArrow
+        complete()
     }
     
+    // 태그 아웃
     @IBAction func clickTagOut(_ sender: UIButton) {
+        self.recordState = RecordState.StealError
+        
+        switch self.runnerPosition {
+        case .OneRunner:
+            self.hRecord.oneRecord = RecordState.StealError
+//            self.hRecord.oneRecordImage = RecordState.StealError.rawValue
+        case .TwoRunner:
+            self.hRecord.twoRecord = RecordState.StealError
+//            self.hRecord.twoRecordImage = RecordState.StealError.rawValue
+        case .ThreeRunner:
+            self.hRecord.threeRecord = RecordState.StealError
+//            self.hRecord.threeRecordImage = RecordState.StealError.rawValue
+        default:
+            break
+        }
+        complete()
     }
     
     //도루실패
@@ -77,13 +104,13 @@ class PinchRunnerRecordMenuViewController: UIViewController {
         switch self.runnerPosition {
         case .OneRunner:
             self.hRecord.oneRecord = RecordState.StealError
-            self.hRecord.oneRecordImage = RecordState.StealError.rawValue
+//            self.hRecord.oneRecordImage = RecordState.StealError.rawValue
         case .TwoRunner:
             self.hRecord.twoRecord = RecordState.StealError
-            self.hRecord.twoRecordImage = RecordState.StealError.rawValue
+//            self.hRecord.twoRecordImage = RecordState.StealError.rawValue
         case .ThreeRunner:
             self.hRecord.threeRecord = RecordState.StealError
-            self.hRecord.threeRecordImage = RecordState.StealError.rawValue
+//            self.hRecord.threeRecordImage = RecordState.StealError.rawValue
         default:
             break
         }
@@ -107,11 +134,15 @@ class PinchRunnerRecordMenuViewController: UIViewController {
         checkAdvanceButton.isEnabled = false
         runnerAdvanceButton.isEnabled = false
         tagOutButton.isEnabled = false
-        tagOutButton.isEnabled = false
+        waitStateStealErrorButton.isEnabled = false
         
         switch addActionRunnerState {
         case .StealAction:
             stealByAdvanceButton.isEnabled = true
+            waitStateStealErrorButton.isEnabled = true
+        case .runnerAction:
+            runnerAdvanceButton.isEnabled = true
+            tagOutButton.isEnabled = true
         default:
             break
         }
@@ -132,17 +163,22 @@ class PinchRunnerRecordMenuViewController: UIViewController {
         }
     }
     func button(){
+        
         switch runnerPosition {
         case .OneRunner:
             switch runnerState {
             case .RunnerState12:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             case .RunnerState17:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             case .RunnerState30:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             case .RunnerState34:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             default:
                 return
             }
@@ -152,28 +188,30 @@ class PinchRunnerRecordMenuViewController: UIViewController {
                 separateNotAdvanceButton.isEnabled = false
             case .RunnerState21:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             case .RunnerState26:
                 separateNotAdvanceButton.isEnabled = false
             case .RunnerState27:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             case .RunnerState32:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             case .RunnerState33:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             case .RunnerState34:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
             case .RunnerState35:
                 stealByAdvanceButton.isEnabled = false
+                runnerAdvanceButton.isEnabled = false
                 separateNotAdvanceButton.isEnabled = false
             default:
                 return
             }
         case .ThreeRunner:
             switch runnerState {
-            case .RunnerState19:
-                separateNotAdvanceButton.isEnabled = false
-            case .RunnerState26:
-                separateNotAdvanceButton.isEnabled = false
             case .RunnerState27:
                 separateNotAdvanceButton.isEnabled = false
             case .RunnerState28:

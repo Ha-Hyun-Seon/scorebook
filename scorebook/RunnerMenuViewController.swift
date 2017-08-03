@@ -43,7 +43,7 @@ class RunnerMenuViewController: UIViewController {
         stolenBasesMenuViewController.currentHRecord = self.currentHRecord
         stolenBasesMenuViewController.runnerPosition = self.runnerPosition
         stolenBasesMenuViewController.holdRunnerComplete = self.holdRunnerComplete
-        
+        stolenBasesMenuViewController.addActionRunnerState = self.addActionRunnerState
         
         stolenBasesMenuViewController.preferredContentSize = CGSize(width: 200, height: 208)
         

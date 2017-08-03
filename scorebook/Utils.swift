@@ -55,6 +55,7 @@ enum AddActionRunnerState : String {
     case BatterAction = "타자에의한"
     case ErrorAction = "실책에의한"
     case StealAction = "스틸에의한"
+    case runnerAction = "주자에의한"
     //~에의한 추가
 }
 

@@ -29,6 +29,7 @@ class RunnerRecordMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setIsRunning()
+        button()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +52,6 @@ class RunnerRecordMenuViewController: UIViewController {
 
         //주자 상태에 따라 진루
             self.recordState = RecordState.AdvanceArrow
-            self.addActionRunnerSate = AddActionRunnerState.BatterAction
         
         self.complete()
 
@@ -69,14 +69,10 @@ class RunnerRecordMenuViewController: UIViewController {
     //태그 아웃
     @IBAction func clickTagOutButton(_ sender: Any) {
         //2루만 완료
-        //ErrorAction
-        //self.recordState = RecordState.AdvanceArrow
         if self.addActionRunnerSate == .StealAction{
             self.recordState = RecordState.StealError
             switch self.runnerPosition {
-                
             case .OneRunner:
-                
                 self.hRecord.oneRecord = RecordState.StealError
                 self.hRecord.oneRecordImage = RecordState.TwoAdvanceArrows.rawValue
             case .TwoRunner:
@@ -88,6 +84,7 @@ class RunnerRecordMenuViewController: UIViewController {
             default:
                 break
             }
+            self.addActionRunnerSate = AddActionRunnerState.runnerAction
         }else{
             self.recordState = RecordState.TagOut
         }
@@ -103,6 +100,44 @@ class RunnerRecordMenuViewController: UIViewController {
         {
             runnerCompleteDelegate?.HoldRunnerCompletePopover(runnerPosition: self.runnerPosition, record: self.hRecord, addActionRunnerState : self.addActionRunnerSate, recordState : self.recordState)
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    func button(){
+        switch runnerPosition {
+        case .OneRunner:
+            switch runnerState {
+            case .RunnerState12:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState17:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState30:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState34:
+                addAdvanceButton.isEnabled = false
+            default:
+                return
+            }
+        case .TwoRunner:
+            switch runnerState {
+            case .RunnerState6:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState21:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState27:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState32:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState33:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState34:
+                addAdvanceButton.isEnabled = false
+            case .RunnerState35:
+                addAdvanceButton.isEnabled = false
+            default:
+                return
+            }
+        default:
+            return
         }
     }
 
